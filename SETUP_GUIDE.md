@@ -63,14 +63,14 @@ CLOUDINARY_API_SECRET=...
 - [ ] Vào Settings → Upload → Upload presets
 - [ ] Create upload preset: `lingobros_unsigned` (unsigned)
 
-### ✅ 4. OpenAI Setup
-- [ ] Đăng ký/Đăng nhập tại https://platform.openai.com/
-- [ ] Vào API keys → Create new secret key
+### ✅ 4. Google Gemini Setup
+- [ ] Vào https://aistudio.google.com/app/apikey
+- [ ] Tạo API key mới
 - [ ] Copy key:
 ```
-OPENAI_API_KEY=sk-...
+GEMINI_API_KEY=your-api-key...
 ```
-- [ ] **CHÚ Ý**: Cần nạp credit (tối thiểu $5) để sử dụng
+- [ ] **FREE**: Gemini có free tier khá hào phóng cho development
 
 ### ✅ 5. Config Admin
 - [ ] Thêm email admin vào `.env.local`:
@@ -246,7 +246,7 @@ Sau khi setup xong, bạn nên:
 
 - Dùng MongoDB Compass để xem database trực quan
 - Dùng Firebase Emulator để test local (tránh tốn quota)
-- Monitor OpenAI usage để không bị over quota
+- Monitor Gemini API usage
 - Backup database thường xuyên
 
 ## 📞 Support

@@ -32,8 +32,8 @@ LingoBros là một ứng dụng học tiếng Anh full-stack được xây dự
 │  │  (Database - NoSQL)            │    │
 │  └────────────────────────────────┘    │
 │  ┌────────────────────────────────┐    │
-│  │  OpenAI API                    │    │
-│  │  (AI Chatbot - GPT-4)          │    │
+│  │  Google Gemini AI              │    │
+│  │  (AI Chatbot - Gemini Pro)     │    │
 │  └────────────────────────────────┘    │
 │  ┌────────────────────────────────┐    │
 │  │  Cloudinary                    │    │
@@ -126,7 +126,7 @@ lingobros/
 │   ├── firebase.ts             # Firebase client
 │   ├── firebase-admin.ts       # Firebase admin
 │   ├── cloudinary.ts           # Cloudinary config
-│   ├── openai.ts               # OpenAI integration
+│   ├── gemini.ts               # Gemini AI integration
 │   └── utils.ts                # Helper functions
 │
 ├── models/                      # MongoDB Models (Mongoose)
@@ -195,9 +195,9 @@ Update user stats (XP, hearts, streak)
 ```
 User types message in chatbot
     ↓
-POST /api/chat with message
+POST /api/chat (message)
     ↓
-OpenAI API processes with context
+Gemini API processes with context
     ↓
 Return AI response
     ↓
@@ -384,7 +384,7 @@ git push origin feature/new-feature
 | Language | TypeScript | Type-safe code |
 | Database | MongoDB | NoSQL database |
 | Auth | Firebase | Authentication |
-| AI | OpenAI | Chatbot |
+| AI | Google Gemini | Chatbot |
 | Storage | Cloudinary | Media files |
 | Styling | Tailwind CSS | Utility-first CSS |
 | UI | Radix UI | Accessible components |

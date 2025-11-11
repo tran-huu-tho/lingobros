@@ -1,13 +1,13 @@
 # 🦉 LingoBros - Ứng Dụng Học Tiếng Anh Trực Tuyến
 
-Ứng dụng học tiếng Anh thông minh với AI, được xây dựng tương tự Duolingo, sử dụng Next.js, TypeScript, MongoDB, Firebase, Cloudinary và OpenAI.
+Ứng dụng học tiếng Anh thông minh với AI, được xây dựng tương tự Duolingo, sử dụng Next.js, TypeScript, MongoDB, Firebase, Cloudinary và Google Gemini.
 
 ## ✨ Tính năng chính
 
 - 🔐 **Authentication**: Đăng nhập với Google/Facebook qua Firebase
 - 📚 **Learning Path**: Hệ thống học theo step giống Duolingo
 - 🧠 **Placement Test**: Kiểm tra đầu vào để xác định trình độ
-- 🤖 **AI Chatbot**: Trợ lý AI hỗ trợ học viên 24/7 (OpenAI)
+- 🤖 **AI Chatbot**: Trợ lý AI hỗ trợ học viên 24/7 (Google Gemini)
 - 📝 **Bài học đa dạng**: Từ vựng, ngữ pháp, nghe, nói, quiz
 - 🏆 **Gamification**: XP, streak, hearts, gems, achievements
 - 📊 **Progress Tracking**: Theo dõi tiến trình học tập
@@ -19,7 +19,7 @@
 - **Framework**: Next.js 16 + TypeScript
 - **Database**: MongoDB + Mongoose
 - **Auth**: Firebase (Google/Facebook)
-- **AI**: OpenAI GPT-4
+- **AI**: Google Gemini Pro
 - **Storage**: Cloudinary
 - **UI**: Tailwind CSS 4 + Radix UI
 
@@ -56,8 +56,8 @@ NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=...
 CLOUDINARY_API_KEY=...
 CLOUDINARY_API_SECRET=...
 
-# OpenAI
-OPENAI_API_KEY=sk-...
+# Gemini
+GEMINI_API_KEY=your-gemini-api-key...
 
 # Admin
 ADMIN_EMAILS=admin@example.com
@@ -121,7 +121,7 @@ vercel
 - Bật Google/Facebook providers
 - Download service account key
 
-### Cloudinary & OpenAI
+### Cloudinary & Gemini
 - Đăng ký và lấy API keys
 
 ## 📝 API Endpoints

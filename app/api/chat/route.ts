@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getEnglishTutorResponse } from '@/lib/openai';
+import { getEnglishTutorResponse } from '@/lib/gemini';
 
 export async function POST(req: NextRequest) {
   try {

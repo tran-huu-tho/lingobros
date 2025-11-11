@@ -64,7 +64,7 @@ Dự án **LingoBros** - Ứng dụng học tiếng Anh trực tuyến đã đư
 - ✅ Achievement framework
 
 #### 7. **AI Integration** 🤖
-- ✅ OpenAI GPT-4 integration
+- ✅ Google Gemini Pro integration
 - ✅ Context-aware AI tutor
 - ✅ Chat interface
 - ✅ Educational prompts
@@ -113,7 +113,7 @@ Dự án **LingoBros** - Ứng dụng học tiếng Anh trực tuyến đã đư
 │   ├── ✅ firebase.ts
 │   ├── ✅ firebase-admin.ts
 │   ├── ✅ cloudinary.ts
-│   ├── ✅ openai.ts
+│   ├── ✅ gemini.ts
 │   └── ✅ utils.ts
 ├── ✅ models/ (7 models)
 ├── ✅ types/
@@ -137,7 +137,7 @@ Dự án **LingoBros** - Ứng dụng học tiếng Anh trực tuyến đã đư
 - ✅ firebase-admin
 
 ### AI & Cloud
-- ✅ openai
+- ✅ @google/generative-ai
 - ✅ cloudinary
 - ✅ next-cloudinary
 
@@ -168,7 +168,7 @@ cp .env.example .env.local
 - MONGODB_URI
 - FIREBASE_* (8 variables)
 - CLOUDINARY_* (3 variables)
-- OPENAI_API_KEY
+- GEMINI_API_KEY
 - ADMIN_EMAILS
 ```
 
@@ -258,8 +258,8 @@ Những lỗi còn lại không ảnh hưởng đến functionality.
 - ✅ Cloudinary: 25GB free
 
 ### Paid Services
-- ⚠️ OpenAI: ~$0.01-0.03 per chat message
-  - Estimated: $10-50/month for 1000 users
+- ⚠️ Google Gemini: Free tier available, paid tiers for high usage
+  - Estimated: $0-20/month for 1000 users
 - ⚠️ Cloudinary: $89/month for Pro (if exceed free)
 
 **Total Initial Cost**: $0 - $100/month (depending on usage)
@@ -270,14 +270,14 @@ Những lỗi còn lại không ảnh hưởng đến functionality.
 - [Next.js Docs](https://nextjs.org/docs)
 - [MongoDB Manual](https://docs.mongodb.com/)
 - [Firebase Docs](https://firebase.google.com/docs)
-- [OpenAI API Docs](https://platform.openai.com/docs)
+- [Google AI Docs](https://ai.google.dev/docs)
 - [Tailwind CSS](https://tailwindcss.com/docs)
 
 ### Tutorials
 - Next.js App Router
 - MongoDB with Mongoose
 - Firebase Authentication
-- OpenAI Integration
+- Google Gemini Integration
 
 ## 🤝 Contributing
 
