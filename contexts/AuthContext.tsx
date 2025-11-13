@@ -15,9 +15,6 @@ import {
   ConfirmationResult,
   sendPasswordResetEmail,
   updateProfile,
-  linkWithCredential,
-  fetchSignInMethodsForEmail,
-  OAuthProvider,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { User } from '@/types';
@@ -120,29 +117,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (error: any) {
       console.error('Error signing in with Facebook:', error);
       
-      // Handle account exists with different credential
-      if (error.code === 'auth/account-exists-with-different-credential') {
-        const email = error.customData?.email;
-        
-        // Tìm phương thức đăng nhập đã tồn tại
-        if (email) {
-          try {
-            const methods = await fetchSignInMethodsForEmail(auth, email);
-            const providerName = methods[0]?.includes('google') ? 'Google' : 
-                                methods[0]?.includes('facebook') ? 'Facebook' : 
-                                'Email/Password';
-            
-            toast.error(
-              `Email này đã được dùng với ${providerName}.\nVui lòng đăng nhập bằng ${providerName}!`,
-              { duration: 5000 }
-            );
-          } catch (err) {
-            toast.error('Email này đã được sử dụng với phương thức khác!');
-          }
-        } else {
-          toast.error('Email này đã được sử dụng. Vui lòng thử phương thức khác!');
-        }
-      } else if (error.code === 'auth/popup-closed-by-user') {
+      if (error.code === 'auth/popup-closed-by-user') {
         toast.error('Bạn đã đóng cửa sổ đăng nhập');
       } else {
         toast.error('Đăng nhập thất bại. Vui lòng thử lại!');

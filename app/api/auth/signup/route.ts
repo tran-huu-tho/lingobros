@@ -14,14 +14,15 @@ export async function POST(req: NextRequest) {
     if (user) {
       // Update existing user
       user.displayName = displayName;
+      if (email) user.email = email; // Only update email if provided
       user.photoURL = photoURL;
       user.lastActiveAt = new Date();
       await user.save();
     } else {
-      // Create new user
+      // Create new user - email is optional for Facebook login
       user = await User.create({
         firebaseUid,
-        email,
+        email: email || `${firebaseUid}@lingobros.app`, // Generate email if not provided
         displayName,
         photoURL,
         level: 'beginner',

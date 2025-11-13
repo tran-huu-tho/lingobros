@@ -1,15 +1,13 @@
 'use client';
 
 import { useAuth } from '@/contexts/AuthContext';
-import { useTheme } from '@/contexts/ThemeContext';
 import AuthModal from '@/components/auth/AuthModal';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
-import { BookOpen, Zap, Trophy, Users, Moon, Sun } from 'lucide-react';
+import { BookOpen, Zap, Trophy, Users, MessageCircle } from 'lucide-react';
 
 export default function Home() {
   const { user, loading } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const router = useRouter();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
@@ -32,40 +30,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-gradient-to-br dark:from-gray-950 dark:to-gray-900 transition-colors duration-300">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/90 dark:bg-gray-950/80 border-b border-gray-200 dark:border-gray-800">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-600 flex items-center justify-center text-2xl">
-                🦉
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-2xl">
+                ☃️
               </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-400 dark:to-emerald-400 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-400 dark:to-blue-500 bg-clip-text text-transparent">
                 LingoBros
               </span>
             </div>
 
             {/* Right Actions */}
             <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
-              <button
-                onClick={toggleTheme}
-                className="p-2.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === 'light' ? (
-                  <Moon className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-                ) : (
-                  <Sun className="w-5 h-5 text-gray-300" />
-                )}
-              </button>
-
               {/* Login Button */}
               <button
                 onClick={handleOpenAuth}
-                className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-semibold transition-all duration-200 shadow-lg shadow-green-500/30"
+                className="px-6 py-2.5 rounded-lg bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold transition-all duration-200 shadow-lg shadow-blue-500/30"
               >
                 Đăng Nhập
               </button>
@@ -80,8 +65,8 @@ export default function Home() {
           {/* Main Content */}
           <div className="text-center mb-20">
             <div className="inline-block mb-6">
-              <div className="px-4 py-2 rounded-full bg-green-100 dark:bg-green-900/30 border border-green-200 dark:border-green-800">
-                <span className="text-sm font-semibold text-green-700 dark:text-green-400">
+              <div className="px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800">
+                <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">
                   ✨ Miễn phí 100%
                 </span>
               </div>
@@ -98,7 +83,7 @@ export default function Home() {
 
             <button
               onClick={handleOpenAuth}
-              className="group px-8 py-4 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-lg font-bold transition-all duration-200 shadow-2xl shadow-green-500/40 hover:scale-105"
+              className="group px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white text-lg font-bold transition-all duration-200 shadow-2xl shadow-blue-500/40 hover:scale-105"
             >
               <span className="flex items-center gap-2">
                 Bắt Đầu Ngay
@@ -113,7 +98,7 @@ export default function Home() {
               icon={<BookOpen className="w-8 h-8" />}
               title="Lộ Trình Học"
               description="Học theo trình độ, từ cơ bản đến nâng cao"
-              gradient="from-blue-500 to-cyan-500"
+              gradient="from-green-500 to-green-600"
             />
 
             <FeatureCard
@@ -134,7 +119,7 @@ export default function Home() {
               icon={<Users className="w-8 h-8" />}
               title="Cộng Đồng"
               description="Kết nối với học viên toàn quốc"
-              gradient="from-green-500 to-emerald-500"
+              gradient="from-red-500 to-red-600"
             />
           </div>
 
@@ -153,11 +138,26 @@ export default function Home() {
         onClose={() => setShowAuthModal(false)}
       />
 
+      {/* Floating Action Button - Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-50">
+        {/* Chat Button */}
+        <button
+          onClick={() => alert('Chat feature coming soon!')}
+          className="group relative p-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+          aria-label="Open chat"
+        >
+          <MessageCircle className="w-6 h-6" />
+          <span className="absolute right-full mr-3 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Chat với AI
+          </span>
+        </button>
+      </div>
+
       {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8 mt-20">
         <div className="container mx-auto px-6">
           <div className="text-center text-gray-600 dark:text-gray-400">
-            <p>© 2025 LingoBros. Made with ❤️ in Vietnam</p>
+            <p>© 2025 LingoBros. Design by Huu Tho - Quoc Dung ❤️</p>
           </div>
         </div>
       </footer>

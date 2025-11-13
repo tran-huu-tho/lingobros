@@ -10,13 +10,18 @@
 }
 
 :root {
-  --background: #0a0e27;
-  --foreground: #ffffff;
+  --background: #f8fafc;
+  --foreground: #1e293b;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 [data-theme="light"] {
-  --background: #f5f7fa;
-  --foreground: #1a1a1a;
+  --background: #f8fafc;
+  --foreground: #1e293b;
 }
 
 * {

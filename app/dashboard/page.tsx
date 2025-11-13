@@ -34,23 +34,30 @@ export default function Dashboard() {
   }, [user, loading, router]);
 
   useEffect(() => {
-    if (userData && !userData.preferences?.learningGoal) {
-      // Redirect to placement test for new users
-      router.push('/placement-test');
-    }
-  }, [userData, router]);
-
-  useEffect(() => {
     fetchCourses();
   }, [fetchCourses]);
 
-  if (loading || !user || !userData) {
+  if (loading || !user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500"></div>
       </div>
     );
   }
+
+  // Use default data if userData is not available yet
+  const displayData = userData || {
+    displayName: user.displayName || user.email?.split('@')[0] || 'User',
+    level: 'beginner',
+    xp: 0,
+    streak: 0,
+    hearts: 5,
+    gems: 0,
+    preferences: {
+      dailyGoalMinutes: 15,
+      learningGoal: 'general'
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -86,7 +93,7 @@ export default function Dashboard() {
             <Card>
               <CardHeader>
                 <CardTitle>
-                  Xin chào, {userData.displayName}! 👋
+                  Xin chào, {displayData.displayName}! 👋
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -178,7 +185,7 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   <Progress value={0} max={100} color="yellow" />
                   <p className="text-sm text-gray-600">
-                    0 / {userData.preferences?.dailyGoalMinutes || 15} phút
+                    0 / {displayData.preferences?.dailyGoalMinutes || 15} phút
                   </p>
                 </div>
               </CardContent>
@@ -214,12 +221,12 @@ export default function Dashboard() {
               <CardContent>
                 <div className="text-center">
                   <div className="text-4xl font-bold text-green-600 mb-2">
-                    {userData.level.toUpperCase()}
+                    {displayData.level.toUpperCase()}
                   </div>
                   <p className="text-sm text-gray-600 mb-4">
-                    {userData.xp} XP
+                    {displayData.xp} XP
                   </p>
-                  <Progress value={userData.xp % 100} max={100} color="green" />
+                  <Progress value={displayData.xp % 100} max={100} color="green" />
                 </div>
               </CardContent>
             </Card>
