@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import AuthModal from '@/components/auth/AuthModal';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { BookOpen, Zap, Trophy, Users, Moon, Sun } from 'lucide-react';
 
 export default function Home() {
@@ -140,18 +140,9 @@ export default function Home() {
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 mt-20 pt-20 border-t border-gray-200 dark:border-gray-800">
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">10K+</div>
-              <div className="text-gray-600 dark:text-gray-400">Học Viên</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">50+</div>
-              <div className="text-gray-600 dark:text-gray-400">Bài Học</div>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">100%</div>
-              <div className="text-gray-600 dark:text-gray-400">Miễn Phí</div>
-            </div>
+            <StatCard value={10000} suffix="+" label="Học Viên" />
+            <StatCard value={50} suffix="+" label="Bài Học" />
+            <StatCard value={100} suffix="%" label="Miễn Phí" />
           </div>
         </div>
       </main>
@@ -183,8 +174,8 @@ interface FeatureCardProps {
 
 function FeatureCard({ icon, title, description, gradient }: FeatureCardProps) {
   return (
-    <div className="group p-6 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-300 hover:shadow-xl">
-      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform`}>
+    <div className="group text-center p-6 bg-white dark:bg-gray-900 rounded-3xl border border-gray-200 dark:border-gray-800 transition-all duration-300 hover:shadow-xl hover:border-gray-300 dark:hover:border-gray-700">
+      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform mx-auto`}>
         {icon}
       </div>
       <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">
@@ -193,6 +184,61 @@ function FeatureCard({ icon, title, description, gradient }: FeatureCardProps) {
       <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
         {description}
       </p>
+    </div>
+  );
+}
+
+interface StatCardProps {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+function StatCard({ value, suffix, label }: StatCardProps) {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLDivElement>(null);
+  const [hasAnimated, setHasAnimated] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
+          
+          const duration = 2000; // 2 seconds
+          const steps = 60;
+          const increment = value / steps;
+          let current = 0;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= value) {
+              setCount(value);
+              clearInterval(timer);
+            } else {
+              setCount(Math.floor(current));
+            }
+          }, duration / steps);
+
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [value, hasAnimated]);
+
+  return (
+    <div ref={countRef} className="text-center">
+      <div className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+        {count.toLocaleString()}{suffix}
+      </div>
+      <div className="text-gray-600 dark:text-gray-400">{label}</div>
     </div>
   );
 }

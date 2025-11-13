@@ -39,6 +39,31 @@ button, input, textarea, select, div, span, p, h1, h2, h3, h4, h5, h6, a, li, ul
   font-family: 'SDK_SC_Web' !important;
 }
 
+/* Rotating border animation */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* Conic gradient for circular border */
+.bg-gradient-conic {
+  background: conic-gradient(
+    from 0deg,
+    #3b82f6 0deg,
+    #8b5cf6 120deg,
+    #ec4899 240deg,
+    #3b82f6 360deg
+  );
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
