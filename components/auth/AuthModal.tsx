@@ -21,8 +21,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithGoogle();
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Google login error:', error);
+      // If user closed popup, just stop loading without closing modal
+      if (error?.code === 'auth/popup-closed-by-user' || error?.code === 'auth/cancelled-popup-request') {
+        // User closed popup, just reset loading state
+      }
     } finally {
       setLoading(false);
     }
@@ -33,8 +37,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithFacebook();
       onClose();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Facebook login error:', error);
+      // If user closed popup, just stop loading without closing modal
+      if (error?.code === 'auth/popup-closed-by-user' || error?.code === 'auth/cancelled-popup-request') {
+        // User closed popup, just reset loading state
+      }
     } finally {
       setLoading(false);
     }

@@ -92,16 +92,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await createOrUpdateUser(result.user);
       toast.success('Đăng nhập thành công!');
     } catch (error: any) {
-      console.error('Error signing in with Google:', error);
-      
-      if (error.code === 'auth/popup-closed-by-user') {
-        toast.error('Bạn đã đóng cửa sổ đăng nhập');
-      } else if (error.code === 'auth/cancelled-popup-request') {
-        // Ignore - user opened multiple popups
-      } else {
-        toast.error('Đăng nhập thất bại. Vui lòng thử lại!');
+      // Ignore user cancellation errors silently
+      if (error.code === 'auth/popup-closed-by-user' || 
+          error.code === 'auth/cancelled-popup-request' ||
+          error.code === 'auth/user-cancelled') {
+        return;
       }
       
+      // Only log real errors
+      console.error('Error signing in with Google:', error);
+      toast.error('Đăng nhập thất bại. Vui lòng thử lại!');
       throw error;
     }
   };
@@ -115,14 +115,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await createOrUpdateUser(result.user);
       toast.success('Đăng nhập thành công!');
     } catch (error: any) {
-      console.error('Error signing in with Facebook:', error);
-      
-      if (error.code === 'auth/popup-closed-by-user') {
-        toast.error('Bạn đã đóng cửa sổ đăng nhập');
-      } else {
-        toast.error('Đăng nhập thất bại. Vui lòng thử lại!');
+      // Ignore user cancellation errors silently
+      if (error.code === 'auth/popup-closed-by-user' ||
+          error.code === 'auth/user-cancelled') {
+        return;
       }
       
+      // Only log real errors
+      console.error('Error signing in with Facebook:', error);
+      toast.error('Đăng nhập thất bại. Vui lòng thử lại!');
       throw error;
     }
   };
