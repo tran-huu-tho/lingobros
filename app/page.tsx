@@ -13,7 +13,12 @@ export default function Home() {
 
   useEffect(() => {
     if (user && !loading) {
-      router.push('/dashboard');
+      // Wait 2s before redirecting to dashboard
+      const timer = setTimeout(() => {
+        router.push('/dashboard');
+      }, 2000);
+      
+      return () => clearTimeout(timer);
     }
   }, [user, loading, router]);
 
