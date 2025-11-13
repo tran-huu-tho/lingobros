@@ -90,8 +90,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const result = await signInWithPopup(auth, provider);
       await createOrUpdateUser(result.user);
-      // Wait 2s before redirect
-      await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error: any) {
       // Ignore user cancellation errors silently
       if (error.code === 'auth/popup-closed-by-user' || 
@@ -114,8 +112,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const result = await signInWithPopup(auth, provider);
       await createOrUpdateUser(result.user);
-      // Wait 2s before redirect
-      await new Promise(resolve => setTimeout(resolve, 2000));
     } catch (error: any) {
       // Ignore user cancellation errors silently
       if (error.code === 'auth/popup-closed-by-user' ||

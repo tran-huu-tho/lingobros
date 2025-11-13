@@ -3,6 +3,7 @@ import "./globals.css";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Toaster } from "react-hot-toast";
+import { AIChatbot } from "@/components/ui/AIChatbot";
 
 export const metadata: Metadata = {
   title: "LingoBros - Học Tiếng Anh Trực Tuyến",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
+            <AIChatbot />
             <Toaster
               position="top-right"
               toastOptions={{

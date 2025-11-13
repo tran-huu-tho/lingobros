@@ -13,12 +13,7 @@ export default function Home() {
 
   useEffect(() => {
     if (user && !loading) {
-      // Wait 2s before redirecting to dashboard
-      const timer = setTimeout(() => {
-        router.push('/dashboard');
-      }, 2000);
-      
-      return () => clearTimeout(timer);
+      router.push('/dashboard');
     }
   }, [user, loading, router]);
 
@@ -142,21 +137,6 @@ export default function Home() {
         isOpen={showAuthModal}
         onClose={() => setShowAuthModal(false)}
       />
-
-      {/* Floating Action Button - Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-50">
-        {/* Chat Button */}
-        <button
-          onClick={() => alert('Chat feature coming soon!')}
-          className="group relative p-4 rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
-          aria-label="Open chat"
-        >
-          <MessageCircle className="w-6 h-6" />
-          <span className="absolute right-full mr-3 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            Chat với AI
-          </span>
-        </button>
-      </div>
 
       {/* Footer */}
       <footer className="border-t border-gray-200 dark:border-gray-800 py-8 mt-20">
