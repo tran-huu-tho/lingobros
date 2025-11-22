@@ -274,7 +274,7 @@ export function AIChatbot() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                  placeholder="Hỏi Frosty điều gì đó... ❄️"
+                  placeholder="Hỏi Frosty điều gì đó... "
                   className="flex-1 px-3 py-2 text-sm border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                   disabled={loading}
                 />

@@ -243,7 +243,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                           value={displayName}
                           onChange={(e) => setDisplayName(e.target.value)}
                           placeholder="Nguyễn Văn A"
-                          className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors"
+                          className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
                           required={mode === 'signup'}
                         />
                       </div>
@@ -261,7 +261,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="example@email.com"
-                        className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors"
+                        className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
                         required
                       />
                     </div>
@@ -279,7 +279,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           placeholder="••••••••"
-                          className="w-full pl-10 pr-12 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors"
+                          className="w-full pl-10 pr-12 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
                           required
                           minLength={6}
                         />
@@ -306,7 +306,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                               value={password}
                               onChange={(e) => setPassword(e.target.value)}
                               placeholder="••••••••"
-                              className="w-full pl-9 pr-10 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                              className="w-full pl-9 pr-10 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors text-sm placeholder:text-gray-400 placeholder:opacity-70"
                               required
                               minLength={6}
                             />
@@ -331,7 +331,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                               value={confirmPassword}
                               onChange={(e) => setConfirmPassword(e.target.value)}
                               placeholder="••••••••"
-                              className="w-full pl-9 pr-10 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors text-sm"
+                              className="w-full pl-9 pr-10 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors text-sm placeholder:text-gray-400 placeholder:opacity-70"
                               required={mode === 'signup'}
                               minLength={6}
                             />
