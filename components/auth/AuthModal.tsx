@@ -88,8 +88,8 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       setConfirmPassword('');
       setDisplayName('');
     } catch (error: any) {
-      console.error('Email auth error:', error);
-      // Error messages are handled by AuthContext toast
+      // Không cần xử lý gì - toast đã hiển thị trong AuthContext
+      // Modal vẫn mở để user thử lại
     } finally {
       setLoading(false);
     }

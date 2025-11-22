@@ -129,18 +129,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signInWithEmail = async (email: string, password: string) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      toast.success('Đăng nhập thành công!');
     } catch (error: any) {
-      console.error('Error signing in with email:', error);
       const errorMessage = error.code === 'auth/user-not-found' 
         ? 'Tài khoản không tồn tại'
         : error.code === 'auth/wrong-password'
         ? 'Mật khẩu không đúng'
+        : error.code === 'auth/invalid-credential'
+        ? 'Email hoặc mật khẩu không đúng'
         : error.code === 'auth/invalid-email'
         ? 'Email không hợp lệ'
+        : error.code === 'auth/too-many-requests'
+        ? 'Quá nhiều lần thử. Vui lòng thử lại sau'
         : 'Đăng nhập thất bại';
       toast.error(errorMessage);
-      throw error;
+      // Throw simple error thay vì FirebaseError để không hiện lỗi đỏ
+      throw new Error(errorMessage);
     }
   };
 
@@ -154,7 +157,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       // Create user in database
       await createOrUpdateUser(result.user, displayName);
       
-      toast.success('Đăng ký thành công!');
     } catch (error: any) {
       console.error('Error signing up with email:', error);
       const errorMessage = error.code === 'auth/email-already-in-use'
