@@ -26,27 +26,40 @@ export async function POST(req: NextRequest) {
         userId = decodedToken.uid;
       } catch (error) {
         // User not authenticated, continue as guest
+        console.log('Guest chat request');
       }
     }
 
     // Get AI response with appropriate context
-    const response = await getEnglishTutorResponse(message, context, !userId);
+    let response: string;
+    try {
+      response = await getEnglishTutorResponse(message, context, !userId);
+    } catch (aiError) {
+      console.error('Gemini API error:', aiError);
+      // Fallback response if Gemini fails
+      response = 'Xin lỗi, Frosty gặp chút vấn đề nhỏ với não tuyết. 🤖❄️ Hãy thử lại câu hỏi khác nhé!';
+    }
 
     // Save chat history if user is logged in
     if (userId) {
-      await connectDB();
-      await ChatHistory.findOneAndUpdate(
-        { userId },
-        {
-          $push: {
-            messages: [
-              { role: 'user', content: message, timestamp: new Date() },
-              { role: 'assistant', content: response, timestamp: new Date() }
-            ]
-          }
-        },
-        { upsert: true, new: true }
-      );
+      try {
+        await connectDB();
+        await ChatHistory.findOneAndUpdate(
+          { userId },
+          {
+            $push: {
+              messages: [
+                { role: 'user', content: message, timestamp: new Date() },
+                { role: 'assistant', content: response, timestamp: new Date() }
+              ]
+            }
+          },
+          { upsert: true, new: true }
+        );
+      } catch (dbError) {
+        console.error('Database error (non-critical):', dbError);
+        // Continue - we still have the AI response for guest
+      }
     }
 
     return NextResponse.json({ 
@@ -57,7 +70,7 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     console.error('Chat error:', error);
     return NextResponse.json(
-      { error: 'Failed to get AI response' },
+      { error: 'Failed to get AI response', details: String(error) },
       { status: 500 }
     );
   }
@@ -70,26 +83,33 @@ export async function GET(req: NextRequest) {
     
     if (!authHeader?.startsWith('Bearer ')) {
       return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
+        { messages: [] }, // Return empty for guests
+        { status: 200 }
       );
     }
 
     const token = authHeader.substring(7);
-    const decodedToken = await adminAuth.verifyIdToken(token);
-    const userId = decodedToken.uid;
+    try {
+      const decodedToken = await adminAuth.verifyIdToken(token);
+      const userId = decodedToken.uid;
 
-    await connectDB();
-    const chatHistory = await ChatHistory.findOne({ userId });
+      await connectDB();
+      const chatHistory = await ChatHistory.findOne({ userId });
 
-    return NextResponse.json({
-      messages: chatHistory?.messages || []
-    });
+      return NextResponse.json({
+        messages: chatHistory?.messages || []
+      });
+    } catch (authError) {
+      return NextResponse.json(
+        { messages: [] },
+        { status: 200 }
+      );
+    }
   } catch (error) {
     console.error('Get chat history error:', error);
     return NextResponse.json(
-      { error: 'Failed to get chat history' },
-      { status: 500 }
+      { messages: [] },
+      { status: 200 }
     );
   }
 }

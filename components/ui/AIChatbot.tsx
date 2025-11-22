@@ -15,7 +15,7 @@ interface Message {
 
 // Extract suggestions from message content
 function extractSuggestions(content: string): { text: string; suggestions: string[] } {
-  const suggestionRegex = /💡\s*\*\*Gợi ý câu hỏi:\*\*\s*\n((?:•[^\n]+\n?)+)/;
+  const suggestionRegex = /💡\s*Gợi ý câu hỏi:\s*\n((?:•[^\n]+\n?)+)/;
   const match = content.match(suggestionRegex);
   
   if (match) {
@@ -40,6 +40,8 @@ export function AIChatbot() {
   const [loading, setLoading] = useState(false);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+ 
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,20 +51,33 @@ export function AIChatbot() {
     scrollToBottom();
   }, [messages]);
 
-  // Load chat history when user logs in
+  // Focus input when an assistant reply finishes and we're not loading
+  useEffect(() => {
+    if (!isOpen) return;
+    if (loading) return;
+    if (messages.length === 0) return;
+
+    const last = messages[messages.length - 1];
+    if (last.role === 'assistant') {
+      inputRef.current?.focus();
+    }
+  }, [messages, loading, isOpen]);
+
+  // Load chat history when user opens chat
   useEffect(() => {
     const loadChatHistory = async () => {
       if (!user) {
         // Guest welcome message with suggestions
         setMessages([{
           role: 'assistant',
-          content: 'Xin chào! Mình là **Frosty** ☃️ - trợ lý AI học tiếng Anh của LingoBros! 🎉\n\nMình có thể giúp cậu học tiếng Anh vui vẻ và hiệu quả! ❄️✨',
+          content: 'Xin chào! Mình là Frosty ☃️ — trợ lý AI học tiếng Anh của LingoBros! 🎉\n\nMình có thể giúp cậu học tiếng Anh vui vẻ và hiệu quả! ❄️✨',
           suggestions: [
             'LingoBros là gì và có gì hay?',
             'Làm sao để học tiếng Anh hiệu quả?',
             'Cách đăng ký tài khoản như thế nào?'
           ]
         }]);
+        setTimeout(() => inputRef.current?.focus(), 0);
         return;
       }
 
@@ -90,16 +105,19 @@ export function AIChatbot() {
             // Logged in user welcome message
             setMessages([{
               role: 'assistant',
-              content: `Chào mừng cậu trở lại! ☃️❄️\n\nMình là **Frosty** - trợ lý học tiếng Anh siêu nhiệt tình của cậu đây! 🎉\n\nCậu muốn học gì hôm nay nào? Hỏi mình bất cứ điều gì về tiếng Anh nhé! 💪✨`
+              content: `Chào mừng cậu trở lại! ☃️❄️\n\nMình là Frosty — trợ lý học tiếng Anh siêu nhiệt tình của cậu đây! 🎉\n\nCậu muốn học gì hôm nay nào? Hỏi mình bất cứ điều gì về tiếng Anh nhé! 💪✨`
             }]);
           }
+          // focus input after loading history
+          setTimeout(() => inputRef.current?.focus(), 0);
         }
       } catch (error) {
         console.error('Load chat history error:', error);
         setMessages([{
           role: 'assistant',
-          content: `Chào cậu! ☃️ Mình là **Frosty** đây! Có vẻ mình hơi "đóng băng" một chút khi load lịch sử chat 😅\n\nNhưng không sao, mình vẫn sẵn sàng giúp cậu học tiếng Anh! Hỏi mình gì đi nào! 💪`
+          content: `Chào cậu! ☃️ Mình là Frosty đây! Có vẻ mình hơi "đóng băng" một chút khi load lịch sử chat 😅\n\nNhưng không sao, mình vẫn sẵn sàng giúp cậu học tiếng Anh! Hỏi mình gì đi nào! 💪`
         }]);
+        setTimeout(() => inputRef.current?.focus(), 0);
       } finally {
         setLoadingHistory(false);
       }
@@ -142,6 +160,8 @@ export function AIChatbot() {
           suggestions: suggestions.length > 0 ? suggestions : undefined,
           timestamp: new Date(data.timestamp)
         }]);
+        // focus input after assistant replies
+        setTimeout(() => inputRef.current?.focus(), 0);
       } else if (data.error) {
         throw new Error(data.error);
       }
@@ -151,6 +171,7 @@ export function AIChatbot() {
         role: 'assistant', 
         content: 'Ối! Mình bị "đóng băng" một chút rồi... ❄️😅 Có lỗi xảy ra, cậu thử lại nhé!' 
       }]);
+      setTimeout(() => inputRef.current?.focus(), 0);
     } finally {
       setLoading(false);
     }
@@ -174,11 +195,11 @@ export function AIChatbot() {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[600px] z-50 animate-in slide-in-from-bottom-5">
+        <div className="fixed bottom-6 right-6 w-96 h-[500px] z-50 animate-in slide-in-from-bottom-5">
           <Card className="h-full flex flex-col shadow-2xl">
             <CardHeader className="border-b flex-row items-center justify-between space-y-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-t-2xl">
-              <CardTitle className="text-white text-xl flex items-center gap-2">
-                <span className="text-2xl">☃️</span>
+              <CardTitle className="text-white text-base flex items-center gap-2">
+                <span className="text-xl">☃️</span>
                 Frosty - AI Tutor
               </CardTitle>
               <button
@@ -203,7 +224,7 @@ export function AIChatbot() {
                         className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                       >
                         <div
-                          className={`max-w-[80%] p-3 rounded-2xl ${
+                          className={`max-w-[80%] p-2.5 rounded-xl text-sm ${
                             message.role === 'user'
                               ? 'bg-blue-500 text-white'
                               : 'bg-white text-gray-800 shadow-md border border-blue-100'
@@ -231,7 +252,7 @@ export function AIChatbot() {
                   ))}
                   {loading && (
                     <div className="flex justify-start">
-                      <div className="bg-white p-3 rounded-2xl shadow-md border border-blue-100">
+                      <div className="bg-white p-2.5 rounded-xl shadow-md border border-blue-100">
                         <div className="flex space-x-2">
                           <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" />
                           <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce delay-100" />
@@ -249,11 +270,12 @@ export function AIChatbot() {
               <div className="flex gap-2">
                 <input
                   type="text"
+                  ref={inputRef}
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
                   placeholder="Hỏi Frosty điều gì đó... ❄️"
-                  className="flex-1 px-4 py-2 border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="flex-1 px-3 py-2 text-sm border border-blue-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
                   disabled={loading}
                 />
                 <Button 
