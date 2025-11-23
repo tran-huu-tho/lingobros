@@ -83,6 +83,11 @@ export default function Forum() {
     level: 'beginner'
   };
 
+  const userPhoto = userData?.photoURL || user?.photoURL;
+  const optimizedPhoto = userPhoto?.includes('googleusercontent.com') && userPhoto?.includes('=s96-c')
+    ? userPhoto.replace('=s96-c', '=s400-c')
+    : userPhoto;
+
   const formatTimestamp = (date: Date) => {
     const now = new Date();
     const diff = now.getTime() - date.getTime();
@@ -137,9 +142,18 @@ export default function Forum() {
                 onClick={() => setShowUserMenu(!showUserMenu)}
                 className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-800/50 hover:bg-gray-800 border border-gray-700 transition group"
               >
-                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-blue-500/50 transition-shadow">
-                  {displayData.displayName?.charAt(0).toUpperCase()}
-                </div>
+                {optimizedPhoto ? (
+                  <img 
+                    src={optimizedPhoto} 
+                    alt={displayData.displayName || 'User'}
+                    className="w-9 h-9 rounded-full object-cover shadow-lg group-hover:shadow-blue-500/50 transition-shadow"
+                    onError={(e) => e.currentTarget.style.display = 'none'}
+                  />
+                ) : (
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-blue-500/50 transition-shadow">
+                    {displayData.displayName?.charAt(0).toUpperCase()}
+                  </div>
+                )}
                 <div className="hidden sm:flex flex-col items-start">
                   <span className="text-gray-100 font-semibold text-sm leading-tight">
                     {displayData.displayName}
@@ -156,9 +170,18 @@ export default function Forum() {
                   {/* User Info Header */}
                   <div className="px-4 py-3 bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-b border-gray-700">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-                        {displayData.displayName?.charAt(0).toUpperCase()}
-                      </div>
+                      {optimizedPhoto ? (
+                        <img 
+                          src={optimizedPhoto} 
+                          alt={displayData.displayName || 'User'}
+                          className="w-12 h-12 rounded-full object-cover shadow-lg"
+                          onError={(e) => e.currentTarget.style.display = 'none'}
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                          {displayData.displayName?.charAt(0).toUpperCase()}
+                        </div>
+                      )}
                       <div className="flex-1 min-w-0">
                         <p className="text-white font-semibold truncate">{displayData.displayName}</p>
                         <p className="text-xs text-gray-400 truncate">{user?.email}</p>
