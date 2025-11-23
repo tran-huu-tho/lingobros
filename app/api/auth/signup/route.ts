@@ -12,10 +12,14 @@ export async function POST(req: NextRequest) {
     let user = await User.findOne({ firebaseUid });
 
     if (user) {
-      // Update existing user
+      // Update existing user - but DON'T overwrite photoURL if not provided
       user.displayName = displayName;
       if (email) user.email = email; // Only update email if provided
-      user.photoURL = photoURL;
+      if (photoURL) {
+        // Only update photoURL if explicitly provided (for new users or password signup)
+        user.photoURL = photoURL;
+      }
+      // If photoURL is not in the request, keep the existing one (user uploaded custom photo)
       user.lastActiveAt = new Date();
       await user.save();
     } else {

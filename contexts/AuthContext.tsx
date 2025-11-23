@@ -227,15 +227,31 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const createOrUpdateUser = async (firebaseUser: FirebaseUser, customDisplayName?: string) => {
     try {
+      // Check if user already exists first
+      const token = await firebaseUser.getIdToken();
+      const checkResponse = await fetch('/api/users/me', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      
+      const payload: any = {
+        firebaseUid: firebaseUser.uid,
+        email: firebaseUser.email,
+        displayName: customDisplayName || firebaseUser.displayName || firebaseUser.email?.split('@')[0],
+      };
+      
+      // Only set photoURL if user doesn't exist or doesn't have a custom photo
+      if (!checkResponse.ok) {
+        // New user - use Firebase photo
+        payload.photoURL = firebaseUser.photoURL;
+      }
+      // For existing users, don't send photoURL - keep their custom uploaded photo
+      
       await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firebaseUid: firebaseUser.uid,
-          email: firebaseUser.email,
-          displayName: customDisplayName || firebaseUser.displayName || firebaseUser.email?.split('@')[0],
-          photoURL: firebaseUser.photoURL,
-        }),
+        body: JSON.stringify(payload),
       });
     } catch (error) {
       console.error('Error creating/updating user:', error);
