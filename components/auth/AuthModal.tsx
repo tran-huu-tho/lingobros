@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 import { X, Mail, Lock, User, Eye, EyeOff } from 'lucide-react';
 
 interface AuthModalProps {
@@ -9,7 +10,7 @@ interface AuthModalProps {
   onClose: () => void;
 }
 
-type AuthMode = 'login' | 'signup';
+type AuthMode = 'login' | 'signup' | 'forgot';
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [loading, setLoading] = useState(false);
@@ -21,8 +22,10 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [resetEmailSent, setResetEmailSent] = useState(false);
 
-  const { signInWithGoogle, signInWithFacebook, signInWithEmail, signUpWithEmail } = useAuth();
+  const router = useRouter();
+  const { signInWithGoogle, signInWithFacebook, signInWithEmail, signUpWithEmail, resetPassword } = useAuth();
 
   if (!isOpen) return null;
 
@@ -32,6 +35,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithGoogle();
       onClose();
+      router.push('/dashboard');
     } catch (error: any) {
       console.error('Google login error:', error);
       // If user closed popup, just stop loading without closing modal
@@ -49,6 +53,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithFacebook();
       onClose();
+      router.push('/dashboard');
     } catch (error: any) {
       console.error('Facebook login error:', error);
       // If user closed popup, just stop loading without closing modal
@@ -66,8 +71,18 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     setError('');
 
     try {
-      if (mode === 'login') {
+      if (mode === 'forgot') {
+        await resetPassword(email);
+        setResetEmailSent(true);
+      } else if (mode === 'login') {
         await signInWithEmail(email, password);
+        onClose();
+        router.push('/dashboard');
+        // Reset form
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setDisplayName('');
       } else {
         if (!displayName.trim()) {
           setError('Vui lòng nhập tên hiển thị');
@@ -80,13 +95,14 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           return;
         }
         await signUpWithEmail(email, password, displayName);
+        onClose();
+        router.push('/dashboard');
+        // Reset form
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
+        setDisplayName('');
       }
-      onClose();
-      // Reset form
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
-      setDisplayName('');
     } catch (error: any) {
       // Không cần xử lý gì - toast đã hiển thị trong AuthContext
       // Modal vẫn mở để user thử lại
@@ -190,109 +206,192 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
           <div className="md:col-span-3 p-10 flex flex-col justify-center">
             <div className="mb-6">
               <h3 className="text-xl font-bold text-gray-900 mb-2">
-                {mode === 'login' ? 'Đăng nhập' : 'Tạo tài khoản'}
+                {mode === 'login' ? 'Đăng nhập' : mode === 'signup' ? 'Tạo tài khoản' : 'Quên mật khẩu'}
               </h3>
               <p className="text-gray-600">
-                {mode === 'login' ? 'Chào mừng trở lại!' : 'Bắt đầu hành trình học tập'}
+                {mode === 'login' ? 'Chào mừng trở lại!' : mode === 'signup' ? 'Bắt đầu hành trình học tập' : 'Đặt lại mật khẩu của bạn'}
               </p>
             </div>
 
             {/* Tabs */}
-            <div className="flex gap-2 mb-4 bg-gray-100 p-1 rounded-xl">
-              <button
-                onClick={() => {
-                  setMode('login');
-                  setError('');
-                }}
-                className={`flex-1 py-2.5 rounded-lg font-semibold transition-all ${
-                  mode === 'login'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Đăng Nhập
-              </button>
-              <button
-                onClick={() => {
-                  setMode('signup');
-                  setError('');
-                }}
-                className={`flex-1 py-2.5 rounded-lg font-semibold transition-all ${
-                  mode === 'signup'
-                    ? 'bg-white text-blue-600 shadow-sm'
-                    : 'text-gray-600 hover:text-gray-900'
-                }`}
-              >
-                Đăng Ký
-              </button>
-            </div>
+            {mode !== 'forgot' && (
+              <div className="flex gap-2 mb-4 bg-gray-100 p-1 rounded-xl">
+                <button
+                  onClick={() => {
+                    setMode('login');
+                    setError('');
+                    setResetEmailSent(false);
+                  }}
+                  className={`flex-1 py-2.5 rounded-lg font-semibold transition-all ${
+                    mode === 'login'
+                      ? 'bg-white text-blue-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  Đăng Nhập
+                </button>
+                <button
+                  onClick={() => {
+                    setMode('signup');
+                    setError('');
+                    setResetEmailSent(false);
+                  }}
+                  className={`flex-1 py-2.5 rounded-lg font-semibold transition-all ${
+                    mode === 'signup'
+                      ? 'bg-white text-blue-600 shadow-sm'
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  Đăng Ký
+                </button>
+              </div>
+            )}
 
             {/* Fixed Height Container */}
             <div className="min-h-[340px]">
-              <form onSubmit={handleEmailAuth} className="space-y-3 flex flex-col h-full">
-                <div className="flex-1 space-y-3">
-                  {mode === 'signup' && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Tên hiển thị
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          value={displayName}
-                          onChange={(e) => setDisplayName(e.target.value)}
-                          placeholder="Nguyễn Văn A"
-                          className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
-                          required={mode === 'signup'}
-                        />
-                      </div>
+              {mode === 'forgot' ? (
+                resetEmailSent ? (
+                  <div className="flex flex-col items-center justify-center h-full text-center space-y-4">
+                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                      <Mail className="w-8 h-8 text-green-600" />
                     </div>
-                  )}
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Email
-                    </label>
-                    <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="example@email.com"
-                        className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
-                        required
-                      />
-                    </div>
+                    <h4 className="text-lg font-bold text-gray-900">Email đã được gửi!</h4>
+                    <p className="text-gray-600 max-w-sm">
+                      Chúng tôi đã gửi link đặt lại mật khẩu đến <strong>{email}</strong>. Vui lòng kiểm tra hộp thư của bạn.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setMode('login');
+                        setResetEmailSent(false);
+                        setEmail('');
+                      }}
+                      className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition"
+                    >
+                      Quay lại đăng nhập
+                    </button>
                   </div>
-
-                  {mode === 'login' ? (
+                ) : (
+                  <form onSubmit={handleEmailAuth} className="space-y-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Mật khẩu
+                        Email
                       </label>
                       <div className="relative">
-                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         <input
-                          type={showPassword ? "text" : "password"}
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          placeholder="••••••••"
-                          className="w-full pl-10 pr-12 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="example@email.com"
+                          className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
                           required
-                          minLength={6}
                         />
-                        <button
-                          type="button"
-                          onClick={() => setShowPassword(!showPassword)}
-                          className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-                        >
-                          {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                        </button>
                       </div>
                     </div>
-                  ) : (
+                    <p className="text-sm text-gray-600">
+                      Nhập email của bạn và chúng tôi sẽ gửi link để đặt lại mật khẩu.
+                    </p>
+                    {error && (
+                      <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+                        {error}
+                      </div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-xl transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loading ? 'Đang gửi...' : 'Gửi link đặt lại'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMode('login');
+                        setError('');
+                      }}
+                      className="w-full text-sm text-gray-600 hover:text-gray-900 transition"
+                    >
+                      ← Quay lại đăng nhập
+                    </button>
+                  </form>
+                )
+              ) : (
+                <form onSubmit={handleEmailAuth} className="space-y-3 flex flex-col h-full">
+                  <div className="flex-1 space-y-3">
+                    {mode === 'signup' && (
+                      <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                          Tên hiển thị
+                        </label>
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <input
+                            type="text"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
+                            placeholder="Nguyễn Văn A"
+                            className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
+                            required={mode === 'signup'}
+                          />
+                        </div>
+                      </div>
+                    )}
+
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                        Email
+                      </label>
+                      <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          placeholder="example@email.com"
+                          className="w-full pl-10 pr-4 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {mode === 'login' ? (
+                      <div>
+                        <div className="flex items-center justify-between mb-2">
+                          <label className="block text-sm font-medium text-gray-700">
+                            Mật khẩu
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setMode('forgot');
+                              setError('');
+                            }}
+                            className="text-xs text-blue-600 hover:text-blue-700 font-medium"
+                          >
+                            Quên mật khẩu?
+                          </button>
+                        </div>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            placeholder="••••••••"
+                            className="w-full pl-10 pr-12 py-2.5 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 transition-colors placeholder:text-gray-400 placeholder:opacity-70"
+                            required
+                            minLength={6}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          >
+                            {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
                     <>
                       <div className="grid grid-cols-2 gap-3">
                         <div>
@@ -356,14 +455,15 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   )}
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-xl transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {loading ? 'Đang xử lý...' : mode === 'login' ? 'Đăng Nhập' : 'Đăng Ký'}
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold rounded-xl transition-all shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {loading ? 'Đang xử lý...' : mode === 'login' ? 'Đăng Nhập' : 'Đăng Ký'}
+                  </button>
+                </form>
+              )}
             </div>
 
             {/* Footer */}

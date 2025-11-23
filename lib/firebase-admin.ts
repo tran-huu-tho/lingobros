@@ -66,4 +66,5 @@ if (!getApps().length) {
 }
 
 export { adminAuth };
+export const auth = adminAuth; // Alias for compatibility
 export default app;

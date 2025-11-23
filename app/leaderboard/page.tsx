@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ChevronDown, User, LogOut, Home, BarChart3, Languages, Trophy, Medal, Award, TrendingUp } from 'lucide-react';
+import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Trophy, Medal, Award, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 interface LeaderboardUser {
@@ -98,25 +98,48 @@ export default function Leaderboard() {
                 <Languages className="w-5 h-5" />
                 Dịch thuật
               </Link>
+              <Link href="/forum" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+                <MessageSquare className="w-5 h-5" />
+                Hỏi đáp
+              </Link>
             </nav>
 
             {/* User Menu */}
             <div className="relative">
               <button
                 onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center gap-3 px-4 py-2 rounded-xl bg-gray-800/50 hover:bg-gray-800 border border-gray-700 transition"
+                className="flex items-center gap-2 px-3 py-2 rounded-xl bg-gray-800/50 hover:bg-gray-800 border border-gray-700 transition group"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold">
+                <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-blue-500/50 transition-shadow">
                   {displayData.displayName?.charAt(0).toUpperCase()}
                 </div>
-                <span className="text-gray-200 font-medium hidden sm:block">
-                  {displayData.displayName}
-                </span>
-                <ChevronDown className={`w-5 h-5 text-gray-400 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
+                <div className="hidden sm:flex flex-col items-start">
+                  <span className="text-gray-100 font-semibold text-sm leading-tight">
+                    {displayData.displayName}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    Học viên
+                  </span>
+                </div>
+                <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
               </button>
 
               {showUserMenu && (
-                <div className="absolute right-0 mt-2 w-56 bg-gray-800 border border-gray-700 rounded-xl shadow-xl overflow-hidden">
+                <div className="absolute right-0 mt-2 w-64 bg-gray-800 border border-gray-700 rounded-xl shadow-xl overflow-hidden">
+                  {/* User Info Header */}
+                  <div className="px-4 py-3 bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-b border-gray-700">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                        {displayData.displayName?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-semibold truncate">{displayData.displayName}</p>
+                        <p className="text-xs text-gray-400 truncate">{user?.email}</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Menu Items */}
                   <Link
                     href="/profile"
                     className="flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-gray-700 transition"

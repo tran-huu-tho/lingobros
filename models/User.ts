@@ -17,6 +17,7 @@ const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   displayName: { type: String, required: true },
   photoURL: { type: String },
+  bio: { type: String, default: '' },
   level: { type: String, default: 'beginner' },
   xp: { type: Number, default: 0 },
   streak: { type: Number, default: 0 },
@@ -27,12 +28,16 @@ const UserSchema = new Schema({
   lastActiveAt: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },
 }, {
-  timestamps: true
+  timestamps: true,
+  strict: false  // Allow fields not in schema temporarily
 });
 
 // Indexes
 UserSchema.index({ firebaseUid: 1 });
 UserSchema.index({ email: 1 });
 UserSchema.index({ xp: -1 });
+
+// Delete cached model to force reload
+delete (global as any).mongoose?.models?.User;
 
 export default models.User || model('User', UserSchema);
