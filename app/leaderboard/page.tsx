@@ -9,6 +9,7 @@ import Link from 'next/link';
 interface LeaderboardUser {
   rank: number;
   displayName: string;
+  photoURL?: string;
   xp: number;
   streak: number;
   level: string;
@@ -18,15 +19,27 @@ export default function Leaderboard() {
   const { user, userData, loading, signOut } = useAuth();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardUser[]>([]);
+  const [loadingLeaderboard, setLoadingLeaderboard] = useState(true);
 
-  // Mock data - sẽ thay bằng API call thực
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardUser[]>([
-    { rank: 1, displayName: 'Nguyễn Văn A', xp: 15420, streak: 45, level: 'advanced' },
-    { rank: 2, displayName: 'Trần Thị B', xp: 14850, streak: 38, level: 'advanced' },
-    { rank: 3, displayName: 'Lê Văn C', xp: 13200, streak: 32, level: 'intermediate' },
-    { rank: 4, displayName: 'Phạm Thị D', xp: 12100, streak: 28, level: 'intermediate' },
-    { rank: 5, displayName: 'Hoàng Văn E', xp: 11500, streak: 25, level: 'intermediate' },
-  ]);
+  // Fetch real leaderboard data
+  useEffect(() => {
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await fetch('/api/leaderboard');
+        if (response.ok) {
+          const data = await response.json();
+          setLeaderboardData(data.leaderboard);
+        }
+      } catch (error) {
+        console.error('Error fetching leaderboard:', error);
+      } finally {
+        setLoadingLeaderboard(false);
+      }
+    };
+
+    fetchLeaderboard();
+  }, []);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -203,67 +216,109 @@ export default function Leaderboard() {
 
           {/* Leaderboard List */}
           <div className="space-y-3">
-            {leaderboardData.map((userItem, index) => (
-              <div
-                key={index}
-                className={`flex items-center gap-4 p-5 rounded-2xl border transition ${getRankBadgeColor(userItem.rank)}`}
-              >
-                {/* Rank */}
+            {loadingLeaderboard ? (
+              <div className="text-center py-8 text-gray-400">Đang tải bảng xếp hạng...</div>
+            ) : leaderboardData.length === 0 ? (
+              <div className="text-center py-8 text-gray-400">Chưa có dữ liệu</div>
+            ) : (
+              leaderboardData.map((userItem, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center gap-4 p-5 rounded-2xl border transition ${getRankBadgeColor(userItem.rank)}`}
+                >
+                  {/* Rank */}
+                  <div className="w-16 flex items-center justify-center">
+                    {getRankIcon(userItem.rank)}
+                  </div>
+
+                  {/* Avatar */}
+                  <div className="flex-shrink-0">
+                    {userItem.photoURL ? (
+                      <img 
+                        src={userItem.photoURL} 
+                        alt={userItem.displayName}
+                        className="w-14 h-14 rounded-full object-cover border-2 border-gray-600"
+                        onError={(e) => e.currentTarget.style.display = 'none'}
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-600">
+                        {userItem.displayName?.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* User Info */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold text-white">{userItem.displayName}</h3>
+                    <div className="flex items-center gap-4 mt-1">
+                      <span className="text-sm text-gray-400">
+                        Level: <span className="text-blue-400 font-semibold">{userItem.level}</span>
+                      </span>
+                      <span className="text-sm text-gray-400">
+                        🔥 <span className="text-orange-400 font-semibold">{userItem.streak} ngày</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* XP */}
+                  <div className="text-right">
+                    <div className="flex items-center gap-2">
+                      <TrendingUp className="w-5 h-5 text-green-400" />
+                      <span className="text-2xl font-bold text-white">{userItem.xp.toLocaleString()}</span>
+                    </div>
+                    <span className="text-sm text-gray-400">XP</span>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+
+          {/* Your Position */}
+          {userData && (
+            <div className="mt-8 p-5 bg-blue-600/20 border-2 border-blue-600 rounded-2xl">
+              <div className="flex items-center gap-4">
                 <div className="w-16 flex items-center justify-center">
-                  {getRankIcon(userItem.rank)}
+                  <span className="text-2xl font-bold text-blue-400">
+                    #{leaderboardData.find(u => u.displayName === displayData.displayName)?.rank || '-'}
+                  </span>
                 </div>
 
-                {/* User Info */}
+                {/* Avatar */}
+                <div className="flex-shrink-0">
+                  {optimizedPhoto ? (
+                    <img 
+                      src={optimizedPhoto} 
+                      alt={displayData.displayName}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-blue-600"
+                    />
+                  ) : (
+                    <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-blue-600">
+                      {displayData.displayName?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                </div>
+
                 <div className="flex-1">
-                  <h3 className="text-lg font-bold text-white">{userItem.displayName}</h3>
+                  <h3 className="text-lg font-bold text-white">{displayData.displayName} (Bạn)</h3>
                   <div className="flex items-center gap-4 mt-1">
                     <span className="text-sm text-gray-400">
-                      Level: <span className="text-blue-400 font-semibold">{userItem.level}</span>
+                      Level: <span className="text-blue-400 font-semibold">{displayData.level}</span>
                     </span>
                     <span className="text-sm text-gray-400">
-                      🔥 <span className="text-orange-400 font-semibold">{userItem.streak} ngày</span>
+                      🔥 <span className="text-orange-400 font-semibold">{displayData.streak} ngày</span>
                     </span>
                   </div>
                 </div>
-
-                {/* XP */}
                 <div className="text-right">
                   <div className="flex items-center gap-2">
                     <TrendingUp className="w-5 h-5 text-green-400" />
-                    <span className="text-2xl font-bold text-white">{userItem.xp.toLocaleString()}</span>
+                    <span className="text-2xl font-bold text-white">{displayData.xp.toLocaleString()}</span>
                   </div>
                   <span className="text-sm text-gray-400">XP</span>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Your Position (if not in top 10) */}
-          <div className="mt-8 p-5 bg-blue-600/20 border-2 border-blue-600 rounded-2xl">
-            <div className="flex items-center gap-4">
-              <div className="w-16 flex items-center justify-center">
-                <span className="text-2xl font-bold text-blue-400">#-</span>
-              </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-bold text-white">{displayData.displayName} (Bạn)</h3>
-                <div className="flex items-center gap-4 mt-1">
-                  <span className="text-sm text-gray-400">
-                    Level: <span className="text-blue-400 font-semibold">{displayData.level}</span>
-                  </span>
-                  <span className="text-sm text-gray-400">
-                    🔥 <span className="text-orange-400 font-semibold">{displayData.streak} ngày</span>
-                  </span>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="flex items-center gap-2">
-                  <TrendingUp className="w-5 h-5 text-green-400" />
-                  <span className="text-2xl font-bold text-white">{displayData.xp.toLocaleString()}</span>
-                </div>
-                <span className="text-sm text-gray-400">XP</span>
-              </div>
             </div>
-          </div>
+          )}
 
           {/* Motivational Message */}
           <p className="text-center text-sm text-gray-400 mt-6">
