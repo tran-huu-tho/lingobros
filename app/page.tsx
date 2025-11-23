@@ -11,12 +11,6 @@ export default function Home() {
   const router = useRouter();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  useEffect(() => {
-    if (user && !loading) {
-      router.push('/dashboard');
-    }
-  }, [user, loading, router]);
-
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-950">
