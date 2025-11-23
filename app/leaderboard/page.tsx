@@ -94,7 +94,7 @@ export default function Leaderboard() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-2xl">
+              <div className="text-4xl">
                 ☃️
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
@@ -217,7 +217,21 @@ export default function Leaderboard() {
           {/* Leaderboard List */}
           <div className="space-y-3">
             {loadingLeaderboard ? (
-              <div className="text-center py-8 text-gray-400">Đang tải bảng xếp hạng...</div>
+              // Skeleton loading
+              Array.from({ length: 5 }).map((_, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-5 rounded-2xl border border-gray-700 bg-gray-800/50 animate-pulse"
+                >
+                  <div className="w-16 h-8 bg-gray-700 rounded"></div>
+                  <div className="w-14 h-14 bg-gray-700 rounded-full"></div>
+                  <div className="flex-1 space-y-2">
+                    <div className="h-5 bg-gray-700 rounded w-1/3"></div>
+                    <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+                  </div>
+                  <div className="w-20 h-8 bg-gray-700 rounded"></div>
+                </div>
+              ))
             ) : leaderboardData.length === 0 ? (
               <div className="text-center py-8 text-gray-400">Chưa có dữ liệu</div>
             ) : (

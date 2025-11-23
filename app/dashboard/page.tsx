@@ -74,7 +74,7 @@ export default function Dashboard() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-2xl">
+              <div className="text-4xl">
                 ☃️
               </div>
               <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
