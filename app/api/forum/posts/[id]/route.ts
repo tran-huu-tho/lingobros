@@ -29,7 +29,7 @@ export async function PUT(
   try {
     await connectDB();
     const { id } = await params;
-    const { userId, action, commentId, replyId, visibility, title, content, tags } = await req.json();
+    const { userId, action, commentId, replyId, visibility, title, content, tags, media } = await req.json();
 
     if (!userId) {
       return Response.json({ error: 'User ID required' }, { status: 400 });
@@ -41,12 +41,12 @@ export async function PUT(
     }
 
     // Edit post (content, tags, media)
-    if (content || tags || media !== undefined) {
+    if (content !== undefined || tags !== undefined || media !== undefined) {
       if (post.author.userId !== userId) {
         return Response.json({ error: 'Unauthorized' }, { status: 403 });
       }
 
-      if (content) post.content = content;
+      if (content !== undefined) post.content = content;
       if (tags && Array.isArray(tags)) post.tags = tags;
       if (media !== undefined) post.media = media;
       post.updatedAt = new Date();

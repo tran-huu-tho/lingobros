@@ -161,7 +161,7 @@ export default function Forum() {
     setSelectedPostId(post._id);
   };
 
-  const handleUploadMedia = async (file: File, type: 'image' | 'video' | 'file') => {
+  const handleUploadMedia = async (file: File, type: 'image' | 'video' | 'file', isEdit = false) => {
     setUploadingMedia(true);
     try {
       const token = await user?.getIdToken();
@@ -179,7 +179,11 @@ export default function Forum() {
 
       if (response.ok) {
         const media = await response.json();
-        setMediaFiles([...mediaFiles, media]);
+        if (isEdit) {
+          setEditMediaFiles([...editMediaFiles, media]);
+        } else {
+          setMediaFiles([...mediaFiles, media]);
+        }
       }
     } catch (error) {
       console.error('Error uploading media:', error);
@@ -442,7 +446,8 @@ export default function Forum() {
   };
 
   const handleEditPost = async () => {
-    if (!selectedPost || !user?.uid || !editPostData.content.trim()) return;
+    if (!selectedPost || !user?.uid) return;
+    if (!editPostData.content.trim() && editSelectedTags.length === 0) return;
 
     try {
       const response = await fetch(`/api/forum/posts/${selectedPost._id}`, {
@@ -896,6 +901,7 @@ export default function Forum() {
                           <div className="absolute right-0 mt-2 w-40 bg-gray-700 border border-gray-600 rounded-lg shadow-xl overflow-hidden z-40">
                             <button
                               onClick={() => {
+                                setSelectedPost(post);
                                 setIsEditingPost(true);
                                 setEditPostData({
                                   content: post.content,
@@ -912,8 +918,28 @@ export default function Forum() {
                             
                             <button
                               onClick={() => {
-                                setSelectedPost(post);
-                                handleDeletePost();
+                                setConfirmDialog({
+                                  isOpen: true,
+                                  title: 'Xóa bài viết',
+                                  message: 'Bạn chắc chắn muốn xóa bài viết này? Tất cả bình luận và trả lời sẽ bị xóa. Hành động này không thể hoàn tác.',
+                                  onConfirm: async () => {
+                                    try {
+                                      const response = await fetch(`/api/forum/posts/${post._id}`, {
+                                        method: 'DELETE',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({ userId: user.uid })
+                                      });
+                                      if (response.ok) {
+                                        const updatedPosts = posts.filter(p => p._id !== post._id);
+                                        setPosts(updatedPosts);
+                                        calculateTrendingHashtags(updatedPosts);
+                                      }
+                                    } catch (error) {
+                                      console.error('Error deleting post:', error);
+                                    }
+                                    setConfirmDialog({ ...confirmDialog, isOpen: false });
+                                  }
+                                });
                                 setListMenuOpenId(null);
                               }}
                               className="w-full text-left px-4 py-2 text-red-400 hover:bg-red-500/20 transition border-t border-gray-600"
@@ -937,11 +963,11 @@ export default function Forum() {
                   {post.media && post.media.length > 0 && (
                     <div className="mb-4">
                       {post.media.length === 1 ? (
-                        <div className="rounded-lg overflow-hidden bg-gray-900" onClick={(e) => e.stopPropagation()}>
+                        <div className="rounded-lg overflow-hidden bg-gray-900">
                           {post.media[0].type === 'image' ? (
-                            <img src={post.media[0].url} alt="" className="w-full h-auto object-cover rounded-lg" />
+                            <img src={post.media[0].url} alt="" className="w-full max-h-64 object-cover rounded-lg cursor-pointer" />
                           ) : post.media[0].type === 'video' ? (
-                            <video src={post.media[0].url} className="w-full h-auto object-cover rounded-lg" />
+                            <video src={post.media[0].url} className="w-full max-h-64 object-cover rounded-lg" />
                           ) : (
                             <div className="w-full h-32 flex items-center justify-center text-gray-400 text-sm p-2">
                               📎 {post.media[0].name}
@@ -951,7 +977,7 @@ export default function Forum() {
                       ) : (
                         <div className="grid grid-cols-2 gap-2">
                           {post.media.slice(0, 4).map((media, idx) => (
-                            <div key={idx} className="relative rounded-lg overflow-hidden bg-gray-900 aspect-square" onClick={(e) => e.stopPropagation()}>
+                            <div key={idx} className="relative rounded-lg overflow-hidden bg-gray-900 h-48">
                               {media.type === 'image' ? (
                                 <img src={media.url} alt="" className="w-full h-full object-cover" />
                               ) : media.type === 'video' ? (
@@ -1017,13 +1043,19 @@ export default function Forum() {
                       <Heart className={`w-4 h-4 ${Array.isArray(post.likedBy) && post.likedBy.includes(user?.uid || '') ? 'fill-current' : ''}`} />
                       <span>{post.likes || 0}</span>
                     </button>
-                    <div className="flex items-center gap-2">
+                    <button 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleSelectPost(post);
+                      }}
+                      className="flex items-center gap-2 hover:text-blue-400 transition"
+                    >
                       <MessageCircle className="w-4 h-4" />
                       <span>
                         {(post.comments?.length || 0) + 
                          (post.comments?.reduce((total, comment) => total + (comment.replies?.length || 0), 0) || 0)}
                       </span>
-                    </div>
+                    </button>
                   </div>
                 </div>
               ))
@@ -1144,12 +1176,12 @@ export default function Forum() {
                 </div>
                 <button
                   onClick={() => {
-                    if (newPost.tags.trim()) {
-                      setSelectedTags([...selectedTags, newPost.tags]);
+                    if (newPost.tags.trim() && !selectedTags.includes(newPost.tags.trim())) {
+                      setSelectedTags([...selectedTags, newPost.tags.trim()]);
                       setNewPost({ ...newPost, tags: '' });
                     }
                   }}
-                  disabled={!newPost.tags.trim()}
+                  disabled={!newPost.tags.trim() || selectedTags.includes(newPost.tags.trim())}
                   className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/50 disabled:cursor-not-allowed text-white rounded-lg transition text-sm font-medium"
                 >
                   Thêm
@@ -1158,9 +1190,9 @@ export default function Forum() {
               
               {selectedTags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {selectedTags.map((tag) => (
+                  {selectedTags.map((tag, idx) => (
                     <span
-                      key={tag}
+                      key={`${tag}-${idx}`}
                       className="text-xs px-3 py-1.5 bg-blue-600/30 text-blue-300 rounded-full border border-blue-500/50 flex items-center gap-2"
                     >
                       #{tag}
@@ -1348,7 +1380,19 @@ export default function Forum() {
                 {/* Comment Input */}
                 <div className="mb-6 pb-6 border-b border-gray-700">
                   <div className="flex gap-3">
-                    <div className="w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold shrink-0">
+                    {userData?.photoURL || user?.photoURL ? (
+                      <img 
+                        src={userData?.photoURL || user?.photoURL || ''} 
+                        alt={userData?.displayName || user?.displayName || 'User'}
+                        className="w-10 h-10 rounded-full object-cover shrink-0"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          const nextEl = e.currentTarget.nextElementSibling as HTMLElement;
+                          if (nextEl) nextEl.classList.remove('hidden');
+                        }}
+                      />
+                    ) : null}
+                    <div className={`w-10 h-10 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold shrink-0 ${userData?.photoURL || user?.photoURL ? 'hidden' : ''}`}>
                       {userData?.displayName?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
                     </div>
                     <div className="flex-1">
@@ -1664,6 +1708,29 @@ export default function Forum() {
             {/* Media Edit */}
             <div className="mb-4">
               <label className="block text-sm text-gray-400 mb-2">Đính kèm</label>
+              <div className="flex gap-2 mb-3">
+                <input
+                  type="file"
+                  id="edit-media-upload"
+                  accept="image/*,video/*,application/*"
+                  className="hidden"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const type = file.type.startsWith('image/') ? 'image' : file.type.startsWith('video/') ? 'video' : 'file';
+                      await handleUploadMedia(file, type, true);
+                    }
+                    e.target.value = '';
+                  }}
+                />
+                <button
+                  onClick={() => document.getElementById('edit-media-upload')?.click()}
+                  disabled={uploadingMedia}
+                  className="px-4 py-2 bg-gray-700 hover:bg-gray-600 text-gray-300 rounded-lg transition text-sm flex items-center gap-2 disabled:opacity-50"
+                >
+                  {uploadingMedia ? '⏳ Đang tải...' : '📎 Thêm file'}
+                </button>
+              </div>
               {editMediaFiles.length > 0 && (
                 <div className="grid grid-cols-2 gap-2 mb-2">
                   {editMediaFiles.map((media, idx) => (
@@ -1713,12 +1780,12 @@ export default function Forum() {
                 </div>
                 <button
                   onClick={() => {
-                    if (editPostData.tags.trim()) {
-                      setEditSelectedTags([...editSelectedTags, editPostData.tags]);
+                    if (editPostData.tags.trim() && !editSelectedTags.includes(editPostData.tags.trim())) {
+                      setEditSelectedTags([...editSelectedTags, editPostData.tags.trim()]);
                       setEditPostData({ ...editPostData, tags: '' });
                     }
                   }}
-                  disabled={!editPostData.tags.trim()}
+                  disabled={!editPostData.tags.trim() || editSelectedTags.includes(editPostData.tags.trim())}
                   className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-600/50 disabled:cursor-not-allowed text-white rounded-lg transition text-sm font-medium"
                 >
                   Thêm
@@ -1727,9 +1794,9 @@ export default function Forum() {
               
               {editSelectedTags.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {editSelectedTags.map((tag) => (
+                  {editSelectedTags.map((tag, idx) => (
                     <span
-                      key={tag}
+                      key={`${tag}-${idx}`}
                       className="text-xs px-3 py-1.5 bg-blue-600/30 text-blue-300 rounded-full border border-blue-500/50 flex items-center gap-2"
                     >
                       #{tag}
@@ -1754,12 +1821,7 @@ export default function Forum() {
               </button>
               <button
                 onClick={handleEditPost}
-                disabled={!editPostData.content.trim()}
-                className={`px-4 py-2 ${
-                  !editPostData.content.trim()
-                    ? 'bg-blue-500/50 cursor-not-allowed'
-                    : 'bg-blue-600 hover:bg-blue-700'
-                } text-white rounded-xl transition`}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition"
               >
                 Lưu
               </button>
