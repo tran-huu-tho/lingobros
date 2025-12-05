@@ -32,6 +32,7 @@ interface AuthContextType {
   verifyPhoneCode: (confirmationResult: ConfirmationResult, code: string) => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   signOut: () => Promise<void>;
+  refreshUserData: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -46,6 +47,7 @@ const AuthContext = createContext<AuthContextType>({
   verifyPhoneCode: async () => {},
   resetPassword: async () => {},
   signOut: async () => {},
+  refreshUserData: async () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -248,13 +250,46 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
       // For existing users, don't send photoURL - keep their custom uploaded photo
       
-      await fetch('/api/auth/signup', {
+      const signupResponse = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),
       });
+      
+      // Immediately fetch user data after creation/update
+      if (signupResponse.ok) {
+        const userDataResponse = await fetch('/api/users/me', {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
+        if (userDataResponse.ok) {
+          const data = await userDataResponse.json();
+          setUserData(data.user);
+          console.log('User data loaded:', data.user);
+        }
+      }
     } catch (error) {
       console.error('Error creating/updating user:', error);
+    }
+  };
+
+  const refreshUserData = async () => {
+    if (!user) return;
+    
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('/api/users/me', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setUserData(data.user);
+      }
+    } catch (error) {
+      console.error('Error refreshing user data:', error);
     }
   };
 
@@ -280,6 +315,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     verifyPhoneCode,
     resetPassword,
     signOut,
+    refreshUserData,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -252,13 +252,16 @@ export default function Leaderboard() {
                         src={userItem.photoURL} 
                         alt={userItem.displayName}
                         className="w-14 h-14 rounded-full object-cover border-2 border-gray-600"
-                        onError={(e) => e.currentTarget.style.display = 'none'}
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          const nextEl = e.currentTarget.nextElementSibling as HTMLElement;
+                          if (nextEl) nextEl.classList.remove('hidden');
+                        }}
                       />
-                    ) : (
-                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-600">
-                        {userItem.displayName?.charAt(0).toUpperCase()}
-                      </div>
-                    )}
+                    ) : null}
+                    <div className={`w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg border-2 border-gray-600 ${userItem.photoURL ? 'hidden' : ''}`}>
+                      {userItem.displayName?.charAt(0).toUpperCase()}
+                    </div>
                   </div>
 
                   {/* User Info */}

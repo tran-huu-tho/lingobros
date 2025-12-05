@@ -20,6 +20,31 @@ export async function POST(req: NextRequest) {
         user.photoURL = photoURL;
       }
       // If photoURL is not in the request, keep the existing one (user uploaded custom photo)
+      
+      // Ensure preferences exist with all required fields
+      if (!user.preferences) {
+        user.preferences = {
+          learningGoal: 'regular',
+          dailyGoalMinutes: 15,
+          notificationsEnabled: true,
+          soundEnabled: true,
+          interests: []
+        };
+      } else {
+        // Merge with defaults for missing fields
+        if (!user.preferences.learningGoal) {
+          user.preferences.learningGoal = 'regular';
+        }
+        if (!user.preferences.dailyGoalMinutes) {
+          user.preferences.dailyGoalMinutes = 15;
+        }
+      }
+      
+      // Ensure hasCompletedOnboarding exists
+      if (typeof user.hasCompletedOnboarding !== 'boolean') {
+        user.hasCompletedOnboarding = false;
+      }
+      
       user.lastActiveAt = new Date();
       await user.save();
     } else {
@@ -34,7 +59,17 @@ export async function POST(req: NextRequest) {
         streak: 0,
         hearts: 5,
         gems: 0,
+        hasCompletedOnboarding: false, // Explicitly set to false for new users
+        preferences: {
+          learningGoal: 'regular',
+          dailyGoalMinutes: 15,
+          notificationsEnabled: true,
+          soundEnabled: true,
+          interests: []
+        }
       });
+      
+      console.log('Created new user:', user.displayName, 'hasCompletedOnboarding:', user.hasCompletedOnboarding);
     }
 
     return NextResponse.json({ 

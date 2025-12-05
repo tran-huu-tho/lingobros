@@ -9,6 +9,11 @@ const CourseSchema = new Schema({
     enum: ['beginner', 'elementary', 'intermediate', 'upper-intermediate', 'advanced'],
     default: 'beginner' 
   },
+  categories: [{ 
+    type: String,
+    enum: ['communication', 'study-abroad', 'exam', 'improvement', 'business', 'travel', 'general']
+  }],
+  tags: [{ type: String }],
   imageUrl: { type: String },
   totalLessons: { type: Number, default: 0 },
   isPublished: { type: Boolean, default: false },

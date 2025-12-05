@@ -3,7 +3,7 @@ import { Schema, model, models } from 'mongoose';
 const UserPreferencesSchema = new Schema({
   learningGoal: {
     type: String,
-    enum: ['casual', 'regular', 'serious', 'intense'],
+    enum: ['communication', 'study-abroad', 'exam', 'improvement', 'other', 'casual', 'regular', 'serious', 'intense'],
     default: 'regular'
   },
   dailyGoalMinutes: { type: Number, default: 15 },
@@ -24,6 +24,7 @@ const UserSchema = new Schema({
   hearts: { type: Number, default: 5 },
   gems: { type: Number, default: 0 },
   preferences: { type: UserPreferencesSchema, default: () => ({}) },
+  hasCompletedOnboarding: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
   lastActiveAt: { type: Date, default: Date.now },
   createdAt: { type: Date, default: Date.now },

@@ -7,25 +7,37 @@ import { Button } from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Progress } from '@/components/ui/Progress';
 import { AIChatbot } from '@/components/ui/AIChatbot';
+import OnboardingModal, { OnboardingData } from '@/components/onboarding/OnboardingModal';
 import { BookOpen, Play, Trophy, TrendingUp, ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { Course } from '@/types';
+import toast from 'react-hot-toast';
 
 export default function Dashboard() {
-  const { user, userData, loading, signOut } = useAuth();
+  const { user, userData, loading, signOut, refreshUserData } = useAuth();
   const router = useRouter();
   const [courses, setCourses] = useState<Course[]>([]);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showOnboardingModal, setShowOnboardingModal] = useState(false);
+  const [isRecommended, setIsRecommended] = useState(false);
 
   const fetchCourses = useCallback(async () => {
+    if (!user) return;
+    
     try {
-      const response = await fetch('/api/courses');
+      const token = await user.getIdToken();
+      const response = await fetch('/api/courses/recommended', {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await response.json();
       setCourses(data.courses || []);
+      setIsRecommended(data.isRecommended || false);
     } catch (error) {
       console.error('Error fetching courses:', error);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -36,6 +48,54 @@ export default function Dashboard() {
   useEffect(() => {
     fetchCourses();
   }, [fetchCourses]);
+
+  // Show onboarding modal for new users
+  useEffect(() => {
+    console.log('=== ONBOARDING CHECK ===');
+    console.log('userData:', userData);
+    console.log('hasCompletedOnboarding:', userData?.hasCompletedOnboarding);
+    console.log('Type:', typeof userData?.hasCompletedOnboarding);
+    console.log('Should show modal:', userData && userData.hasCompletedOnboarding === false);
+    
+    if (userData && userData.hasCompletedOnboarding === false) {
+      console.log('✓ SHOWING ONBOARDING MODAL');
+      setShowOnboardingModal(true);
+    } else {
+      console.log('✗ NOT SHOWING MODAL - Reason:', 
+        !userData ? 'No userData' : 
+        userData.hasCompletedOnboarding === true ? 'Already completed' :
+        userData.hasCompletedOnboarding === undefined ? 'Field undefined' :
+        'Unknown'
+      );
+    }
+  }, [userData]);
+
+  const handleOnboardingComplete = async (data: OnboardingData) => {
+    if (!user) return;
+    
+    try {
+      const token = await user.getIdToken();
+      await fetch('/api/onboarding', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      // Refresh user data to update hasCompletedOnboarding
+      await refreshUserData();
+      
+      setShowOnboardingModal(false);
+      
+      // Refresh courses with new recommendations
+      fetchCourses();
+    } catch (error) {
+      console.error('Error saving onboarding data:', error);
+      toast.error('Có lỗi xảy ra. Vui lòng thử lại!');
+    }
+  };
 
   if (loading || !user) {
     return (
@@ -197,10 +257,17 @@ export default function Dashboard() {
 
           {/* Learning Path */}
           <div className="mb-8">
-            <h2 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-              <BookOpen className="w-7 h-7 text-blue-400" />
-              Lộ Trình Học Của Bạn
-            </h2>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+                <BookOpen className="w-7 h-7 text-blue-400" />
+                {isRecommended ? 'Khóa học được đề xuất cho bạn' : 'Khóa học'}
+              </h2>
+              {isRecommended && (
+                <span className="px-3 py-1 rounded-full bg-blue-900/30 border border-blue-800 text-sm font-semibold text-blue-400">
+                  ✨ Cá nhân hóa
+                </span>
+              )}
+            </div>
 
             {courses.length === 0 ? (
               <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-3xl p-12 text-center">
@@ -289,6 +356,13 @@ export default function Dashboard() {
 
       {/* AI Chatbot */}
       <AIChatbot />
+
+      {/* Onboarding Modal */}
+      <OnboardingModal
+        isOpen={showOnboardingModal}
+        onClose={() => setShowOnboardingModal(false)}
+        onComplete={handleOnboardingComplete}
+      />
     </div>
   );
 }

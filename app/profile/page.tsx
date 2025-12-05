@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Mail, Calendar, Award, Flame, Zap, Trophy, Target, BookOpen, Clock, Edit2, Camera } from 'lucide-react';
+import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, BookOpen, Calendar, Award, Flame, Zap, Trophy, Target, Clock, Edit2, Camera } from 'lucide-react';
 import Link from 'next/link';
 
 interface UserStats {
@@ -202,7 +202,7 @@ export default function Profile() {
   const statsCards = [
     { label: 'Tổng XP', value: displayData.xp.toLocaleString(), icon: Zap, color: 'from-yellow-400 to-orange-500' },
     { label: 'Streak hiện tại', value: `${displayData.streak} ngày`, icon: Flame, color: 'from-orange-400 to-red-500' },
-    { label: 'Trái tim', value: displayData.hearts, icon: '❤️', color: 'from-red-400 to-pink-500' },
+    { label: 'Trái tim', value: displayData.hearts, icon: '💙', color: 'from-red-400 to-pink-500' },
     { label: 'Bài học hoàn thành', value: `${completedLessons}/${totalLessons}`, icon: BookOpen, color: 'from-green-400 to-emerald-500' },
   ];
 
@@ -334,15 +334,15 @@ export default function Profile() {
                     alt={displayData.displayName || 'User'} 
                     className="w-32 h-32 rounded-full shadow-2xl object-cover border-4 border-gray-700"
                     onError={(e) => {
-                      console.error('Image failed to load:', optimizedPhoto);
                       e.currentTarget.style.display = 'none';
+                      const nextEl = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (nextEl) nextEl.classList.remove('hidden');
                     }}
                   />
-                ) : (
-                  <div className="w-32 h-32 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-5xl shadow-2xl border-4 border-gray-700">
-                    {displayData.displayName?.charAt(0).toUpperCase()}
-                  </div>
-                )}
+                ) : null}
+                <div className={`w-32 h-32 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-5xl shadow-2xl border-4 border-gray-700 ${optimizedPhoto ? 'hidden' : ''}`}>
+                  {displayData.displayName?.charAt(0).toUpperCase()}
+                </div>
                 <label className="absolute bottom-0 right-0 w-10 h-10 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg transition cursor-pointer opacity-0 group-hover:opacity-100">
                   <Camera className="w-5 h-5 text-white" />
                   <input type="file" className="hidden" accept="image/*" onChange={(e) => {
@@ -376,8 +376,15 @@ export default function Profile() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                   <div className="flex items-center gap-2 text-gray-300">
-                    <Mail className="w-4 h-4 text-gray-500" />
-                    <span className="text-sm truncate">{user?.email || displayData.email || 'Chưa có email'}</span>
+                    <BookOpen className="w-4 h-4 text-gray-500" />
+                    <span className="text-sm">
+                      {userData?.preferences?.learningGoal === 'communication' && 'Học để giao tiếp'}
+                      {userData?.preferences?.learningGoal === 'study-abroad' && 'Học để du học'}
+                      {userData?.preferences?.learningGoal === 'exam' && 'Học để thi cử'}
+                      {userData?.preferences?.learningGoal === 'improvement' && 'Học để cải thiện'}
+                      {userData?.preferences?.learningGoal === 'other' && 'Mục đích khác'}
+                      {(!userData?.preferences?.learningGoal || ['regular', 'casual', 'serious', 'intense'].includes(userData?.preferences?.learningGoal)) && 'Chưa có mục đích học'}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-300">
                     <Calendar className="w-4 h-4 text-gray-500" />

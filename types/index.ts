@@ -13,11 +13,13 @@ export interface User {
   createdAt: Date;
   lastActiveAt: Date;
   preferences: UserPreferences;
+  hasCompletedOnboarding?: boolean;
   isAdmin: boolean;
 }
 
 export interface UserPreferences {
   learningGoal: 'casual' | 'regular' | 'serious' | 'intense';
+  learningPurpose?: 'communication' | 'study-abroad' | 'exam' | 'improvement' | 'other';
   dailyGoalMinutes: number;
   notificationsEnabled: boolean;
   soundEnabled: boolean;
@@ -30,6 +32,8 @@ export interface Course {
   description: string;
   language: string;
   level: string;
+  categories?: string[];
+  tags?: string[];
   imageUrl?: string;
   units: Unit[];
   totalLessons: number;
