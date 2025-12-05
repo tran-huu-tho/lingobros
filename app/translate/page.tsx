@@ -341,6 +341,10 @@ export default function Translate() {
                 <Languages className="w-5 h-5" />
                 Dịch thuật
               </Link>
+              <Link href="/ipa" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+                <Volume2 className="w-5 h-5" />
+                IPA
+              </Link>
               <Link href="/forum" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <MessageSquare className="w-5 h-5" />
                 Hỏi đáp

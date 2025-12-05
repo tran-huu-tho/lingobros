@@ -8,7 +8,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Progress } from '@/components/ui/Progress';
 import { AIChatbot } from '@/components/ui/AIChatbot';
 import OnboardingModal, { OnboardingData } from '@/components/onboarding/OnboardingModal';
-import { BookOpen, Play, Trophy, TrendingUp, ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare } from 'lucide-react';
+import { BookOpen, Play, Trophy, TrendingUp, ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Volume2 } from 'lucide-react';
 import Link from 'next/link';
 import { Course } from '@/types';
 import toast from 'react-hot-toast';
@@ -156,6 +156,10 @@ export default function Dashboard() {
                 <Languages className="w-5 h-5" />
                 Dịch thuật
               </Link>
+              <Link href="/ipa" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+                <Volume2 className="w-5 h-5" />
+                IPA
+              </Link>
               <Link href="/forum" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <MessageSquare className="w-5 h-5" />
                 Hỏi đáp
@@ -246,14 +250,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-white mb-3">
-              Xin chào, {displayData.displayName}! 👋
-            </h1>
-            <p className="text-xl text-gray-400">
-              Hôm nay bạn muốn học gì? Hãy tiếp tục hành trình chinh phục tiếng Anh của mình!
-            </p>
-          </div>
+          
 
           {/* Learning Path */}
           <div className="mb-8">
@@ -274,11 +271,11 @@ export default function Dashboard() {
 
               {/* Cơ bản */}
               <div className="mb-10">
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-500 rounded-full"></span>
                   Cơ bản
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {/* Giới thiệu bản thân */}
                   <div className="group bg-linear-to-br from-red-500 via-pink-500 to-purple-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
                     <div className="mb-4">
@@ -320,6 +317,70 @@ export default function Dashboard() {
                       </div>
                       <h4 className="text-xl font-bold text-white mb-2">Thời tiết</h4>
                       <p className="text-white/80 text-sm">Nói chuyện về thời tiết</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trung cấp */}
+              <div className="mb-10">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-orange-500 rounded-full"></span>
+                  Trung cấp
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {/* Cảm xúc và tính cách */}
+                  <div className="group bg-linear-to-br from-rose-400 via-rose-500 to-red-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                        <span className="text-4xl">😊</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Cảm xúc & Tính cách</h4>
+                      <p className="text-white/80 text-sm">Mô tả cảm xúc và tính cách</p>
+                    </div>
+                  </div>
+
+                  {/* Công nghệ */}
+                  <div className="group bg-linear-to-br from-blue-400 via-blue-500 to-cyan-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                        <span className="text-4xl">💻</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Công nghệ</h4>
+                      <p className="text-white/80 text-sm">Tiếng Anh trong thời đại số</p>
+                    </div>
+                  </div>
+
+                  {/* Mua bán online */}
+                  <div className="group bg-linear-to-br from-purple-400 via-purple-500 to-fuchsia-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                        <span className="text-4xl">🛒</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Mua bán online</h4>
+                      <p className="text-white/80 text-sm">Giao dịch và mua sắm trực tuyến</p>
+                    </div>
+                  </div>
+
+                  {/* Nhà hàng */}
+                  <div className="group bg-linear-to-br from-amber-400 via-yellow-500 to-orange-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                        <span className="text-4xl">🍽️</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Nhà hàng</h4>
+                      <p className="text-white/80 text-sm">Đặt bàn và phục vụ</p>
+                    </div>
+                  </div>
+
+                  {/* Giải trí */}
+                  <div className="group bg-linear-to-br from-teal-400 via-teal-500 to-green-600 rounded-2xl p-6 cursor-pointer hover:scale-105 transition-all shadow-lg">
+                    <div className="mb-4">
+                      <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4">
+                        <span className="text-4xl">🎬</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-white mb-2">Giải trí</h4>
+                      <p className="text-white/80 text-sm">Phim, nhạc và sở thích</p>
                     </div>
                   </div>
                 </div>

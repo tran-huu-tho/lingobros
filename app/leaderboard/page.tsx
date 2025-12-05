@@ -3,7 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Trophy, Medal, Award, TrendingUp } from 'lucide-react';
+import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Volume2, Trophy, Medal, Award, TrendingUp } from 'lucide-react';
 import Link from 'next/link';
 
 interface LeaderboardUser {
@@ -115,6 +115,10 @@ export default function Leaderboard() {
               <Link href="/translate" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <Languages className="w-5 h-5" />
                 Dịch thuật
+              </Link>
+              <Link href="/ipa" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+                <Volume2 className="w-5 h-5" />
+                IPA
               </Link>
               <Link href="/forum" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <MessageSquare className="w-5 h-5" />
