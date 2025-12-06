@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Volume2 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -11,6 +11,7 @@ export default function IPAPage() {
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [playingSound, setPlayingSound] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -39,9 +40,28 @@ export default function IPAPage() {
     : userPhoto;
 
   const playSound = (symbol: string) => {
+    // Stop previous audio if playing
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
     setPlayingSound(symbol);
-    // Placeholder for sound playback
-    setTimeout(() => setPlayingSound(null), 500);
+    
+    // Call API endpoint to get audio URL (keeps mapping hidden on server)
+    const audioUrl = `/api/ipa/audio?symbol=${encodeURIComponent(symbol)}`;
+    const audio = new Audio(audioUrl);
+    audio.crossOrigin = "anonymous";
+    audioRef.current = audio;
+    
+    audio.play().catch((error) => {
+      // Suppress console error - audio playback interruption is expected behavior
+      setPlayingSound(null);
+    });
+    
+    audio.onended = () => {
+      setPlayingSound(null);
+    };
   };
 
   const vowels = [
@@ -75,18 +95,18 @@ export default function IPAPage() {
     { symbol: 'm', word: 'moon', example: '/m/oon' },
     { symbol: 'n', word: 'nose', example: '/n/ose' },
     { symbol: 'ŋ', word: 'sing', example: 'si/ŋ/' },
-    { symbol: 'p', word: 'pen', example: '/p/en' },
+    { symbol: 'p', word: 'pig', example: '/p/ig' },
     { symbol: 'r', word: 'red', example: '/r/ed' },
-    { symbol: 's', word: 'sun', example: '/s/un' },
-    { symbol: 'ʃ', word: 'ship', example: '/ʃ/ip' },
-    { symbol: 't', word: 'tea', example: '/t/ea' },
+    { symbol: 's', word: 'see', example: '/s/ee' },
+    { symbol: 'ʒ', word: 'measure', example: 'mea/ʒ/ure' },
+    { symbol: 'ʃ', word: 'shoe', example: '/ʃ/oe' },
+    { symbol: 't', word: 'time', example: '/t/ime' },
+    { symbol: 'ð', word: 'then', example: '/ð/en' },
     { symbol: 'θ', word: 'think', example: '/θ/ink' },
-    { symbol: 'ð', word: 'this', example: '/ð/is' },
-    { symbol: 'v', word: 'voice', example: '/v/oice' },
+    { symbol: 'v', word: 'very', example: '/v/ery' },
     { symbol: 'w', word: 'water', example: '/w/ater' },
-    { symbol: 'j', word: 'yes', example: '/j/es' },
-    { symbol: 'z', word: 'zoo', example: '/z/oo' },
-    { symbol: 'ʒ', word: 'vision', example: 'vi/ʒ/ion' }
+    { symbol: 'j', word: 'you', example: '/j/ou' },
+    { symbol: 'z', word: 'zoo', example: '/z/oo' }
   ];
 
   return (
