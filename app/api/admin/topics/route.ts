@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, description, courseId, order, xpReward, color, estimatedMinutes, isLocked } = body;
+    const { title, description, courseId, icon, order, xpReward, color, estimatedMinutes, isLocked } = body;
 
     // Validate required fields
     if (!title || !courseId) {
@@ -102,11 +102,13 @@ export async function POST(request: NextRequest) {
       title,
       description,
       courseId,
+      icon: icon || '📚',
       order: order || 1,
       xpReward: xpReward || 50,
-      color: color || '#FFC4899',
+      color: color || '#3B82F6',
       estimatedMinutes: estimatedMinutes || 45,
       isLocked: isLocked ?? false,
+      isPublished: true,
       totalLessons: 0
     });
 

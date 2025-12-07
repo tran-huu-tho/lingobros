@@ -18,6 +18,7 @@ interface Topic {
   title: string;
   description?: string;
   courseId: Course | string;
+  icon?: string;
   order: number;
   xpReward: number;
   color: string;
@@ -47,17 +48,14 @@ export default function TopicsManagement() {
   const [courses, setCourses] = useState<Course[]>([]);
   const topicsPerPage = 10;
 
-  // Form state
   const [formData, setFormData] = useState({
     title: '',
     description: '',
     courseId: '',
-    order: 1,
+    icon: '📚',
     xpReward: 50,
-    color: '#FFC4899',
-    estimatedMinutes: 45,
-    isLocked: false,
-    isPublished: true
+    color: '#3B82F6',
+    estimatedMinutes: 45
   });
 
   useEffect(() => {
@@ -72,7 +70,6 @@ export default function TopicsManagement() {
     }
   }, [userData, loading, router]);
 
-  // Fetch topics and courses
   useEffect(() => {
     const fetchData = async () => {
       if (!user) return;
@@ -91,7 +88,6 @@ export default function TopicsManagement() {
         
         if (topicsRes.ok) {
           const data = await topicsRes.json();
-          console.log('📚 Topics loaded:', data.topics);
           setTopics(data.topics);
           setFilteredTopics(data.topics);
         }
@@ -112,7 +108,6 @@ export default function TopicsManagement() {
     }
   }, [user, userData]);
 
-  // Search and sort
   useEffect(() => {
     let result = [...topics];
 
@@ -146,7 +141,6 @@ export default function TopicsManagement() {
     setCurrentPage(1);
   }, [searchQuery, sortBy, sortOrder, topics]);
 
-  // Pagination
   const indexOfLastTopic = currentPage * topicsPerPage;
   const indexOfFirstTopic = indexOfLastTopic - topicsPerPage;
   const currentTopics = filteredTopics.slice(indexOfFirstTopic, indexOfLastTopic);
@@ -157,12 +151,10 @@ export default function TopicsManagement() {
       title: '',
       description: '',
       courseId: '',
-      order: 1,
+      icon: '📚',
       xpReward: 50,
-      color: '#FFC4899',
-      estimatedMinutes: 45,
-      isLocked: false,
-      isPublished: true
+      color: '#3B82F6',
+      estimatedMinutes: 45
     });
   };
 
@@ -177,12 +169,10 @@ export default function TopicsManagement() {
       title: topic.title,
       description: topic.description || '',
       courseId: typeof topic.courseId === 'object' ? topic.courseId._id : topic.courseId,
-      order: topic.order,
+      icon: topic.icon || '📚',
       xpReward: topic.xpReward,
       color: topic.color,
-      estimatedMinutes: topic.estimatedMinutes,
-      isLocked: topic.isLocked,
-      isPublished: topic.isPublished
+      estimatedMinutes: topic.estimatedMinutes
     });
     setShowEditModal(true);
   };
@@ -304,7 +294,6 @@ export default function TopicsManagement() {
       });
 
       if (response.ok) {
-        const data = await response.json();
         setTopics(topics.map(t => t._id === topic._id ? { ...t, isPublished: !t.isPublished } : t));
         setFilteredTopics(filteredTopics.map(t => t._id === topic._id ? { ...t, isPublished: !t.isPublished } : t));
       }
@@ -315,7 +304,7 @@ export default function TopicsManagement() {
 
   if (loading || !user || !userData) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex items-center justify-center">
         <div className="text-white text-xl">Đang tải...</div>
       </div>
     );
@@ -333,14 +322,14 @@ export default function TopicsManagement() {
     : userPhoto;
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900">
       {/* Header */}
       <header className="backdrop-blur-xl bg-gray-950/80 border-b border-gray-800 sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/admin" className="flex items-center gap-3">
               <div className="text-4xl">☃️</div>
-              <span className="text-2xl font-bold bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                 LingoBros
               </span>
             </Link>
@@ -420,7 +409,6 @@ export default function TopicsManagement() {
           {/* Toolbar */}
           <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 mb-6">
             <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-              {/* Search */}
               <div className="relative flex-1 w-full md:w-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
@@ -432,7 +420,6 @@ export default function TopicsManagement() {
                 />
               </div>
 
-              {/* Filter & Add */}
               <div className="flex gap-2 w-full md:w-auto">
                 <div className="relative">
                   <button
@@ -650,68 +637,102 @@ export default function TopicsManagement() {
         </div>
       </main>
 
-      {/* Add Modal */}
-      {showAddModal && (
+      {/* Add/Edit Modal */}
+      {(showAddModal || showEditModal) && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-4xl">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Thêm chủ đề mới</h2>
+              <h2 className="text-2xl font-bold text-white">
+                {showAddModal ? 'Thêm chủ đề mới' : 'Chỉnh sửa chủ đề'}
+              </h2>
               <button
-                onClick={() => setShowAddModal(false)}
+                onClick={() => {
+                  setShowAddModal(false);
+                  setShowEditModal(false);
+                }}
                 className="p-2 hover:bg-gray-800 rounded-lg transition text-gray-400"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Khóa học *</label>
-                <select
-                  value={formData.courseId}
-                  onChange={(e) => setFormData({ ...formData, courseId: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                  required
-                >
-                  <option value="">Chọn khóa học</option>
-                  {courses.map(course => (
-                    <option key={course._id} value={course._id}>{course.title}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Tên chủ đề *</label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="Nhập tên chủ đề..."
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Mô tả</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Mô tả về chủ đề này..."
-                  rows={3}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-6">
+              {/* Left Column */}
+              <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">Thứ tự</label>
-                  <input
-                    type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 1 })}
-                    min="1"
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Khóa học *</label>
+                  <select
+                    value={formData.courseId}
+                    onChange={(e) => setFormData({ ...formData, courseId: e.target.value })}
                     className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    required
+                  >
+                    <option value="">Chọn khóa học</option>
+                    {courses.map(course => (
+                      <option key={course._id} value={course._id}>{course.title}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Tên chủ đề *</label>
+                  <input
+                    type="text"
+                    value={formData.title}
+                    onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                    placeholder="Nhập tên chủ đề..."
+                    className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Icon *</label>
+                  <div className="flex items-center gap-3">
+                    <div className="w-14 h-14 rounded-lg bg-gray-800 border-2 border-gray-700 flex items-center justify-center text-3xl flex-shrink-0">
+                      {formData.icon || '📚'}
+                    </div>
+                    <input
+                      type="text"
+                      value={formData.icon}
+                      onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                      placeholder="📚"
+                      className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 text-xl"
+                    />
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1">Nhập emoji hoặc ký tự đặc biệt</p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Màu sắc</label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="color"
+                      value={formData.color}
+                      onChange={(e) => setFormData({ ...formData, color: e.target.value })}
+                      className="w-12 h-12 rounded-lg cursor-pointer border-2 border-gray-700"
+                    />
+                    <input
+                      type="text"
+                      value={formData.color}
+                      onChange={(e) => setFormData({ ...formData, color: e.target.value })}
+                      className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 font-mono"
+                      placeholder="#3B82F6"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Mô tả</label>
+                  <textarea
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    placeholder="Mô tả về chủ đề này..."
+                    rows={4}
+                    className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
                   />
                 </div>
 
@@ -725,221 +746,35 @@ export default function TopicsManagement() {
                     className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Thời gian ước tính (phút)</label>
-                <input
-                  type="number"
-                  value={formData.estimatedMinutes}
-                  onChange={(e) => setFormData({ ...formData, estimatedMinutes: parseInt(e.target.value) || 45 })}
-                  min="1"
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Màu sắc</label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="color"
-                    value={formData.color}
-                    onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="w-14 h-14 rounded-lg cursor-pointer border-2 border-gray-700"
-                  />
-                  <input
-                    type="text"
-                    value={formData.color}
-                    onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 font-mono"
-                    placeholder="#FFC4899"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.isLocked}
-                    onChange={(e) => setFormData({ ...formData, isLocked: e.target.checked })}
-                    className="w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-300">Khóa chủ đề</span>
-                </label>
-
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.isPublished}
-                    onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
-                    className="w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-300">Công khai</span>
-                </label>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-800">
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg transition font-medium"
-              >
-                Hủy
-              </button>
-              <button
-                onClick={handleAddTopic}
-                className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium"
-              >
-                Thêm chủ đề
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Edit Modal */}
-      {showEditModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-white">Chỉnh sửa chủ đề</h2>
-              <button
-                onClick={() => setShowEditModal(false)}
-                className="p-2 hover:bg-gray-800 rounded-lg transition text-gray-400"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Khóa học *</label>
-                <select
-                  value={formData.courseId}
-                  onChange={(e) => setFormData({ ...formData, courseId: e.target.value })}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                  required
-                >
-                  <option value="">Chọn khóa học</option>
-                  {courses.map(course => (
-                    <option key={course._id} value={course._id}>{course.title}</option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Tên chủ đề *</label>
-                <input
-                  type="text"
-                  value={formData.title}
-                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                  placeholder="Nhập tên chủ đề..."
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Mô tả</label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                  placeholder="Mô tả về chủ đề này..."
-                  rows={3}
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">Thứ tự</label>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Thời gian ước tính (phút)</label>
                   <input
                     type="number"
-                    value={formData.order}
-                    onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 1 })}
+                    value={formData.estimatedMinutes}
+                    onChange={(e) => setFormData({ ...formData, estimatedMinutes: parseInt(e.target.value) || 45 })}
                     min="1"
                     className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
                   />
                 </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-2">Điểm XP</label>
-                  <input
-                    type="number"
-                    value={formData.xpReward}
-                    onChange={(e) => setFormData({ ...formData, xpReward: parseInt(e.target.value) || 50 })}
-                    min="0"
-                    className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Thời gian ước tính (phút)</label>
-                <input
-                  type="number"
-                  value={formData.estimatedMinutes}
-                  onChange={(e) => setFormData({ ...formData, estimatedMinutes: parseInt(e.target.value) || 45 })}
-                  min="1"
-                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-400 mb-2">Màu sắc</label>
-                <div className="flex items-center gap-3">
-                  <input
-                    type="color"
-                    value={formData.color}
-                    onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="w-14 h-14 rounded-lg cursor-pointer border-2 border-gray-700"
-                  />
-                  <input
-                    type="text"
-                    value={formData.color}
-                    onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 font-mono"
-                    placeholder="#FFC4899"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.isLocked}
-                    onChange={(e) => setFormData({ ...formData, isLocked: e.target.checked })}
-                    className="w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-300">Khóa chủ đề</span>
-                </label>
-
-                <label className="flex items-center gap-2 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={formData.isPublished}
-                    onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
-                    className="w-4 h-4 rounded border-gray-700 bg-gray-800 text-blue-600 focus:ring-blue-500"
-                  />
-                  <span className="text-sm text-gray-300">Công khai</span>
-                </label>
               </div>
             </div>
 
             <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-800">
               <button
-                onClick={() => setShowEditModal(false)}
+                onClick={() => {
+                  setShowAddModal(false);
+                  setShowEditModal(false);
+                }}
                 className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg transition font-medium"
               >
                 Hủy
               </button>
               <button
-                onClick={handleEditTopic}
+                onClick={showAddModal ? handleAddTopic : handleEditTopic}
                 className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium"
               >
-                Cập nhật
+                {showAddModal ? 'Thêm chủ đề' : 'Cập nhật'}
               </button>
             </div>
           </div>
