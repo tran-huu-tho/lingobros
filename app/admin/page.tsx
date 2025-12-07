@@ -116,9 +116,9 @@ export default function AdminDashboard() {
       color: 'from-green-500 to-green-600'
     },
     {
-      title: 'Quản lý khóa học',
+      title: 'Cấp độ',
       icon: Layers,
-      description: 'Theo dõi tiến độ khóa học',
+      description: 'Các cấp độ khóa học',
       href: '/admin/course-management',
       color: 'from-orange-500 to-orange-600'
     },

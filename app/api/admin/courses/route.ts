@@ -145,17 +145,17 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: 'Course ID required' }, { status: 400 });
     }
 
-    // Kiểm tra xem có topics không
+    // Đếm số topics để thông báo (nhưng KHÔNG xóa)
     const topicCount = await Topic.countDocuments({ courseId });
-    if (topicCount > 0) {
-      return NextResponse.json({ 
-        error: `Không thể xóa. Khóa học này có ${topicCount} chuyên đề. Vui lòng xóa hoặc chuyển các chuyên đề trước.` 
-      }, { status: 400 });
-    }
 
+    // Chỉ xóa khóa học, GIỮ LẠI các topics
+    // (Topics có thể thuộc nhiều khóa học hoặc dùng lại sau)
     await Course.findByIdAndDelete(courseId);
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ 
+      success: true,
+      message: `Đã xóa khóa học. ${topicCount} chuyên đề vẫn được giữ lại.`
+    });
   } catch (error) {
     console.error('Delete course error:', error);
     return NextResponse.json({ error: 'Failed to delete course' }, { status: 500 });

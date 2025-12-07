@@ -159,7 +159,8 @@ export default function CourseManagement() {
         setDeletingCourse(null);
       } else {
         const data = await response.json();
-        alert(data.error);
+        // Hiển thị lỗi nếu có
+        console.error('Delete error:', data.error);
       }
     } catch (error) {
       console.error('Error deleting course:', error);
@@ -511,7 +512,7 @@ export default function CourseManagement() {
                   type="submit"
                   className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-semibold"
                 >
-                  <Save className="w-5 h-5" />
+                  {/* <Save className="w-5 h-5" /> */}
                   {editingCourse ? 'Cập nhật' : 'Tạo khóa học'}
                 </button>
                 <button
@@ -537,16 +538,9 @@ export default function CourseManagement() {
               </div>
               
               <h2 className="text-2xl font-bold text-white mb-2">Xóa khóa học?</h2>
-              <p className="text-gray-400 mb-4">
+              <p className="text-gray-400 mb-6">
                 Bạn có chắc chắn muốn xóa khóa học <strong className="text-white">"{deletingCourse.title}"</strong>?
               </p>
-              
-              <div className="bg-yellow-600/10 border border-yellow-600/30 rounded-lg p-3 mb-6">
-                <p className="text-yellow-400 text-sm">
-                  ⚠️ Khóa học có <strong>{deletingCourse.totalTopics}</strong> chuyên đề. 
-                  Bạn cần xóa hoặc chuyển các chuyên đề trước khi xóa khóa học.
-                </p>
-              </div>
 
               <div className="flex gap-3">
                 <button
