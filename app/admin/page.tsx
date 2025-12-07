@@ -81,39 +81,25 @@ export default function AdminDashboard() {
 
   const adminModules = [
     {
-      title: 'Bài tập',
-      icon: FileText,
-      description: 'Quản lý bài tập và câu hỏi',
+      title: 'Bài học',
+      icon: BookOpen,
+      description: 'Tạo và quản lý bài học',
       href: '/admin/lessons',
       color: 'from-blue-500 to-blue-600'
     },
     {
-      title: 'Đề thi',
-      icon: FolderOpen,
-      description: 'Tạo và quản lý đề thi',
-      href: '/admin/exams',
+      title: 'Bài tập',
+      icon: FileText,
+      description: 'Quản lý bài tập và câu hỏi',
+      href: '/admin/exercises',
       color: 'from-purple-500 to-purple-600'
     },
     {
-      title: 'Quản lý lớp',
-      icon: Layers,
-      description: 'Quản lý lớp học và nhóm',
-      href: '/admin/classes',
-      color: 'from-green-500 to-green-600'
-    },
-    {
-      title: 'Quản lý giáo viên',
-      icon: UsersIcon,
-      description: 'Quản lý tài khoản giáo viên',
-      href: '/admin/teachers',
-      color: 'from-orange-500 to-orange-600'
-    },
-    {
-      title: 'Kho nội dung',
-      icon: BookOpen,
-      description: 'Thư viện tài liệu và bài học',
-      href: '/admin/library',
-      color: 'from-pink-500 to-pink-600'
+      title: 'Khóa học',
+      icon: Library,
+      description: 'Quản lý khóa học và chương trình',
+      href: '/admin/courses',
+      color: 'from-indigo-500 to-indigo-600'
     },
     {
       title: 'Ngân hàng câu hỏi',
@@ -123,11 +109,25 @@ export default function AdminDashboard() {
       color: 'from-yellow-500 to-yellow-600'
     },
     {
-      title: 'Khóa học',
-      icon: Library,
-      description: 'Quản lý khóa học và chương trình',
-      href: '/admin/courses',
-      color: 'from-indigo-500 to-indigo-600'
+      title: 'Quản lý học viên',
+      icon: UsersIcon,
+      description: 'Quản lý tài khoản học viên',
+      href: '/admin/students',
+      color: 'from-green-500 to-green-600'
+    },
+    {
+      title: 'Quản lý khóa học',
+      icon: Layers,
+      description: 'Theo dõi tiến độ khóa học',
+      href: '/admin/course-management',
+      color: 'from-orange-500 to-orange-600'
+    },
+    {
+      title: 'Quản lý lộ trình',
+      icon: FolderOpen,
+      description: 'Tạo và quản lý lộ trình học',
+      href: '/admin/learning-paths',
+      color: 'from-pink-500 to-pink-600'
     }
   ];
 
@@ -253,47 +253,47 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto">
           {/* Welcome Section */}
           <div className="mb-12">
-            <h1 className="text-4xl font-bold text-white mb-3">
+            {/* <h1 className="text-4xl font-bold text-white mb-3">
               Chào mừng, {displayData.displayName}!
-            </h1>
-            <p className="text-gray-400 text-lg">
+            </h1> */}
+            {/* <p className="text-gray-400 text-lg">
               Quản lý hệ thống học tập LingoBros
-            </p>
+            </p> */}
           </div>
 
           {/* Admin Modules Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {adminModules.map((module, index) => {
               const IconComponent = module.icon;
               return (
                 <Link
                   key={index}
                   href={module.href}
-                  className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 hover:bg-gray-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
+                  className="group relative bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-4 hover:bg-gray-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
                 >
                   {/* Background gradient on hover */}
                   <div className={`absolute inset-0 bg-linear-to-br ${module.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
                   
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className={`w-16 h-16 rounded-xl bg-linear-to-br ${module.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <IconComponent className="w-8 h-8 text-white" />
+                    <div className={`w-12 h-12 rounded-lg bg-linear-to-br ${module.color} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <IconComponent className="w-6 h-6 text-white" />
                     </div>
                     
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                    <h3 className="text-base font-bold text-white mb-1 group-hover:text-blue-400 transition-colors">
                       {module.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className="text-gray-400 text-xs leading-relaxed">
                       {module.description}
                     </p>
 
                     {/* Arrow indicator */}
-                    <div className="mt-4 flex items-center text-blue-400 text-sm font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="mt-3 flex items-center text-blue-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
                       <span>Truy cập</span>
-                      <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-3 h-3 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                       </svg>
                     </div>
@@ -304,7 +304,7 @@ export default function AdminDashboard() {
           </div>
 
           {/* Additional Note */}
-          <div className="mt-12 bg-blue-600/10 border border-blue-500/30 rounded-xl p-6">
+          {/* <div className="mt-12 bg-blue-600/10 border border-blue-500/30 rounded-xl p-6">
             <div className="flex items-start gap-4">
               <School className="w-6 h-6 text-blue-400 shrink-0 mt-1" />
               <div>
@@ -317,7 +317,7 @@ export default function AdminDashboard() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

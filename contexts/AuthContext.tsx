@@ -76,7 +76,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             console.log('isAdmin value:', data.user?.isAdmin);
             setUserData(data.user);
           } else {
-            console.error('❌ Failed to fetch user data:', response.status);
+            // Silently handle 404 - user data will be fetched after page refresh
+            if (response.status !== 404) {
+              console.error('❌ Failed to fetch user data:', response.status);
+            }
           }
         } catch (error) {
           console.error('Error fetching user data:', error);
