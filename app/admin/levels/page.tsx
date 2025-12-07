@@ -305,7 +305,10 @@ export default function LevelManagement() {
                     <User className="w-5 h-5 text-white" />
                   </div>
                 )}
-                <span className="text-gray-300">{displayData.displayName}</span>
+                <div className="hidden sm:flex flex-col items-start">
+                  <span className="text-gray-300 text-sm font-semibold">{displayData.displayName}</span>
+                  <span className="text-xs text-yellow-400">Admin</span>
+                </div>
                 <ChevronDown className="w-4 h-4 text-gray-400" />
               </button>
 
