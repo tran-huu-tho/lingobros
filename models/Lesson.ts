@@ -1,45 +1,62 @@
 import { Schema, model, models } from 'mongoose';
 
-const ExerciseSchema = new Schema({
-  type: {
-    type: String,
-    enum: ['multiple-choice', 'fill-blank', 'match', 'speak', 'listen', 'translate'],
-    required: true
-  },
-  question: { type: String, required: true },
-  questionAudio: { type: String },
-  options: [{ type: String }],
-  correctAnswer: { type: Schema.Types.Mixed, required: true },
-  explanation: { type: String },
-  imageUrl: { type: String },
-  audioUrl: { type: String }
-});
-
-const LessonContentSchema = new Schema({
-  introduction: { type: String },
-  exercises: [ExerciseSchema],
-  tips: [{ type: String }]
-});
-
 const LessonSchema = new Schema({
-  unitId: { type: Schema.Types.ObjectId, ref: 'Unit', required: true },
+  topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
   title: { type: String, required: true },
   description: { type: String },
   type: {
     type: String,
-    enum: ['vocabulary', 'grammar', 'listening', 'speaking', 'quiz', 'story'],
+    enum: ['vocabulary', 'grammar', 'listening', 'speaking', 'practice', 'story'],
     required: true
   },
   order: { type: Number, required: true },
   xpReward: { type: Number, default: 10 },
-  content: { type: LessonContentSchema, required: true },
+  
+  // Nội dung bài học
+  content: {
+    introduction: { type: String },
+    vocabulary: [{
+      word: { type: String },
+      pronunciation: { type: String },
+      meaning: { type: String },
+      example: { type: String },
+      audioUrl: { type: String }
+    }],
+    grammarPoints: [{
+      rule: { type: String },
+      examples: [{ type: String }],
+      notes: { type: String }
+    }],
+    tips: [{ type: String }]
+  },
+  
+  // Media
+  thumbnailUrl: { type: String },
+  videoUrl: { type: String },
+  audioUrl: { type: String },
+  
+  // Điều kiện mở khóa
   isLocked: { type: Boolean, default: false },
+  unlockCondition: {
+    requiredLessonId: { type: Schema.Types.ObjectId, ref: 'Lesson' },
+    minimumScore: { type: Number }
+  },
+  
+  // Metadata
+  difficulty: {
+    type: String,
+    enum: ['easy', 'medium', 'hard'],
+    default: 'medium'
+  },
+  estimatedMinutes: { type: Number, default: 15 },
+  
+  isPublished: { type: Boolean, default: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 }, {
   timestamps: true
 });
 
-LessonSchema.index({ unitId: 1, order: 1 });
+LessonSchema.index({ topicId: 1, order: 1 });
 
 export default models.Lesson || model('Lesson', LessonSchema);

@@ -23,6 +23,8 @@ const UserSchema = new Schema({
   streak: { type: Number, default: 0 },
   hearts: { type: Number, default: 5 },
   gems: { type: Number, default: 0 },
+  studyTime: { type: Number, default: 0 }, // Total study time in minutes
+  learningGoal: { type: String, default: 'Chưa đặt mục tiêu' }, // Learning goal text
   preferences: { type: UserPreferencesSchema, default: () => ({}) },
   hasCompletedOnboarding: { type: Boolean, default: false },
   isAdmin: { type: Boolean, default: false },
