@@ -35,7 +35,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithGoogle();
       onClose();
-      router.push('/dashboard');
+      router.push('/');
     } catch (error: any) {
       console.error('Google login error:', error);
       // If user closed popup, just stop loading without closing modal
@@ -53,7 +53,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       await signInWithFacebook();
       onClose();
-      router.push('/dashboard');
+      router.push('/');
     } catch (error: any) {
       console.error('Facebook login error:', error);
       // If user closed popup, just stop loading without closing modal
@@ -77,7 +77,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
       } else if (mode === 'login') {
         await signInWithEmail(email, password);
         onClose();
-        router.push('/dashboard');
+        router.push('/');
         // Reset form
         setEmail('');
         setPassword('');
@@ -96,7 +96,7 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         }
         await signUpWithEmail(email, password, displayName);
         onClose();
-        router.push('/dashboard');
+        router.push('/');
         // Reset form
         setEmail('');
         setPassword('');

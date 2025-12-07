@@ -7,16 +7,32 @@ import { useEffect, useState, useRef } from 'react';
 import { BookOpen, Sparkles, ArrowRight, Trophy, Users, Zap, MessageCircle } from 'lucide-react';
 
 export default function Home() {
-  const { user, loading } = useAuth();
+  const { user, userData, loading } = useAuth();
   const router = useRouter();
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  // Redirect to dashboard if already logged in
+  // Redirect based on user role
   useEffect(() => {
-    if (!loading && user) {
-      router.push('/dashboard');
+    console.log('=== HOME REDIRECT CHECK ===');
+    console.log('Loading:', loading);
+    console.log('User:', user?.email);
+    console.log('UserData:', userData);
+    console.log('isAdmin:', userData?.isAdmin);
+    
+    if (!loading && user && userData) {
+      // Admin goes to admin panel
+      if (userData.isAdmin) {
+        console.log('✅ Redirecting to /admin');
+        router.push('/admin');
+      } else {
+        // Regular users go to dashboard
+        console.log('✅ Redirecting to /dashboard');
+        router.push('/dashboard');
+      }
+    } else {
+      console.log('⏳ Waiting... loading:', loading, 'user:', !!user, 'userData:', !!userData);
     }
-  }, [user, loading, router]);
+  }, [user, userData, loading, router]);
 
   if (loading) {
     return (

@@ -72,7 +72,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           });
           if (response.ok) {
             const data = await response.json();
+            console.log('📥 AuthContext fetched userData:', data.user);
+            console.log('isAdmin value:', data.user?.isAdmin);
             setUserData(data.user);
+          } else {
+            console.error('❌ Failed to fetch user data:', response.status);
           }
         } catch (error) {
           console.error('Error fetching user data:', error);

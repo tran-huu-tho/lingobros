@@ -232,7 +232,7 @@ export default function Profile() {
       <header className="backdrop-blur-xl bg-gray-950/80 border-b border-gray-800 sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/dashboard" className="flex items-center gap-3">
+            <Link href={userData?.isAdmin ? "/admin" : "/dashboard"} className="flex items-center gap-3">
               <div className="text-4xl">
                 ☃️
               </div>
@@ -242,7 +242,7 @@ export default function Profile() {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
-              <Link href="/dashboard" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+              <Link href={userData?.isAdmin ? "/admin" : "/dashboard"} className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <Home className="w-5 h-5" />
                 Trang chủ
               </Link>
@@ -284,7 +284,9 @@ export default function Profile() {
                   <span className="text-gray-100 font-semibold text-sm leading-tight">
                     {displayData.displayName}
                   </span>
-                  <span className="text-xs text-gray-500">Học viên</span>
+                  <span className={`text-xs ${userData?.isAdmin ? 'text-yellow-400' : 'text-gray-500'}`}>
+                    {userData?.isAdmin ? 'Admin' : 'Học viên'}
+                  </span>
                 </div>
                 <ChevronDown className={`w-4 h-4 text-gray-400 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} />
               </button>
@@ -306,7 +308,9 @@ export default function Profile() {
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-white font-semibold truncate">{displayData.displayName}</p>
-                        <p className="text-xs text-gray-400">Học viên</p>
+                        <p className={`text-xs ${userData?.isAdmin ? 'text-yellow-400' : 'text-gray-400'}`}>
+                          {userData?.isAdmin ? 'Admin' : 'Học viên'}
+                        </p>
                       </div>
                     </div>
                   </div>
