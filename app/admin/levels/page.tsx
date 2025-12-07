@@ -335,77 +335,84 @@ export default function LevelManagement() {
       {/* Main Content */}
       <main className="container mx-auto px-6 py-8">
         <div className="max-w-7xl mx-auto">
-          
-
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="text-3xl font-bold text-white">Quản lý cấp độ</h1>
-            <button
-              onClick={() => {
-                setFormData({ name: '', displayName: '', description: '', color: '#3B82F6' });
-                setShowAddModal(true);
-              }}
-              className="flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl transition"
-            >
-              <Plus className="w-5 h-5" />
-              Thêm cấp độ mới
-            </button>
-          </div>
-
-          {/* Search and Filter Bar */}
+          {/* Toolbar */}
           <div className="bg-gray-800/50 border border-gray-700 rounded-xl p-4 mb-6">
-            <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
               {/* Search */}
-              <div className="flex-1 relative">
+              <div className="relative flex-1 w-full md:w-auto">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <input
                   type="text"
+                  placeholder="Tìm kiếm cấp độ..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Tìm kiếm theo tên cấp độ..."
-                  className="w-full pl-10 pr-4 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                  className="w-full pl-10 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
                 />
               </div>
 
-              {/* Filter Dropdown */}
-              <div className="relative">
-                <button
-                  onClick={() => setShowFilterMenu(!showFilterMenu)}
-                  className="flex items-center gap-2 px-6 py-3 bg-gray-900/50 border border-gray-700 rounded-xl text-white hover:bg-gray-800/50 transition"
-                >
-                  <Filter className="w-5 h-5" />
-                  Sắp xếp
-                </button>
+              {/* Filter & Add */}
+              <div className="flex gap-2">
+                <div className="relative">
+                  <button
+                    onClick={() => setShowFilterMenu(!showFilterMenu)}
+                    className="flex items-center gap-2 px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-300 hover:text-white hover:border-blue-500 transition"
+                  >
+                    <Filter className="w-4 h-4" />
+                    Sắp xếp
+                  </button>
 
-                {showFilterMenu && (
-                  <div className="absolute right-0 mt-2 w-64 rounded-xl bg-gray-900 border border-gray-800 shadow-xl overflow-hidden z-10">
-                    <div className="p-4 space-y-3">
-                      <div>
-                        <label className="text-sm text-gray-400 mb-2 block">Sắp xếp theo</label>
-                        <select
-                          value={sortBy}
-                          onChange={(e) => setSortBy(e.target.value as any)}
-                          className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                        >
-                          <option value="name">Tên</option>
-                          <option value="courses">Số khóa học</option>
-                          <option value="date">Ngày tạo</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-sm text-gray-400 mb-2 block">Thứ tự</label>
-                        <select
-                          value={sortOrder}
-                          onChange={(e) => setSortOrder(e.target.value as 'asc' | 'desc')}
-                          className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                        >
-                          <option value="asc">Tăng dần</option>
-                          <option value="desc">Giảm dần</option>
-                        </select>
+                  {showFilterMenu && (
+                    <div className="absolute right-0 mt-2 w-56 bg-gray-800 border border-gray-700 rounded-xl shadow-xl overflow-hidden z-50">
+                      <div className="p-2">
+                        <p className="text-xs text-gray-400 px-3 py-2">Sắp xếp theo:</p>
+                        {[
+                          { value: 'name', label: 'Tên' },
+                          { value: 'courses', label: 'Số khóa học' },
+                          { value: 'date', label: 'Ngày tạo' }
+                        ].map((option) => (
+                          <button
+                            key={option.value}
+                            onClick={() => {
+                              if (sortBy === option.value) {
+                                setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+                              } else {
+                                setSortBy(option.value as any);
+                                setSortOrder('asc');
+                              }
+                            }}
+                            className={`w-full text-left px-3 py-2 rounded-lg transition ${
+                              sortBy === option.value 
+                                ? 'bg-blue-600 text-white' 
+                                : 'text-gray-300 hover:bg-gray-700'
+                            }`}
+                          >
+                            {option.label} {sortBy === option.value && (sortOrder === 'asc' ? '↑' : '↓')}
+                          </button>
+                        ))}
                       </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
+
+                <button
+                  onClick={() => {
+                    setFormData({ name: '', displayName: '', description: '', color: '#3B82F6' });
+                    setShowAddModal(true);
+                  }}
+                  className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition"
+                >
+                  <Plus className="w-4 h-4" />
+                  Thêm cấp độ
+                </button>
               </div>
+            </div>
+
+            {/* Stats */}
+            <div className="mt-4 flex gap-4 text-sm text-gray-400">
+              <span>Tổng số: <strong className="text-white">{filteredLevels.length}</strong> cấp độ</span>
+              {searchQuery && (
+                <span>Tìm thấy: <strong className="text-blue-400">{filteredLevels.length}</strong> kết quả</span>
+              )}
             </div>
           </div>
 
@@ -413,15 +420,16 @@ export default function LevelManagement() {
           <div className="bg-gray-800/50 border border-gray-700 rounded-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
-              <thead className="bg-gray-800/50 border-b border-gray-800">
+              <thead className="bg-gray-900/50 border-b border-gray-700">
                 <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">STT</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Tên cấp độ</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-300">Số khóa học</th>
-                  <th className="px-6 py-4 text-right text-sm font-semibold text-gray-300">Thao tác</th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">STT</th>
+                  <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Tên cấp độ</th>
+                  <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Màu sắc</th>
+                  <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Số khóa học</th>
+                  <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thao tác</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-800">
+              <tbody className="divide-y divide-gray-700">
                 {currentLevels.map((level, index) => (
                   <tr key={level._id} className="hover:bg-gray-800/30 transition">
                     <td className="px-6 py-4 text-gray-300">{indexOfFirstLevel + index + 1}</td>
@@ -432,12 +440,21 @@ export default function LevelManagement() {
                       </div>
                     </td>
                     <td className="px-6 py-4">
+                      <div className="flex items-center justify-center gap-2">
+                        <div 
+                          className="w-8 h-8 rounded-lg border border-gray-600" 
+                          style={{ backgroundColor: level.color }}
+                        ></div>
+                        <span className="text-xs text-gray-400 font-mono">{level.color}</span>
+                      </div>
+                    </td>
+                    <td className="px-6 py-4 text-center">
                       <span className="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-medium">
-                        {level.courseCount} khóa học
+                        {level.courseCount}
                       </span>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="flex items-center justify-end gap-2">
+                      <div className="flex items-center justify-center gap-2">
                         <button
                           onClick={() => openEditModal(level)}
                           className="p-2 hover:bg-gray-700 rounded-lg transition text-blue-400"
@@ -462,40 +479,42 @@ export default function LevelManagement() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-800">
-              <div className="text-sm text-gray-400">
-                Hiển thị {indexOfFirstLevel + 1}-{Math.min(indexOfLastLevel, filteredLevels.length)} trong số {filteredLevels.length} cấp độ
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <div className="flex items-center gap-1">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
-                    <button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      className={`px-3 py-1 rounded-lg transition ${
-                        currentPage === page
-                          ? 'bg-blue-500 text-white'
-                          : 'text-gray-300 hover:bg-gray-800'
-                      }`}
-                    >
-                      {page}
-                    </button>
-                  ))}
+            <div className="bg-gray-800/50 border border-gray-700 rounded-xl px-6 py-4 mt-6">
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-gray-400">
+                  Hiển thị {indexOfFirstLevel + 1}-{Math.min(indexOfLastLevel, filteredLevels.length)} trong số {filteredLevels.length} cấp độ
                 </div>
-                <button
-                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                    disabled={currentPage === 1}
+                    className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <div className="flex items-center gap-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                      <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`px-3 py-1 rounded-lg transition ${
+                          currentPage === page
+                            ? 'bg-blue-600 text-white'
+                            : 'text-gray-300 hover:bg-gray-800'
+                        }`}
+                      >
+                        {page}
+                      </button>
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                    disabled={currentPage === totalPages}
+                    className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                  >
+                    <ChevronRight className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           )}
@@ -507,9 +526,9 @@ export default function LevelManagement() {
       {/* Add Level Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-md">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-lg">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Thêm cấp độ mới</h2>
+              <h2 className="text-2xl font-bold text-white">Thêm cấp độ mới</h2>
               <button
                 onClick={() => setShowAddModal(false)}
                 className="p-2 hover:bg-gray-800 rounded-lg transition text-gray-400"
@@ -520,67 +539,70 @@ export default function LevelManagement() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Tên ID (viết thường, không dấu)</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Tên ID (viết thường, không dấu) *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="beginner, intermediate..."
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Tên hiển thị</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Tên hiển thị *</label>
                 <input
                   type="text"
                   value={formData.displayName}
                   onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
                   placeholder="Cơ bản, Trung cấp..."
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Mô tả</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Mô tả</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Mô tả về cấp độ này..."
                   rows={3}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Màu sắc</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Màu sắc</label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
                     value={formData.color}
                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="w-12 h-12 rounded-lg cursor-pointer"
+                    className="w-14 h-14 rounded-lg cursor-pointer border-2 border-gray-700"
                   />
                   <input
                     type="text"
                     value={formData.color}
                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 font-mono"
+                    placeholder="#3B82F6"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mt-6">
+            <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-800">
               <button
                 onClick={() => setShowAddModal(false)}
-                className="flex-1 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
+                className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
               >
                 Hủy
               </button>
               <button
                 onClick={handleAddLevel}
-                className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
+                className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium"
               >
                 Thêm cấp độ
               </button>
@@ -592,9 +614,9 @@ export default function LevelManagement() {
       {/* Edit Level Modal */}
       {showEditModal && selectedLevel && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-md">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 w-full max-w-lg">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Chỉnh sửa cấp độ</h2>
+              <h2 className="text-2xl font-bold text-white">Chỉnh sửa cấp độ</h2>
               <button
                 onClick={() => setShowEditModal(false)}
                 className="p-2 hover:bg-gray-800 rounded-lg transition text-gray-400"
@@ -605,67 +627,70 @@ export default function LevelManagement() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Tên ID (viết thường, không dấu)</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Tên ID (viết thường, không dấu) *</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="beginner, intermediate..."
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Tên hiển thị</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Tên hiển thị *</label>
                 <input
                   type="text"
                   value={formData.displayName}
                   onChange={(e) => setFormData({ ...formData, displayName: e.target.value })}
                   placeholder="Cơ bản, Trung cấp..."
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Mô tả</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Mô tả</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                   placeholder="Mô tả về cấp độ này..."
                   rows={3}
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 resize-none"
                 />
               </div>
 
               <div>
-                <label className="block text-sm text-gray-400 mb-2">Màu sắc</label>
+                <label className="block text-sm font-medium text-gray-400 mb-2">Màu sắc</label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
                     value={formData.color}
                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="w-12 h-12 rounded-lg cursor-pointer"
+                    className="w-14 h-14 rounded-lg cursor-pointer border-2 border-gray-700"
                   />
                   <input
                     type="text"
                     value={formData.color}
                     onChange={(e) => setFormData({ ...formData, color: e.target.value })}
-                    className="flex-1 px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    className="flex-1 px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 font-mono"
+                    placeholder="#3B82F6"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 mt-6">
+            <div className="flex items-center gap-3 mt-6 pt-6 border-t border-gray-800">
               <button
                 onClick={() => setShowEditModal(false)}
-                className="flex-1 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
+                className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
               >
                 Hủy
               </button>
               <button
                 onClick={handleEditLevel}
-                className="flex-1 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition"
+                className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium"
               >
                 Cập nhật
               </button>
@@ -682,11 +707,11 @@ export default function LevelManagement() {
               <div className="w-12 h-12 rounded-full bg-red-500/20 flex items-center justify-center">
                 <AlertTriangle className="w-6 h-6 text-red-500" />
               </div>
-              <h2 className="text-xl font-bold text-white">Xác nhận xóa</h2>
+              <h2 className="text-xl font-bold text-white">Xác nhận xóa cấp độ</h2>
             </div>
 
             <p className="text-gray-300 mb-4">
-              Bạn có chắc chắn muốn xóa cấp độ <span className="font-bold text-white">{selectedLevel.displayName}</span>?
+              Bạn có chắc chắn muốn xóa cấp độ <strong className="text-white">"{selectedLevel.displayName}"</strong> không?
             </p>
 
             {selectedLevel.courseCount > 0 && (
@@ -701,19 +726,19 @@ export default function LevelManagement() {
               </div>
             )}
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 mt-6">
               <button
                 onClick={() => setShowDeleteModal(false)}
-                className="flex-1 px-4 py-2 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
+                className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-lg transition"
               >
                 Hủy
               </button>
               <button
                 onClick={handleDeleteLevel}
                 disabled={selectedLevel.courseCount > 0}
-                className="flex-1 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-4 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg transition font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Xóa
+                Xóa cấp độ
               </button>
             </div>
           </div>

@@ -8,7 +8,7 @@ import Level from '@/models/Level';
 // PUT - Cập nhật cấp độ
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = req.headers.get('Authorization')?.split('Bearer ')[1];
@@ -24,7 +24,7 @@ export async function PUT(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const { id } = params;
+    const { id } = await params;
     const body = await req.json();
     const { name, displayName, description, color, isActive } = body;
 
@@ -76,7 +76,7 @@ export async function PUT(
 // DELETE - Xóa cấp độ
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = req.headers.get('Authorization')?.split('Bearer ')[1];
@@ -92,7 +92,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const { id } = params;
+    const { id } = await params;
 
     const level = await Level.findById(id);
     if (!level) {
