@@ -94,6 +94,7 @@ export default function TopicsManagement() {
 
         if (coursesRes.ok) {
           const data = await coursesRes.json();
+          console.log('📚 Courses loaded:', data.courses);
           setCourses(data.courses || []);
         }
       } catch (error) {
@@ -160,6 +161,9 @@ export default function TopicsManagement() {
 
   const handleAdd = () => {
     resetForm();
+    if (courses.length > 0) {
+      setFormData(prev => ({ ...prev, courseId: courses[0]._id }));
+    }
     setShowAddModal(true);
   };
 
@@ -304,7 +308,7 @@ export default function TopicsManagement() {
 
   if (loading || !user || !userData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900 flex items-center justify-center">
         <div className="text-white text-xl">Đang tải...</div>
       </div>
     );
@@ -322,14 +326,14 @@ export default function TopicsManagement() {
     : userPhoto;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900">
+    <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900">
       {/* Header */}
       <header className="backdrop-blur-xl bg-gray-950/80 border-b border-gray-800 sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/admin" className="flex items-center gap-3">
               <div className="text-4xl">☃️</div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
+              <span className="text-2xl font-bold bg-linear-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                 LingoBros
               </span>
             </Link>
@@ -492,148 +496,148 @@ export default function TopicsManagement() {
                 <p className="text-gray-500">Nhấn "Thêm chủ đề" để tạo chủ đề đầu tiên</p>
               </div>
             ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gray-900/50 border-b border-gray-700">
-                    <tr>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">STT</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Chủ đề</th>
-                      <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Khóa học</th>
-                      <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Số bài</th>
-                      <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">XP</th>
-                      <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thời gian</th>
-                      <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Trạng thái</th>
-                      <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thao tác</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-700">
-                    {currentTopics.map((topic, index) => (
-                      <tr key={topic._id} className="hover:bg-gray-800/30 transition">
-                        <td className="px-6 py-4 text-gray-300">{indexOfFirstTopic + index + 1}</td>
-                        <td className="px-6 py-4">
-                          <div className="flex items-center gap-3">
-                            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: topic.color }}></div>
-                            <div>
-                              <div className="text-white font-medium">{topic.title}</div>
-                              {topic.description && (
-                                <div className="text-sm text-gray-400 line-clamp-1">{topic.description}</div>
-                              )}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-300">
-                            {typeof topic.courseId === 'object' ? topic.courseId.title : 'N/A'}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          <span className="text-blue-400 font-medium">{topic.totalLessons || 0}</span>
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          <span className="text-yellow-400 font-medium">{topic.xpReward}</span>
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          <span className="text-gray-400">{topic.estimatedMinutes} phút</span>
-                        </td>
-                        <td className="px-6 py-4 text-center">
-                          {topic.isPublished ? (
-                            <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-medium bg-green-500/20 text-green-400">
-                              Công khai
-                            </span>
-                          ) : (
-                            <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-500/20 text-gray-400">
-                              Nháp
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="flex items-center justify-center gap-2">
-                            <button
-                              onClick={() => handleTogglePublish(topic)}
-                              className={`p-2 rounded-lg transition ${
-                                topic.isPublished 
-                                  ? 'text-green-400 hover:bg-green-500/10' 
-                                  : 'text-gray-400 hover:bg-gray-500/10'
-                              }`}
-                              title={topic.isPublished ? 'Ẩn' : 'Hiện'}
-                            >
-                              {topic.isPublished ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
-                            </button>
-                            <button
-                              onClick={() => handleEdit(topic)}
-                              className="p-2 text-blue-400 hover:bg-blue-500/10 rounded-lg transition"
-                              title="Chỉnh sửa"
-                            >
-                              <Edit2 className="w-4 h-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(topic)}
-                              className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition"
-                              title="Xóa"
-                            >
-                              <Trash2 className="w-4 h-4" />
-                            </button>
-                          </div>
-                        </td>
+              <>
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-gray-900/50 border-b border-gray-700">
+                      <tr>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">STT</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Chủ đề</th>
+                        <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Khóa học</th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Số bài</th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">XP</th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thời gian</th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Trạng thái</th>
+                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thao tác</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody className="divide-y divide-gray-700">
+                      {currentTopics.map((topic, index) => (
+                        <tr key={topic._id} className="hover:bg-gray-800/30 transition">
+                          <td className="px-6 py-4 text-gray-300">{indexOfFirstTopic + index + 1}</td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center gap-3">
+                              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: topic.color }}></div>
+                              <div>
+                                <div className="text-white font-medium">{topic.title}</div>
+                                {topic.description && (
+                                  <div className="text-sm text-gray-400 line-clamp-1">{topic.description}</div>
+                                )}
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="text-sm text-gray-300">
+                              {typeof topic.courseId === 'object' ? topic.courseId.title : 'N/A'}
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className="text-blue-400 font-medium">{topic.totalLessons || 0}</span>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className="text-yellow-400 font-medium">{topic.xpReward}</span>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            <span className="text-gray-400">{topic.estimatedMinutes} phút</span>
+                          </td>
+                          <td className="px-6 py-4 text-center">
+                            {topic.isPublished ? (
+                              <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-medium bg-green-500/20 text-green-400">
+                                Công khai
+                              </span>
+                            ) : (
+                              <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-medium bg-gray-500/20 text-gray-400">
+                                Ẩn
+                              </span>
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            <div className="flex items-center justify-center gap-2">
+                              <button
+                                onClick={() => handleTogglePublish(topic)}
+                                className={`p-2 rounded-lg transition ${
+                                  topic.isPublished 
+                                    ? 'text-green-400 hover:bg-green-500/10' 
+                                    : 'text-gray-400 hover:bg-gray-500/10'
+                                }`}
+                                title={topic.isPublished ? 'Ẩn' : 'Hiện'}
+                              >
+                                {topic.isPublished ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                              </button>
+                              <button
+                                onClick={() => handleEdit(topic)}
+                                className="p-2 text-blue-400 hover:bg-blue-500/10 rounded-lg transition"
+                                title="Chỉnh sửa"
+                              >
+                                <Edit2 className="w-4 h-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDelete(topic)}
+                                className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition"
+                                title="Xóa"
+                              >
+                                <Trash2 className="w-4 h-4" />
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Pagination */}
+                <div className="border-t border-gray-700 p-4 flex items-center justify-between">
+                  <div className="text-sm text-gray-400">
+                    Hiển thị {indexOfFirstTopic + 1} - {Math.min(indexOfLastTopic, filteredTopics.length)} trong tổng số {filteredTopics.length} chủ đề
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                      disabled={currentPage === 1}
+                      className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <div className="flex gap-1">
+                      {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                        let page;
+                        if (totalPages <= 5) {
+                          page = i + 1;
+                        } else if (currentPage <= 3) {
+                          page = i + 1;
+                        } else if (currentPage >= totalPages - 2) {
+                          page = totalPages - 4 + i;
+                        } else {
+                          page = currentPage - 2 + i;
+                        }
+                        return (
+                          <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`px-3 py-1 rounded-lg transition ${
+                              currentPage === page
+                                ? 'bg-blue-600 text-white'
+                                : 'text-gray-300 hover:bg-gray-800'
+                            }`}
+                          >
+                            {page}
+                          </button>
+                        );
+                      })}
+                    </div>
+                    <button
+                      onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                      disabled={currentPage === totalPages}
+                      className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                </div>
+              </>
             )}
           </div>
-
-          {/* Pagination */}
-          {filteredTopics.length > 0 && (
-            <div className="mt-6 flex items-center justify-between">
-              <div className="text-sm text-gray-400">
-                Hiển thị {indexOfFirstTopic + 1} - {Math.min(indexOfLastTopic, filteredTopics.length)} trong tổng số {filteredTopics.length} chủ đề
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                  disabled={currentPage === 1}
-                  className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
-                >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <div className="flex gap-1">
-                  {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                    let page;
-                    if (totalPages <= 5) {
-                      page = i + 1;
-                    } else if (currentPage <= 3) {
-                      page = i + 1;
-                    } else if (currentPage >= totalPages - 2) {
-                      page = totalPages - 4 + i;
-                    } else {
-                      page = currentPage - 2 + i;
-                    }
-                    return (
-                      <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`px-3 py-1 rounded-lg transition ${
-                          currentPage === page
-                            ? 'bg-blue-600 text-white'
-                            : 'text-gray-300 hover:bg-gray-800'
-                        }`}
-                      >
-                        {page}
-                      </button>
-                    );
-                  })}
-                </div>
-                <button
-                  onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                  disabled={currentPage === totalPages}
-                  className="p-2 rounded-lg border border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition"
-                >
-                  <ChevronRight className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-          )}
         </div>
       </main>
 
@@ -667,7 +671,6 @@ export default function TopicsManagement() {
                     className="w-full px-4 py-2.5 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
                     required
                   >
-                    <option value="">Chọn khóa học</option>
                     {courses.map(course => (
                       <option key={course._id} value={course._id}>{course.title}</option>
                     ))}
@@ -689,7 +692,7 @@ export default function TopicsManagement() {
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-2">Icon *</label>
                   <div className="flex items-center gap-3">
-                    <div className="w-14 h-14 rounded-lg bg-gray-800 border-2 border-gray-700 flex items-center justify-center text-3xl flex-shrink-0">
+                    <div className="w-14 h-14 rounded-lg bg-gray-800 border-2 border-gray-700 flex items-center justify-center text-3xl shrink-0">
                       {formData.icon || '📚'}
                     </div>
                     <input
