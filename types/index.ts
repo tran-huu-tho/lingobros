@@ -47,7 +47,6 @@ export interface Unit {
   courseId: string;
   title: string;
   description: string;
-  order: number;
   lessons: Lesson[];
   isLocked: boolean;
 }
@@ -58,7 +57,6 @@ export interface Lesson {
   title: string;
   description: string;
   type: 'vocabulary' | 'grammar' | 'listening' | 'speaking' | 'quiz' | 'story';
-  order: number;
   xpReward: number;
   content: LessonContent;
   isLocked: boolean;

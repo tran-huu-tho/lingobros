@@ -7,17 +7,24 @@ import { ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, V
          Plus, Edit2, Eye, EyeOff, Trash2, Save, X } from 'lucide-react';
 import Link from 'next/link';
 
+interface Level {
+  _id: string;
+  name: string;
+  displayName: string;
+  description: string;
+  color: string;
+  isActive: boolean;
+}
+
 interface Course {
   _id: string;
   title: string;
   slug: string;
   description: string;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'grammar';
-  icon: string;
+  level: Level | string; // Có thể là object (populated) hoặc string (ObjectId)
   color: string;
   gradientFrom: string;
   gradientTo: string;
-  order: number;
   totalTopics: number;
   totalLessons: number;
   estimatedHours: number;
@@ -25,26 +32,14 @@ interface Course {
   isActive: boolean;
 }
 
-const LEVEL_LABELS = {
-  beginner: 'Cơ bản',
-  intermediate: 'Trung cấp',
-  advanced: 'Nâng cao',
-  grammar: 'Ngữ pháp'
-};
-
-const LEVEL_COLORS = {
-  beginner: 'bg-green-600/20 text-green-400',
-  intermediate: 'bg-blue-600/20 text-blue-400',
-  advanced: 'bg-purple-600/20 text-purple-400',
-  grammar: 'bg-orange-600/20 text-orange-400'
-};
-
 export default function CourseManagement() {
   const { user, userData, loading, signOut } = useAuth();
   const router = useRouter();
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [courses, setCourses] = useState<Course[]>([]);
+  const [levels, setLevels] = useState<Level[]>([]);
   const [loadingCourses, setLoadingCourses] = useState(true);
+  const [loadingLevels, setLoadingLevels] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deletingCourse, setDeletingCourse] = useState<Course | null>(null);
@@ -52,11 +47,9 @@ export default function CourseManagement() {
   const [formData, setFormData] = useState({
     title: '',
     description: '',
-    level: 'beginner' as Course['level'],
-    icon: '📚',
+    level: '',
     gradientFrom: '#EC4899',
     gradientTo: '#F97316',
-    order: 1,
     estimatedHours: 10
   });
 
@@ -75,8 +68,31 @@ export default function CourseManagement() {
   useEffect(() => {
     if (userData?.isAdmin) {
       fetchCourses();
+      fetchLevels();
     }
   }, [userData]);
+
+  const fetchLevels = async () => {
+    try {
+      const token = await user?.getIdToken();
+      const response = await fetch('/api/admin/levels', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setLevels(data.levels);
+        // Set default level nếu có levels
+        if (data.levels.length > 0 && !formData.level) {
+          setFormData(prev => ({ ...prev, level: data.levels[0]._id }));
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching levels:', error);
+    } finally {
+      setLoadingLevels(false);
+    }
+  };
 
   const fetchCourses = async () => {
     try {
@@ -177,11 +193,9 @@ export default function CourseManagement() {
     setFormData({
       title: course.title,
       description: course.description,
-      level: course.level,
-      icon: course.icon,
+      level: typeof course.level === 'string' ? course.level : course.level._id,
       gradientFrom: course.gradientFrom,
       gradientTo: course.gradientTo,
-      order: course.order,
       estimatedHours: course.estimatedHours
     });
     setShowModal(true);
@@ -192,10 +206,8 @@ export default function CourseManagement() {
       title: '',
       description: '',
       level: 'beginner',
-      icon: '📚',
       gradientFrom: '#EC4899',
       gradientTo: '#F97316',
-      order: courses.length + 1,
       estimatedHours: 10
     });
   };
@@ -295,7 +307,6 @@ export default function CourseManagement() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">Quản lý Khóa học</h1>
-              <p className="text-gray-400">Quản lý các khóa học và cấp độ</p>
             </div>
             <button
               onClick={() => {
@@ -324,17 +335,26 @@ export default function CourseManagement() {
                     background: `linear-gradient(135deg, ${course.gradientFrom} 0%, ${course.gradientTo} 100%)`
                   }}
                 >
-                  <div className="text-4xl">{course.icon}</div>
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-white">{course.title}</h3>
-                    <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${LEVEL_COLORS[course.level]}`}>
-                      {LEVEL_LABELS[course.level]}
-                    </span>
                   </div>
                 </div>
 
                 {/* Body */}
                 <div className="p-4">
+                  {typeof course.level === 'object' && course.level && (
+                    <div className="mb-3">
+                      <span 
+                        className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold"
+                        style={{ 
+                          backgroundColor: course.level.color + '20',
+                          color: course.level.color
+                        }}
+                      >
+                        {course.level.displayName}
+                      </span>
+                    </div>
+                  )}
                   <p className="text-gray-400 text-sm mb-4 line-clamp-2">{course.description || 'Chưa có mô tả'}</p>
                   
                   <div className="grid grid-cols-3 gap-2 mb-4 text-center">
@@ -426,49 +446,28 @@ export default function CourseManagement() {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Cấp độ</label>
                     <select
                       value={formData.level}
-                      onChange={(e) => setFormData({ ...formData, level: e.target.value as Course['level'] })}
+                      onChange={(e) => setFormData({ ...formData, level: e.target.value })}
                       className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                      required
                     >
-                      <option value="beginner">Cơ bản</option>
-                      <option value="intermediate">Trung cấp</option>
-                      <option value="advanced">Nâng cao</option>
-                      <option value="grammar">Ngữ pháp</option>
+                      <option value="">-- Chọn cấp độ --</option>
+                      {levels.map(level => (
+                        <option key={level._id} value={level._id}>
+                          {level.displayName}
+                        </option>
+                      ))}
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Icon (Emoji)</label>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">Thời lượng (giờ)</label>
                     <input
-                      type="text"
-                      value={formData.icon}
-                      onChange={(e) => setFormData({ ...formData, icon: e.target.value })}
+                      type="number"
+                      value={formData.estimatedHours}
+                      onChange={(e) => setFormData({ ...formData, estimatedHours: parseInt(e.target.value) || 0 })}
                       className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                      placeholder="📚"
+                      min="1"
                     />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Thứ tự</label>
-                      <input
-                        type="number"
-                        value={formData.order}
-                        onChange={(e) => setFormData({ ...formData, order: parseInt(e.target.value) || 1 })}
-                        className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                        min="1"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Thời lượng (giờ)</label>
-                      <input
-                        type="number"
-                        value={formData.estimatedHours}
-                        onChange={(e) => setFormData({ ...formData, estimatedHours: parseInt(e.target.value) || 0 })}
-                        className="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                        min="1"
-                      />
-                    </div>
                   </div>
                 </div>
 

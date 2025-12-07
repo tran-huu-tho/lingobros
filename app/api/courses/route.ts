@@ -1,20 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Course from '@/models/Course';
+import Level from '@/models/Level';
 
 export async function GET(req: NextRequest) {
   try {
     await connectDB();
     
     const { searchParams } = new URL(req.url);
-    const level = searchParams.get('level');
+    const levelParam = searchParams.get('level');
     
     const query: any = { isPublished: true };
-    if (level) {
-      query.level = level;
+    
+    // Nếu có filter theo level, tìm level ID
+    if (levelParam) {
+      const level = await Level.findOne({ name: levelParam });
+      if (level) {
+        query.level = level._id;
+      }
     }
     
-    const courses = await Course.find(query).sort({ createdAt: -1 });
+    const courses = await Course.find(query)
+      .populate('level', 'name displayName color icon')
+      .sort({ createdAt: -1 });
     
     return NextResponse.json({ courses });
   } catch (error) {

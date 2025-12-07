@@ -5,15 +5,13 @@ const CourseSchema = new Schema({
   slug: { type: String, required: true, unique: true },
   description: { type: String },
   level: { 
-    type: String, 
-    enum: ['beginner', 'intermediate', 'advanced', 'grammar'],
+    type: Schema.Types.ObjectId,
+    ref: 'Level',
     required: true
   },
-  icon: { type: String }, // Emoji hoặc URL
   color: { type: String, default: '#3B82F6' },
   gradientFrom: { type: String }, // Màu gradient bắt đầu
   gradientTo: { type: String },   // Màu gradient kết thúc
-  order: { type: Number, required: true },
   totalTopics: { type: Number, default: 0 },
   totalLessons: { type: Number, default: 0 },
   estimatedHours: { type: Number, default: 10 },

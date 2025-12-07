@@ -21,7 +21,10 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 403 });
     }
 
-    const courses = await Course.find().sort({ order: 1 }).lean();
+    const courses = await Course.find()
+      .populate('level', 'name displayName description color')
+      .sort({ createdAt: -1 })
+      .lean();
     
     // Đếm số topics cho mỗi course
     const coursesWithStats = await Promise.all(
@@ -69,12 +72,16 @@ export async function POST(req: NextRequest) {
       .replace(/[^a-z0-9\s-]/g, '')
       .replace(/\s+/g, '-');
 
-    const course = await Course.create({
+    const courseDoc = await Course.create({
       ...body,
       slug,
       totalTopics: 0,
       totalLessons: 0
     });
+
+    // Populate level trước khi trả về
+    const course = await Course.findById(courseDoc._id)
+      .populate('level', 'name displayName description color');
 
     return NextResponse.json({ course });
   } catch (error) {
@@ -113,7 +120,8 @@ export async function PATCH(req: NextRequest) {
         .replace(/\s+/g, '-');
     }
 
-    const course = await Course.findByIdAndUpdate(_id, updateData, { new: true });
+    const course = await Course.findByIdAndUpdate(_id, updateData, { new: true })
+      .populate('level', 'name displayName description color');
 
     return NextResponse.json({ course });
   } catch (error) {
