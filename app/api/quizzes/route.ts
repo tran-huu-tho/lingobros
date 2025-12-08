@@ -8,13 +8,22 @@ export async function GET(req: NextRequest) {
     
     const { searchParams } = new URL(req.url);
     const type = searchParams.get('type');
+    const topicIds = searchParams.get('topicIds')?.split(',').filter(Boolean);
     
-    const query: any = {};
+    const query: any = { isPublished: true };
+    
     if (type) {
       query.type = type;
     }
     
-    const quizzes = await Quiz.find(query);
+    if (topicIds && topicIds.length > 0) {
+      query.topicId = { $in: topicIds };
+    }
+    
+    const quizzes = await Quiz.find(query)
+      .populate('topicId', 'title')
+      .sort({ createdAt: -1 })
+      .limit(50);
     
     return NextResponse.json({ quizzes });
   } catch (error) {
