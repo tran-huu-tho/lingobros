@@ -1,5 +1,15 @@
 const mongoose = require('mongoose');
 
+// Function để xáo trộn mảng
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 async function reseedExercises() {
   try {
     await mongoose.connect('mongodb://localhost:27017/lingobros');
@@ -50,7 +60,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['I', 'am', 'from', 'Vietnam'],
+              words: shuffleArray(['I', 'am', 'from', 'Vietnam']),
               correctOrder: ['I', 'am', 'from', 'Vietnam'],
               explanation: 'Cấu trúc: I am from + địa danh.',
               points: 10,
@@ -103,7 +113,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['I', 'brush', 'my', 'teeth', 'daily'],
+              words: shuffleArray(['I', 'brush', 'my', 'teeth', 'daily']),
               correctOrder: ['I', 'brush', 'my', 'teeth', 'daily'],
               explanation: 'Cấu trúc: Chủ ngữ + động từ + tân ngữ + trạng từ.',
               points: 10,
@@ -156,7 +166,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ["I'd", 'like', 'to', 'order', 'pizza'],
+              words: shuffleArray(["I'd", 'like', 'to', 'order', 'pizza']),
               correctOrder: ["I'd", 'like', 'to', 'order', 'pizza'],
               explanation: 'Cấu trúc: I\'d like to order + món ăn.',
               points: 10,
@@ -209,7 +219,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['The', 'weather', 'is', 'nice', 'today'],
+              words: shuffleArray(['The', 'weather', 'is', 'nice', 'today']),
               correctOrder: ['The', 'weather', 'is', 'nice', 'today'],
               explanation: 'Cấu trúc: The weather is + tính từ.',
               points: 10,
@@ -262,7 +272,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['She', 'is', 'very', 'kind', 'person'],
+              words: shuffleArray(['She', 'is', 'very', 'kind', 'person']),
               correctOrder: ['She', 'is', 'very', 'kind', 'person'],
               explanation: 'Cấu trúc: S + be + very + tính từ + danh từ.',
               points: 10,
@@ -315,7 +325,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['How', 'do', 'you', 'go', 'there'],
+              words: shuffleArray(['How', 'do', 'you', 'go', 'there']),
               correctOrder: ['How', 'do', 'you', 'go', 'there'],
               explanation: 'Câu hỏi về phương tiện đi lại.',
               points: 10,
@@ -368,7 +378,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['What', 'is', 'your', 'job'],
+              words: shuffleArray(['What', 'is', 'your', 'job']),
               correctOrder: ['What', 'is', 'your', 'job'],
               explanation: 'Câu hỏi về nghề nghiệp.',
               points: 10,
@@ -421,7 +431,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['I', 'would', 'like', 'steak'],
+              words: shuffleArray(['I', 'would', 'like', 'steak']),
               correctOrder: ['I', 'would', 'like', 'steak'],
               explanation: 'Cấu trúc: I would like + món ăn.',
               points: 10,
@@ -474,7 +484,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['I', 'want', 'to', 'visit', 'Paris'],
+              words: shuffleArray(['I', 'want', 'to', 'visit', 'Paris']),
               correctOrder: ['I', 'want', 'to', 'visit', 'Paris'],
               explanation: 'Cấu trúc: I want to visit + địa danh.',
               points: 10,
@@ -527,7 +537,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['The', 'internet', 'is', 'very', 'fast'],
+              words: shuffleArray(['The', 'internet', 'is', 'very', 'fast']),
               correctOrder: ['The', 'internet', 'is', 'very', 'fast'],
               explanation: 'Mô tả về internet.',
               points: 10,
@@ -580,7 +590,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['Let\'s', 'watch', 'a', 'movie', 'tonight'],
+              words: shuffleArray(['Let\'s', 'watch', 'a', 'movie', 'tonight']),
               correctOrder: ['Let\'s', 'watch', 'a', 'movie', 'tonight'],
               explanation: 'Câu rủ đi xem phim.',
               points: 10,
@@ -633,7 +643,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['I', 'want', 'to', 'buy', 'this'],
+              words: shuffleArray(['I', 'want', 'to', 'buy', 'this']),
               correctOrder: ['I', 'want', 'to', 'buy', 'this'],
               explanation: 'Câu muốn mua hàng.',
               points: 10,
@@ -686,7 +696,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['My', 'house', 'has', 'three', 'bedrooms'],
+              words: shuffleArray(['My', 'house', 'has', 'three', 'bedrooms']),
               correctOrder: ['My', 'house', 'has', 'three', 'bedrooms'],
               explanation: 'Mô tả về ngôi nhà.',
               points: 10,
@@ -739,7 +749,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['She', 'is', 'reading', 'a', 'book'],
+              words: shuffleArray(['She', 'is', 'reading', 'a', 'book']),
               correctOrder: ['She', 'is', 'reading', 'a', 'book'],
               explanation: 'Câu Present Continuous: S + be + V-ing.',
               points: 10,
@@ -792,7 +802,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['If', 'I', 'have', 'time', 'I', 'will', 'visit', 'you'],
+              words: shuffleArray(['If', 'I', 'have', 'time', 'I', 'will', 'visit', 'you']),
               correctOrder: ['If', 'I', 'have', 'time', 'I', 'will', 'visit', 'you'],
               explanation: 'Câu điều kiện loại 1: If + hiện tại đơn, S + will + V.',
               points: 10,
@@ -845,7 +855,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu bị động:',
-              words: ['English', 'is', 'spoken', 'in', 'many', 'countries'],
+              words: shuffleArray(['English', 'is', 'spoken', 'in', 'many', 'countries']),
               correctOrder: ['English', 'is', 'spoken', 'in', 'many', 'countries'],
               explanation: 'Câu bị động: Chủ ngữ + be + V3 + by + tân ngữ.',
               points: 10,
@@ -898,7 +908,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['Can', 'you', 'help', 'me'],
+              words: shuffleArray(['Can', 'you', 'help', 'me']),
               correctOrder: ['Can', 'you', 'help', 'me'],
               explanation: 'Câu hỏi lịch sự xin giúp đỡ.',
               points: 10,
@@ -952,7 +962,7 @@ async function reseedExercises() {
             {
               type: 'word-order',
               question: 'Sắp xếp các từ sau thành câu hoàn chỉnh:',
-              words: ['This', 'is', 'a', 'test'],
+              words: shuffleArray(['This', 'is', 'a', 'test']),
               correctOrder: ['This', 'is', 'a', 'test'],
               explanation: 'Câu mẫu.',
               points: 10,
