@@ -107,7 +107,13 @@ export async function POST(req: NextRequest) {
       console.log('💰 XP updated:', user.xp, '| Level:', levelName);
     }
     
-    // Save user changes (XP, hearts, level)
+    // Track study time (always update, even if topic completed)
+    if (timeSpent && timeSpent > 0) {
+      user.studyTime = (user.studyTime || 0) + Math.floor(timeSpent / 60); // Convert seconds to minutes
+      console.log('⏱️ Study time updated:', user.studyTime, 'minutes (+', Math.floor(timeSpent / 60), 'min)');
+    }
+    
+    // Save user changes (XP, hearts, level, studyTime)
     await user.save();
 
     // Validate ObjectIds

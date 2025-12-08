@@ -242,6 +242,10 @@ export default function Dashboard() {
                 <Home className="w-5 h-5" />
                 Trang chủ
               </Link>
+              <Link href="/topics" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
+                <BookOpen className="w-5 h-5" />
+                Chuyên đề
+              </Link>
               <Link href="/leaderboard" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <BarChart3 className="w-5 h-5" />
                 Bảng xếp hạng
@@ -469,6 +473,64 @@ export default function Dashboard() {
             </div>
           ) : null}
 
+          {/* Quick Access Section - Topics */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
+                <BookOpen className="w-7 h-7 text-blue-400" />
+                Chuyên đề
+              </h2>
+              <Link 
+                href="/topics"
+                className="text-blue-400 hover:text-blue-300 text-sm font-semibold flex items-center gap-1 transition"
+              >
+                Xem tất cả
+                <ChevronDown className="w-4 h-4 -rotate-90" />
+              </Link>
+            </div>
+
+            {topics.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {topics.slice(0, 6).map((topic) => (
+                  <Link
+                    key={topic._id}
+                    href={`/topic/${topic._id}`}
+                    className="group bg-gradient-to-br from-gray-800/50 to-gray-800/30 hover:from-gray-800/70 hover:to-gray-800/50 border border-gray-700 hover:border-blue-500/50 rounded-xl p-5 transition-all hover:scale-105"
+                  >
+                    <div className="flex items-start gap-3">
+                      <div className="text-3xl">{topic.icon || '📚'}</div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-bold text-white mb-1 truncate group-hover:text-blue-400 transition">
+                          {topic.title}
+                        </h3>
+                        {topic.description && (
+                          <p className="text-sm text-gray-400 line-clamp-2 mb-2">
+                            {topic.description}
+                          </p>
+                        )}
+                        <div className="flex items-center gap-3 text-xs text-gray-500">
+                          <span className="flex items-center gap-1">
+                            <BookOpen className="w-3 h-3" />
+                            {topic.totalLessons || 0} bài
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Trophy className="w-3 h-3 text-yellow-500" />
+                            +{topic.xpReward} XP
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-8 text-center">
+                <BookOpen className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                <p className="text-gray-400">Chưa có chuyên đề nào</p>
+              </div>
+            )}
+          </div>
+
           {/* 2. Courses Section */}
           <div className="mb-8">
             <div className="flex items-center justify-between mb-4">
@@ -523,48 +585,6 @@ export default function Dashboard() {
               <div className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-8 text-center">
                 <BookOpen className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                 <p className="text-gray-400">Chưa có khóa học nào</p>
-              </div>
-            )}
-          </div>
-
-          {/* 3. Topics Section */}
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                <BookMarked className="w-7 h-7 text-yellow-400" />
-                Chuyên đề
-              </h2>
-              <Link href="/topics" className="text-yellow-400 hover:text-yellow-300 text-sm font-medium">
-                Xem tất cả →
-              </Link>
-            </div>
-
-            {loadingData ? (
-              <div className="text-center py-12 text-gray-500">Đang tải...</div>
-            ) : topics.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                {topics.slice(0, 8).map((topic) => (
-                  <Link
-                    key={topic._id}
-                    href={`/topic/${topic._id}`}
-                    className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-5 hover:border-yellow-500/50 transition group"
-                  >
-                    <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center text-2xl border border-yellow-500/30 mb-4">
-                      {topic.icon || '📚'}
-                    </div>
-                    <h3 className="text-lg font-bold text-white mb-2 line-clamp-2 group-hover:text-yellow-400 transition">
-                      {topic.title}
-                    </h3>
-                    {topic.description && (
-                      <p className="text-sm text-gray-400 line-clamp-2">{topic.description}</p>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            ) : (
-              <div className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-8 text-center">
-                <BookMarked className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                <p className="text-gray-400">Chưa có chuyên đề nào</p>
               </div>
             )}
           </div>

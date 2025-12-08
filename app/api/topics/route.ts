@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Topic from '@/models/Topic';
+import Exercise from '@/models/Exercise';
 
 export async function GET(req: NextRequest) {
   try {
@@ -17,9 +18,21 @@ export async function GET(req: NextRequest) {
     
     const topics = await Topic.find(query)
       .sort({ order: 1, createdAt: -1 })
-      .limit(100);
+      .limit(100)
+      .lean();
     
-    return NextResponse.json({ topics });
+    // Count actual exercises for each topic
+    const topicsWithCounts = await Promise.all(
+      topics.map(async (topic) => {
+        const exerciseCount = await Exercise.countDocuments({ topicId: topic._id });
+        return {
+          ...topic,
+          totalLessons: exerciseCount
+        };
+      })
+    );
+    
+    return NextResponse.json({ topics: topicsWithCounts });
   } catch (error) {
     console.error('Get topics error:', error);
     return NextResponse.json(

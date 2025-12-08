@@ -39,8 +39,8 @@ export async function GET(req: NextRequest) {
     const inProgressLessons = progressStats.find(s => s._id === 'in-progress')?.count || 0;
     const totalLessons = 45; // Total available lessons
 
-    // Calculate study time (mock for now - would need actual tracking)
-    const studyTime = completedLessons * 15; // Assume 15 mins per lesson
+    // Get actual study time from user model (tracked in minutes)
+    const studyTime = user.studyTime || 0;
 
     // Calculate achievements
     const achievements = [
