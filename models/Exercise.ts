@@ -2,7 +2,6 @@ import { Schema, model, models } from 'mongoose';
 
 const ExerciseSchema = new Schema({
   topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
-  order: { type: Number, required: true },
   
   // Loại bài tập
   type: {
@@ -47,8 +46,6 @@ const ExerciseSchema = new Schema({
   explanation: { type: String },
   hint: { type: String },
   
-  // Điểm số
-  points: { type: Number, default: 10 },
   difficulty: {
     type: String,
     enum: ['easy', 'medium', 'hard'],
@@ -61,6 +58,6 @@ const ExerciseSchema = new Schema({
   timestamps: true
 });
 
-ExerciseSchema.index({ topicId: 1, order: 1 });
+ExerciseSchema.index({ topicId: 1 });
 
 export default models.Exercise || model('Exercise', ExerciseSchema);

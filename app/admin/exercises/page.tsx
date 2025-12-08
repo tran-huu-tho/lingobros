@@ -18,8 +18,6 @@ interface Exercise {
   topicId: Topic | string;
   type: string;
   question: string;
-  order: number;
-  points: number;
   difficulty: string;
   options?: string[];
   correctAnswer?: string;
@@ -70,11 +68,14 @@ export default function ExercisesManagement() {
     topicId: '',
     type: 'multiple-choice',
     question: '',
-    order: 1,
-    points: 10,
     difficulty: 'easy',
     options: ['', '', '', ''],
     correctAnswer: '',
+    sentence: '',
+    blanks: [{ position: 0, answer: '' }],
+    words: [] as string[],
+    correctOrder: [] as string[],
+    pairs: [{ left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }],
     explanation: ''
   });
 
@@ -176,14 +177,17 @@ export default function ExercisesManagement() {
 
   const resetForm = () => {
     setFormData({
-      topicId: topics[0]?._id || '',
+      topicId: '',
       type: 'multiple-choice',
       question: '',
-      order: 1,
-      points: 10,
       difficulty: 'easy',
       options: ['', '', '', ''],
       correctAnswer: '',
+      sentence: '',
+      blanks: [{ position: 0, answer: '' }],
+      words: [],
+      correctOrder: [],
+      pairs: [{ left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }],
       explanation: ''
     });
   };
@@ -202,11 +206,14 @@ export default function ExercisesManagement() {
       topicId: typeof exercise.topicId === 'object' ? exercise.topicId._id : exercise.topicId,
       type: exercise.type,
       question: exercise.question,
-      order: exercise.order,
-      points: exercise.points,
       difficulty: exercise.difficulty,
       options: exercise.options || ['', '', '', ''],
       correctAnswer: exercise.correctAnswer || '',
+      sentence: exercise.sentence || '',
+      blanks: exercise.blanks || [{ position: 0, answer: '' }],
+      words: exercise.words || [],
+      correctOrder: exercise.correctOrder || [],
+      pairs: exercise.pairs || [{ left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }],
       explanation: exercise.explanation || ''
     });
     setShowEditModal(true);
@@ -478,7 +485,6 @@ export default function ExercisesManagement() {
                         <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Câu hỏi</th>
                         <th className="px-6 py-4 text-left text-xs font-semibold text-gray-400 uppercase">Chủ đề</th>
                         <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Dạng</th>
-                        <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Điểm</th>
                         <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Độ khó</th>
                         <th className="px-6 py-4 text-center text-xs font-semibold text-gray-400 uppercase">Thao tác</th>
                       </tr>
@@ -499,9 +505,6 @@ export default function ExercisesManagement() {
                             <span className="inline-flex px-2.5 py-1 rounded-lg text-xs font-medium bg-blue-500/20 text-blue-400">
                               {EXERCISE_TYPES.find(t => t.value === exercise.type)?.label || exercise.type}
                             </span>
-                          </td>
-                          <td className="px-6 py-4 text-center">
-                            <span className="text-yellow-400 font-medium">{exercise.points}</span>
                           </td>
                           <td className="px-6 py-4 text-center">
                             <span className={DIFFICULTY_LEVELS.find(d => d.value === exercise.difficulty)?.color || 'text-gray-400'}>
@@ -586,6 +589,282 @@ export default function ExercisesManagement() {
           </div>
         </div>
       </main>
+
+      {/* Add/Edit Modal */}
+      {(showAddModal || showEditModal) && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl w-full max-w-3xl max-h-[90vh] flex flex-col">
+            <div className="bg-gray-900 border-b border-gray-800 px-6 py-4 flex items-center justify-between rounded-t-xl flex-shrink-0">
+              <h3 className="text-xl font-bold text-white">
+                {showEditModal ? 'Chỉnh sửa bài tập' : 'Thêm bài tập mới'}
+              </h3>
+              <button
+                onClick={() => {
+                  setShowAddModal(false);
+                  setShowEditModal(false);
+                  setSelectedExercise(null);
+                }}
+                className="p-2 hover:bg-gray-800 rounded-lg transition"
+              >
+                <X className="w-5 h-5 text-gray-400" />
+              </button>
+            </div>
+
+            <div className="p-6 space-y-4 overflow-y-auto flex-1">
+              {/* Topic & Type */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Chủ đề <span className="text-red-400">*</span>
+                  </label>
+                  <select
+                    value={formData.topicId}
+                    onChange={(e) => setFormData({ ...formData, topicId: e.target.value })}
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  >
+                    {topics.map(topic => (
+                      <option key={topic._id} value={topic._id}>{topic.title}</option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Dạng bài <span className="text-red-400">*</span>
+                  </label>
+                  <select
+                    value={formData.type}
+                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+                    className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  >
+                    {EXERCISE_TYPES.map(type => (
+                      <option key={type.value} value={type.value}>{type.label}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Question */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">
+                  Câu hỏi <span className="text-red-400">*</span>
+                </label>
+                <textarea
+                  value={formData.question}
+                  onChange={(e) => setFormData({ ...formData, question: e.target.value })}
+                  rows={2}
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  placeholder="Nhập câu hỏi..."
+                />
+              </div>
+
+              {/* Multiple Choice / Translate Options */}
+              {(formData.type === 'multiple-choice' || formData.type === 'translate') && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Các lựa chọn
+                  </label>
+                  <div className="space-y-2">
+                    {formData.options.map((option, index) => (
+                      <div key={index} className="flex gap-2">
+                        <input
+                          type="text"
+                          value={option}
+                          onChange={(e) => {
+                            const newOptions = [...formData.options];
+                            newOptions[index] = e.target.value;
+                            setFormData({ ...formData, options: newOptions });
+                          }}
+                          placeholder={`Lựa chọn ${index + 1}`}
+                          className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                        />
+                        <button
+                          onClick={() => setFormData({ ...formData, correctAnswer: option })}
+                          className={`px-3 py-2 rounded-lg transition ${
+                            formData.correctAnswer === option
+                              ? 'bg-green-600 text-white'
+                              : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                          }`}
+                          title="Đáp án đúng"
+                        >
+                          ✓
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Fill Blank */}
+              {formData.type === 'fill-blank' && (
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Câu có chỗ trống (dùng ___ để đánh dấu)
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.sentence}
+                      onChange={(e) => setFormData({ ...formData, sentence: e.target.value })}
+                      placeholder="Ví dụ: I ___ to school every day."
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Đáp án
+                    </label>
+                    {formData.blanks.map((blank, index) => (
+                      <input
+                        key={index}
+                        type="text"
+                        value={blank.answer}
+                        onChange={(e) => {
+                          const newBlanks = [...formData.blanks];
+                          newBlanks[index].answer = e.target.value;
+                          newBlanks[index].position = index;
+                          setFormData({ ...formData, blanks: newBlanks });
+                        }}
+                        placeholder="Đáp án"
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 mb-2"
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Word Order */}
+              {formData.type === 'word-order' && (
+                <div className="space-y-3">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Các từ (cách nhau bởi dấu phẩy)
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.words.join(', ')}
+                      onChange={(e) => setFormData({ ...formData, words: e.target.value.split(',').map(w => w.trim()).filter(w => w) })}
+                      placeholder="I, am, from, Vietnam"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                      Thứ tự đúng (cách nhau bởi dấu phẩy)
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.correctOrder.join(', ')}
+                      onChange={(e) => setFormData({ ...formData, correctOrder: e.target.value.split(',').map(w => w.trim()).filter(w => w) })}
+                      placeholder="I, am, from, Vietnam"
+                      className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Match */}
+              {formData.type === 'match' && (
+                <div className="space-y-3">
+                  <label className="block text-sm font-medium text-gray-300">
+                    Các cặp từ cần nối
+                  </label>
+                  {formData.pairs.map((pair, index) => (
+                    <div key={index} className="flex gap-2">
+                      <input
+                        type="text"
+                        value={pair.left}
+                        onChange={(e) => {
+                          const newPairs = [...formData.pairs];
+                          newPairs[index].left = e.target.value;
+                          setFormData({ ...formData, pairs: newPairs });
+                        }}
+                        placeholder="Tiếng Anh"
+                        className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                      />
+                      <input
+                        type="text"
+                        value={pair.right}
+                        onChange={(e) => {
+                          const newPairs = [...formData.pairs];
+                          newPairs[index].right = e.target.value;
+                          setFormData({ ...formData, pairs: newPairs });
+                        }}
+                        placeholder="Tiếng Việt"
+                        className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                      />
+                      {formData.pairs.length > 2 && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newPairs = formData.pairs.filter((_, i) => i !== index);
+                            setFormData({ ...formData, pairs: newPairs });
+                          }}
+                          className="px-3 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-700 text-red-400 rounded-lg transition"
+                          title="Xóa"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => setFormData({ ...formData, pairs: [...formData.pairs, { left: '', right: '' }] })}
+                    className="px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg transition text-sm"
+                  >
+                    + Thêm cặp từ
+                  </button>
+                </div>
+              )}
+
+              {/* Settings */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Độ khó</label>
+                <select
+                  value={formData.difficulty}
+                  onChange={(e) => setFormData({ ...formData, difficulty: e.target.value })}
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                >
+                  {DIFFICULTY_LEVELS.map(level => (
+                    <option key={level.value} value={level.value}>{level.label}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Explanation */}
+              <div>
+                <label className="block text-sm font-medium text-gray-300 mb-2">Giải thích</label>
+                <textarea
+                  value={formData.explanation}
+                  onChange={(e) => setFormData({ ...formData, explanation: e.target.value })}
+                  rows={2}
+                  className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                  placeholder="Giải thích đáp án (tùy chọn)..."
+                />
+              </div>
+            </div>
+
+            <div className="bg-gray-900 border-t border-gray-800 px-6 py-4 flex gap-3 rounded-b-xl flex-shrink-0">
+              <button
+                onClick={() => {
+                  setShowAddModal(false);
+                  setShowEditModal(false);
+                  setSelectedExercise(null);
+                }}
+                className="flex-1 px-4 py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg transition font-medium"
+              >
+                Hủy
+              </button>
+              <button
+                onClick={showEditModal ? handleEditExercise : handleAddExercise}
+                className="flex-1 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition font-medium"
+              >
+                {showEditModal ? 'Cập nhật' : 'Thêm bài tập'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Delete Modal */}
       {showDeleteModal && selectedExercise && (
