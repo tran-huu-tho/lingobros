@@ -813,7 +813,7 @@ export default function TopicLearnPage() {
                   <p className="text-gray-400">
                     {isCorrect 
                       ? `Bạn đã hoàn thành ${completedExercises.size}/${exercises.length} câu`
-                      : 'Tiếp tục câu tiếp theo nhé!'
+                      : 'Thử lại để tiếp tục nhé!'
                     }
                   </p>
                 </div>
@@ -825,7 +825,10 @@ export default function TopicLearnPage() {
                       : 'bg-blue-600 hover:bg-blue-700'
                   }`}
                 >
-                  {currentStep < exercises.length - 1 ? 'Câu tiếp theo' : 'Hoàn thành'}
+                  {isCorrect 
+                    ? (currentStep < exercises.length - 1 ? 'Câu tiếp theo' : 'Hoàn thành')
+                    : 'Thử lại'
+                  }
                 </button>
               </div>
             </div>
