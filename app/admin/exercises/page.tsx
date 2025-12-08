@@ -53,6 +53,7 @@ export default function ExercisesManagement() {
   const [loadingExercises, setLoadingExercises] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState<string>('all');
+  const [filterTopic, setFilterTopic] = useState<string>('all');
   const [sortBy, setSortBy] = useState<'order' | 'points' | 'newest'>('order');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [showFilterMenu, setShowFilterMenu] = useState(false);
@@ -62,9 +63,27 @@ export default function ExercisesManagement() {
   const [selectedExercise, setSelectedExercise] = useState<Exercise | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [topics, setTopics] = useState<Topic[]>([]);
+  const [toast, setToast] = useState<{ show: boolean; message: string; type: 'success' | 'error' }>({ 
+    show: false, 
+    message: '', 
+    type: 'success' 
+  });
   const exercisesPerPage = 10;
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    topicId: string;
+    type: Exercise['type'];
+    question: string;
+    difficulty: Exercise['difficulty'];
+    options: string[];
+    correctAnswer: string;
+    sentence: string;
+    blanks: Array<{ position: number; answer: string }>;
+    words: string[];
+    correctOrder: string[];
+    pairs: Array<{ left: string; right: string }>;
+    explanation: string;
+  }>({
     topicId: '',
     type: 'multiple-choice',
     question: '',
@@ -73,11 +92,16 @@ export default function ExercisesManagement() {
     correctAnswer: '',
     sentence: '',
     blanks: [{ position: 0, answer: '' }],
-    words: [] as string[],
-    correctOrder: [] as string[],
+    words: [],
+    correctOrder: [],
     pairs: [{ left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }, { left: '', right: '' }],
     explanation: ''
   });
+
+  const showToast = (message: string, type: 'success' | 'error' = 'success') => {
+    setToast({ show: true, message, type });
+    setTimeout(() => setToast({ show: false, message: '', type: 'success' }), 3000);
+  };
 
   useEffect(() => {
     if (!loading && !user) {
@@ -150,6 +174,13 @@ export default function ExercisesManagement() {
       result = result.filter(ex => ex.type === filterType);
     }
 
+    if (filterTopic !== 'all') {
+      result = result.filter(ex => {
+        const topicId = typeof ex.topicId === 'object' ? ex.topicId._id : ex.topicId;
+        return topicId === filterTopic;
+      });
+    }
+
     result.sort((a, b) => {
       let comparison = 0;
       switch (sortBy) {
@@ -168,7 +199,7 @@ export default function ExercisesManagement() {
 
     setFilteredExercises(result);
     setCurrentPage(1);
-  }, [searchQuery, filterType, sortBy, sortOrder, exercises]);
+  }, [searchQuery, filterType, filterTopic, sortBy, sortOrder, exercises]);
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
@@ -226,12 +257,51 @@ export default function ExercisesManagement() {
 
   const handleAddExercise = async () => {
     if (!user || !formData.question || !formData.topicId) {
-      alert('Vui lòng điền đầy đủ thông tin bắt buộc');
+      showToast('Vui lòng điền đầy đủ thông tin bắt buộc', 'error');
       return;
+    }
+
+    // Validation cho từng dạng bài
+    if (formData.type === 'multiple-choice' || formData.type === 'translate') {
+      if (!formData.correctAnswer) {
+        showToast('Vui lòng chọn đáp án đúng', 'error');
+        return;
+      }
+      if (formData.options.some(opt => !opt.trim())) {
+        showToast('Vui lòng điền đầy đủ các lựa chọn', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'fill-blank') {
+      if (!formData.sentence) {
+        showToast('Vui lòng nhập câu có chỗ trống', 'error');
+        return;
+      }
+      if (formData.blanks.some(blank => !blank.answer)) {
+        showToast('Vui lòng điền đáp án cho chỗ trống', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'word-order') {
+      if (formData.words.length === 0 || formData.correctOrder.length === 0) {
+        showToast('Vui lòng nhập các từ và thứ tự đúng', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'match') {
+      if (formData.pairs.some(pair => !pair.left || !pair.right)) {
+        showToast('Vui lòng điền đầy đủ các cặp từ', 'error');
+        return;
+      }
     }
 
     try {
       const token = await user.getIdToken();
+      console.log('Sending exercise data:', formData);
+      
       const response = await fetch('/api/admin/exercises', {
         method: 'POST',
         headers: {
@@ -246,24 +316,65 @@ export default function ExercisesManagement() {
         setExercises([...exercises, newExercise]);
         setShowAddModal(false);
         resetForm();
+        showToast('Thêm bài tập thành công!', 'success');
       } else {
         const error = await response.json();
-        alert(error.error || 'Không thể tạo bài tập');
+        console.error('API Error:', error);
+        showToast(error.error || 'Không thể tạo bài tập', 'error');
       }
     } catch (error) {
       console.error('Error adding exercise:', error);
-      alert('Đã xảy ra lỗi khi tạo bài tập');
+      showToast('Đã xảy ra lỗi khi tạo bài tập', 'error');
     }
   };
 
   const handleEditExercise = async () => {
     if (!user || !selectedExercise || !formData.question) {
-      alert('Vui lòng điền đầy đủ thông tin bắt buộc');
+      showToast('Vui lòng điền đầy đủ thông tin bắt buộc', 'error');
       return;
+    }
+
+    // Validation cho từng dạng bài
+    if (formData.type === 'multiple-choice' || formData.type === 'translate') {
+      if (!formData.correctAnswer) {
+        showToast('Vui lòng chọn đáp án đúng', 'error');
+        return;
+      }
+      if (formData.options.some(opt => !opt.trim())) {
+        showToast('Vui lòng điền đầy đủ các lựa chọn', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'fill-blank') {
+      if (!formData.sentence) {
+        showToast('Vui lòng nhập câu có chỗ trống', 'error');
+        return;
+      }
+      if (formData.blanks.some(blank => !blank.answer)) {
+        showToast('Vui lòng điền đáp án cho chỗ trống', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'word-order') {
+      if (formData.words.length === 0 || formData.correctOrder.length === 0) {
+        showToast('Vui lòng nhập các từ và thứ tự đúng', 'error');
+        return;
+      }
+    }
+
+    if (formData.type === 'match') {
+      if (formData.pairs.some(pair => !pair.left || !pair.right)) {
+        showToast('Vui lòng điền đầy đủ các cặp từ', 'error');
+        return;
+      }
     }
 
     try {
       const token = await user.getIdToken();
+      console.log('Updating exercise:', { id: selectedExercise._id, ...formData });
+      
       const response = await fetch('/api/admin/exercises', {
         method: 'PATCH',
         headers: {
@@ -278,17 +389,21 @@ export default function ExercisesManagement() {
 
       if (response.ok) {
         const updatedExercise = await response.json();
-        setExercises(exercises.map(ex => ex._id === selectedExercise._id ? updatedExercise : ex));
+        setExercises(exercises.map(e => 
+          e._id === selectedExercise._id ? updatedExercise : e
+        ));
         setShowEditModal(false);
         setSelectedExercise(null);
         resetForm();
+        showToast('Cập nhật bài tập thành công!', 'success');
       } else {
         const error = await response.json();
-        alert(error.error || 'Không thể cập nhật bài tập');
+        console.error('API Error:', error);
+        showToast(error.error || 'Không thể cập nhật bài tập', 'error');
       }
     } catch (error) {
-      console.error('Error editing exercise:', error);
-      alert('Đã xảy ra lỗi khi cập nhật bài tập');
+      console.error('Error updating exercise:', error);
+      showToast('Đã xảy ra lỗi khi cập nhật bài tập', 'error');
     }
   };
 
@@ -308,13 +423,14 @@ export default function ExercisesManagement() {
         setExercises(exercises.filter(ex => ex._id !== selectedExercise._id));
         setShowDeleteModal(false);
         setSelectedExercise(null);
+        showToast('Xóa bài tập thành công!', 'success');
       } else {
         const error = await response.json();
-        alert(error.error || 'Không thể xóa bài tập');
+        showToast(error.error || 'Không thể xóa bài tập', 'error');
       }
     } catch (error) {
       console.error('Error deleting exercise:', error);
-      alert('Đã xảy ra lỗi khi xóa bài tập');
+      showToast('Đã xảy ra lỗi khi xóa bài tập', 'error');
     }
   };
 
@@ -445,6 +561,17 @@ export default function ExercisesManagement() {
                   <option value="all">Tất cả dạng</option>
                   {EXERCISE_TYPES.map(type => (
                     <option key={type.value} value={type.value}>{type.label}</option>
+                  ))}
+                </select>
+
+                <select
+                  value={filterTopic}
+                  onChange={(e) => setFilterTopic(e.target.value)}
+                  className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-gray-300 focus:outline-none focus:border-blue-500"
+                >
+                  <option value="all">Tất cả chủ đề</option>
+                  {topics.map(topic => (
+                    <option key={topic._id} value={topic._id}>{topic.title}</option>
                   ))}
                 </select>
 
@@ -737,27 +864,63 @@ export default function ExercisesManagement() {
                 <div className="space-y-3">
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Các từ (cách nhau bởi dấu phẩy)
+                      Các từ (đã xáo trộn)
                     </label>
-                    <input
-                      type="text"
-                      value={formData.words.join(', ')}
-                      onChange={(e) => setFormData({ ...formData, words: e.target.value.split(',').map(w => w.trim()).filter(w => w) })}
-                      placeholder="I, am, from, Vietnam"
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                    />
+                    {formData.words.map((word, index) => (
+                      <div key={index} className="flex gap-2 mb-2">
+                        <input
+                          type="text"
+                          value={word}
+                          onChange={(e) => {
+                            const newWords = [...formData.words];
+                            newWords[index] = e.target.value;
+                            setFormData({ ...formData, words: newWords });
+                          }}
+                          placeholder={`Từ ${index + 1}`}
+                          className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+                        />
+                        {formData.words.length > 2 && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newWords = formData.words.filter((_, i) => i !== index);
+                              const newCorrectOrder = formData.correctOrder.filter((_, i) => i !== index);
+                              setFormData({ ...formData, words: newWords, correctOrder: newCorrectOrder });
+                            }}
+                            className="px-3 py-2 bg-red-600/20 hover:bg-red-600/30 border border-red-700 text-red-400 rounded-lg transition"
+                            title="Xóa"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        )}
+                      </div>
+                    ))}
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, words: [...formData.words, ''], correctOrder: [...formData.correctOrder, ''] })}
+                      className="px-4 py-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg transition text-sm"
+                    >
+                      + Thêm từ
+                    </button>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-300 mb-2">
-                      Thứ tự đúng (cách nhau bởi dấu phẩy)
+                      Thứ tự đúng
                     </label>
-                    <input
-                      type="text"
-                      value={formData.correctOrder.join(', ')}
-                      onChange={(e) => setFormData({ ...formData, correctOrder: e.target.value.split(',').map(w => w.trim()).filter(w => w) })}
-                      placeholder="I, am, from, Vietnam"
-                      className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-                    />
+                    {formData.correctOrder.map((word, index) => (
+                      <input
+                        key={index}
+                        type="text"
+                        value={word}
+                        onChange={(e) => {
+                          const newCorrectOrder = [...formData.correctOrder];
+                          newCorrectOrder[index] = e.target.value;
+                          setFormData({ ...formData, correctOrder: newCorrectOrder });
+                        }}
+                        placeholder={`Từ ${index + 1}`}
+                        className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500 mb-2"
+                      />
+                    ))}
                   </div>
                 </div>
               )}
@@ -896,6 +1059,22 @@ export default function ExercisesManagement() {
                 Xóa
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast Notification */}
+      {toast.show && (
+        <div className="fixed top-4 right-4 z-[60] animate-slide-in">
+          <div className={`px-6 py-4 rounded-lg shadow-xl border flex items-center gap-3 ${
+            toast.type === 'success' 
+              ? 'bg-green-600/90 border-green-500 text-white' 
+              : 'bg-red-600/90 border-red-500 text-white'
+          }`}>
+            <div className="text-lg">
+              {toast.type === 'success' ? '✓' : '✕'}
+            </div>
+            <span className="font-medium">{toast.message}</span>
           </div>
         </div>
       )}

@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+    console.log('Received exercise data:', JSON.stringify(body, null, 2));
 
     if (!body.topicId || !body.type || !body.question) {
       return NextResponse.json(
@@ -98,14 +99,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    console.log('Creating exercise with data:', body);
     const exercise = await Exercise.create(body);
+    console.log('Exercise created successfully:', exercise._id);
     await exercise.populate('topicId', 'title icon');
 
     return NextResponse.json(exercise, { status: 201 });
   } catch (error) {
     console.error('Error creating exercise:', error);
+    console.error('Error details:', error instanceof Error ? error.message : error);
     return NextResponse.json(
-      { error: 'Failed to create exercise' },
+      { error: 'Failed to create exercise', details: error instanceof Error ? error.message : String(error) },
       { status: 500 }
     );
   }
