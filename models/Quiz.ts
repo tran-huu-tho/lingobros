@@ -1,36 +1,27 @@
 import { Schema, model, models } from 'mongoose';
 
 const QuizQuestionSchema = new Schema({
-  question: { type: String, required: true },
-  type: {
-    type: String,
-    enum: ['multiple-choice', 'true-false', 'fill-blank'],
-    required: true
-  },
-  options: [{ type: String }],
-  correctAnswer: { type: String, required: true },
-  points: { type: Number, default: 1 },
-  difficulty: {
-    type: String,
-    enum: ['easy', 'medium', 'hard'],
-    default: 'medium'
-  }
+  exerciseId: { type: Schema.Types.ObjectId, ref: 'Exercise', required: true },
+  order: { type: Number, required: true },
+  points: { type: Number, default: 10 }
 });
 
 const QuizSchema = new Schema({
   title: { type: String, required: true },
-  type: {
-    type: String,
-    enum: ['placement', 'unit', 'final'],
-    required: true
-  },
+  description: { type: String },
+  topicId: { type: Schema.Types.ObjectId, ref: 'Topic' },
   questions: [QuizQuestionSchema],
+  duration: { type: Number }, // in minutes
   passingScore: { type: Number, default: 70 },
-  timeLimit: { type: Number }, // in minutes
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now }
+  shuffleQuestions: { type: Boolean, default: false },
+  isPublished: { type: Boolean, default: true }
 }, {
   timestamps: true
 });
 
-export default models.Quiz || model('Quiz', QuizSchema);
+// Delete cached model to force reload
+if (models.Quiz) {
+  delete models.Quiz;
+}
+
+export default model('Quiz', QuizSchema);
