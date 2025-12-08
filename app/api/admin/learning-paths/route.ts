@@ -39,13 +39,23 @@ export async function POST(req: NextRequest) {
     await connectDB();
 
     const body = await req.json();
+    console.log('Creating learning path with data:', JSON.stringify(body, null, 2));
+    
     const path = await LearningPath.create(body);
     const populatedPath = await LearningPath.findById(path._id).populate('topics.topicId');
 
     return NextResponse.json(populatedPath, { status: 201 });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Create learning path error:', error);
-    return NextResponse.json({ error: 'Failed to create learning path' }, { status: 500 });
+    console.error('Error details:', error.message);
+    if (error.errors) {
+      console.error('Validation errors:', JSON.stringify(error.errors, null, 2));
+    }
+    return NextResponse.json({ 
+      error: 'Failed to create learning path',
+      details: error.message,
+      validation: error.errors 
+    }, { status: 500 });
   }
 }
 
