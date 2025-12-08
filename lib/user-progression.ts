@@ -44,7 +44,7 @@ export function calculateStreak(lastActiveAt: Date, currentStreak: number): { st
 
 /**
  * Heart regeneration logic
- * Hearts regenerate 1 per 10 minutes, max 50
+ * Hearts regenerate 1 per 5 minutes, max 50
  */
 export function calculateHearts(currentHearts: number, lastHeartUpdate: Date): { 
   hearts: number; 
@@ -57,11 +57,11 @@ export function calculateHearts(currentHearts: number, lastHeartUpdate: Date): {
   
   const now = new Date();
   const diffMinutes = Math.floor((now.getTime() - lastHeartUpdate.getTime()) / (1000 * 60));
-  const regenerated = Math.floor(diffMinutes / 10);
+  const regenerated = Math.floor(diffMinutes / 5);
   const newHearts = Math.min(currentHearts + regenerated, 50);
   
   // Calculate minutes until next heart
-  const minutesUntilNext = newHearts >= 50 ? 0 : 10 - (diffMinutes % 10);
+  const minutesUntilNext = newHearts >= 50 ? 0 : 5 - (diffMinutes % 5);
   
   // Update lastHeartUpdate if hearts regenerated
   const newLastUpdate = regenerated > 0 ? now : lastHeartUpdate;

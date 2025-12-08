@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { adminAuth } from '@/lib/firebase-admin';
 import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
-import { calculateStreak, calculateLevel } from '@/lib/user-progression';
+import { calculateStreak, calculateLevel, calculateHearts } from '@/lib/user-progression';
 
 export async function POST(req: NextRequest) {
   try {
@@ -29,9 +29,14 @@ export async function POST(req: NextRequest) {
     // Calculate level based on XP
     const { level, levelName } = calculateLevel(user.xp || 0);
     
+    // Regenerate hearts based on time elapsed (1 heart per 5 minutes)
+    const heartRegen = calculateHearts(user.hearts || 50, user.lastHeartUpdate || new Date());
+    
     // Update user
     user.streak = streak;
     user.level = levelName;
+    user.hearts = heartRegen.hearts;
+    user.lastHeartUpdate = heartRegen.lastUpdate;
     user.lastActiveAt = new Date();
     
     await user.save();
@@ -40,7 +45,9 @@ export async function POST(req: NextRequest) {
       email: user.email, 
       streak, 
       isNewDay, 
-      level: levelName 
+      level: levelName,
+      hearts: heartRegen.hearts,
+      heartsRegenerated: heartRegen.hearts - (user.hearts || 50)
     });
 
     return NextResponse.json({
@@ -48,6 +55,8 @@ export async function POST(req: NextRequest) {
       streak,
       isNewDay,
       streakBonusXp: isNewDay ? 10 : 0, // Bonus 10 XP for daily login
+      hearts: heartRegen.hearts,
+      minutesUntilNext: heartRegen.minutesUntilNext,
       level: levelName,
       levelNumber: level
     });
