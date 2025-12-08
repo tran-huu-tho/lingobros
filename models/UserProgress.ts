@@ -2,9 +2,9 @@ import { Schema, model, models } from 'mongoose';
 
 const UserProgressSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  courseId: { type: Schema.Types.ObjectId, ref: 'Course', required: true },
+  courseId: { type: Schema.Types.ObjectId, ref: 'Course' },
   topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
-  lessonId: { type: Schema.Types.ObjectId, ref: 'Lesson', required: true },
+  lessonId: { type: Schema.Types.ObjectId, ref: 'Lesson' },
   
   // Trạng thái
   status: {
@@ -45,7 +45,7 @@ const UserProgressSchema = new Schema({
 });
 
 // Indexes
-UserProgressSchema.index({ userId: 1, lessonId: 1 }, { unique: true });
+UserProgressSchema.index({ userId: 1, topicId: 1 });
 UserProgressSchema.index({ userId: 1, status: 1 });
 UserProgressSchema.index({ userId: 1, courseId: 1 });
 

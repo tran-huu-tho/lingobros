@@ -79,6 +79,7 @@ export default function Dashboard() {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [loadingData, setLoadingData] = useState(true);
+  const [userProgress, setUserProgress] = useState<Record<string, any>>({});
 
   useEffect(() => {
     if (!loading && !user) {
@@ -155,6 +156,16 @@ export default function Dashboard() {
           const pathData = await pathResponse.json();
           setLearningPath(pathData);
         }
+      }
+
+      // Fetch user progress
+      const progressResponse = await fetch('/api/progress/user', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      
+      if (progressResponse.ok) {
+        const progressData = await progressResponse.json();
+        setUserProgress(progressData.progressMap || {});
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
@@ -379,8 +390,13 @@ export default function Dashboard() {
                 <div className="space-y-3">
                   {learningPath.topics.map((item, index) => {
                     const topic = item.topicId;
-                    const isCompleted = false;
-                    const isLocked = index > 0 && !isCompleted;
+                    const progress = userProgress[topic._id];
+                    const isCompleted = progress?.status === 'completed';
+                    
+                    // Check if previous topic is completed (để unlock)
+                    const prevTopic = index > 0 ? learningPath.topics[index - 1].topicId : null;
+                    const prevCompleted = !prevTopic || userProgress[prevTopic._id]?.status === 'completed';
+                    const isLocked = index > 0 && !prevCompleted;
 
                     return (
                       <div
@@ -390,7 +406,11 @@ export default function Dashboard() {
                         }`}
                       >
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-2xl border border-gray-700 shrink-0">
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border shrink-0 ${
+                            isCompleted 
+                              ? 'bg-green-500/20 border-green-500' 
+                              : 'bg-gray-800 border-gray-700'
+                          }`}>
                             {isLocked ? <Lock className="w-5 h-5 text-gray-500" /> : (topic.icon || '📚')}
                           </div>
                           <div className="flex-1 min-w-0">
@@ -401,18 +421,32 @@ export default function Dashboard() {
                                   Bắt buộc
                                 </span>
                               )}
-                              {isCompleted && <CheckCircle2 className="w-5 h-5 text-green-400" />}
+                              {isCompleted && (
+                                <span className="flex items-center gap-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
+                                  <CheckCircle2 className="w-3 h-3" />
+                                  Hoàn thành
+                                </span>
+                              )}
                             </div>
                             <div className="text-sm text-gray-400">
                               Bước {index + 1}/{learningPath.topics.length}
+                              {progress?.exercisesCompleted > 0 && !isCompleted && (
+                                <span className="ml-2 text-blue-400">
+                                  • {progress.exercisesCompleted} bài đã làm
+                                </span>
+                              )}
                             </div>
                           </div>
                           {!isLocked && (
                             <Link
-                              href={`/learn/${topic._id}`}
-                              className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition font-medium shrink-0"
+                              href={`/topic/${topic._id}`}
+                              className={`px-4 py-2 rounded-lg transition font-medium shrink-0 ${
+                                isCompleted
+                                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                                  : 'bg-green-600 hover:bg-green-700 text-white'
+                              }`}
                             >
-                              Học ngay
+                              {isCompleted ? 'Ôn tập' : 'Học ngay'}
                             </Link>
                           )}
                         </div>
@@ -523,7 +557,7 @@ export default function Dashboard() {
                 {topics.slice(0, 8).map((topic) => (
                   <Link
                     key={topic._id}
-                    href={`/learn/${topic._id}`}
+                    href={`/topic/${topic._id}`}
                     className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-5 hover:border-yellow-500/50 transition group"
                   >
                     <div className="w-12 h-12 rounded-full bg-yellow-500/20 flex items-center justify-center text-2xl border border-yellow-500/30 mb-4">
