@@ -399,7 +399,7 @@ export default function Translate() {
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-white font-semibold truncate">{displayData.displayName}</p>
-                        <p className="text-xs text-gray-400">Học viên</p>
+                        <p className="text-xs text-yellow-400">{userData?.isAdmin ? 'Admin' : 'Học viên'}</p>
                       </div>
                     </div>
                   </div>

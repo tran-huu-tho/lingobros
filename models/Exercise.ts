@@ -1,7 +1,7 @@
 import { Schema, model, models } from 'mongoose';
 
 const ExerciseSchema = new Schema({
-  lessonId: { type: Schema.Types.ObjectId, ref: 'Lesson', required: true },
+  topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
   order: { type: Number, required: true },
   
   // Loại bài tập
@@ -61,6 +61,6 @@ const ExerciseSchema = new Schema({
   timestamps: true
 });
 
-ExerciseSchema.index({ lessonId: 1, order: 1 });
+ExerciseSchema.index({ topicId: 1, order: 1 });
 
 export default models.Exercise || model('Exercise', ExerciseSchema);

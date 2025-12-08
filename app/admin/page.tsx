@@ -218,7 +218,7 @@ export default function AdminDashboard() {
                       )}
                       <div className="flex-1 min-w-0">
                         <p className="text-white font-semibold truncate">{displayData.displayName}</p>
-                        <p className="text-xs text-yellow-400">Quản trị viên</p>
+                        <p className="text-xs text-yellow-400">Admin</p>
                       </div>
                     </div>
                   </div>
