@@ -468,7 +468,6 @@ export default function QuestionBankManagement() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">Quản lý Kiểm tra</h1>
-              <p className="text-gray-400">Tạo bài kiểm tra từ ngân hàng câu hỏi ({exercises.length} câu hỏi)</p>
             </div>
             <button
               onClick={handleAdd}
@@ -536,7 +535,7 @@ export default function QuestionBankManagement() {
                           <span className={`inline-flex px-2.5 py-1 rounded-lg text-xs font-medium ${
                             quiz.isPublished ? 'bg-green-500/20 text-green-400' : 'bg-gray-500/20 text-gray-400'
                           }`}>
-                            {quiz.isPublished ? 'Công khai' : 'Nháp'}
+                            {quiz.isPublished ? 'Công khai' : 'Ẩn'}
                           </span>
                         </td>
                         <td className="px-6 py-4">

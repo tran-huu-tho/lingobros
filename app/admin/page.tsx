@@ -102,7 +102,7 @@ export default function AdminDashboard() {
       color: 'from-indigo-500 to-indigo-600'
     },
     {
-      title: 'Ngân hàng câu hỏi',
+      title: 'Kiểm tra',
       icon: Database,
       description: 'Kho câu hỏi và bài kiểm tra',
       href: '/admin/question-bank',
