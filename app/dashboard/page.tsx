@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import { AIChatbot } from '@/components/ui/AIChatbot';
 import OnboardingModal, { OnboardingData } from '@/components/onboarding/OnboardingModal';
-import { BookOpen, Play, Trophy, TrendingUp, ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Volume2, Target, Award, BookMarked, CheckCircle2, Lock, Flame, Heart, Gem, Clock, Star } from 'lucide-react';
+import { BookOpen, Play, Trophy, TrendingUp, ChevronDown, User, LogOut, Home, BarChart3, Languages, MessageSquare, Volume2, Target, Award, BookMarked, CheckCircle2, Lock, Flame, Heart, Clock, Star } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 
@@ -216,8 +216,7 @@ export default function Dashboard() {
     level: 'beginner',
     xp: 0,
     streak: 0,
-    hearts: 5,
-    gems: 0
+    hearts: 5
   };
 
   const userPhoto = userData?.photoURL || user?.photoURL;
@@ -305,7 +304,7 @@ export default function Dashboard() {
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-7xl mx-auto">
           {/* Stats Bar */}
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 border border-orange-500/30 rounded-xl p-4">
               <div className="flex items-center gap-3">
                 <Flame className="w-8 h-8 text-orange-400" />
@@ -320,18 +319,8 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <Heart className="w-8 h-8 text-red-400" />
                 <div>
-                  <div className="text-2xl font-bold text-white">{displayData.hearts}</div>
+                  <div className="text-2xl font-bold text-white">{displayData.hearts}/5</div>
                   <div className="text-xs text-gray-400">Trái tim</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 border border-blue-500/30 rounded-xl p-4">
-              <div className="flex items-center gap-3">
-                <Gem className="w-8 h-8 text-blue-400" />
-                <div>
-                  <div className="text-2xl font-bold text-white">{displayData.gems}</div>
-                  <div className="text-xs text-gray-400">Gem</div>
                 </div>
               </div>
             </div>

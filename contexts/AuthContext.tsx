@@ -75,6 +75,35 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             console.log('📥 AuthContext fetched userData:', data.user);
             console.log('isAdmin value:', data.user?.isAdmin);
             setUserData(data.user);
+            
+            // Daily check-in to update streak
+            try {
+              const checkinResponse = await fetch('/api/users/daily-checkin', {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${token}`
+                }
+              });
+              if (checkinResponse.ok) {
+                const checkinData = await checkinResponse.json();
+                if (checkinData.isNewDay) {
+                  console.log('✅ Daily check-in! Streak:', checkinData.streak);
+                  if (checkinData.streakBonusXp > 0) {
+                    toast.success(`🔥 Streak ${checkinData.streak} ngày! +${checkinData.streakBonusXp} XP`, { duration: 3000 });
+                  }
+                  // Refresh user data to get updated streak
+                  const refreshResponse = await fetch('/api/users/me', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                  });
+                  if (refreshResponse.ok) {
+                    const refreshData = await refreshResponse.json();
+                    setUserData(refreshData.user);
+                  }
+                }
+              }
+            } catch (checkinError) {
+              console.error('Error during daily check-in:', checkinError);
+            }
           } else {
             // Silently handle 404 - user data will be fetched after page refresh
             if (response.status !== 404) {

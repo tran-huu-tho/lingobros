@@ -5,6 +5,7 @@ import User from '@/models/User';
 import UserProgress from '@/models/UserProgress';
 import Topic from '@/models/Topic';
 import mongoose from 'mongoose';
+import { calculateLevel, deductHeart, calculateHearts } from '@/lib/user-progression';
 
 export async function POST(req: NextRequest) {
   try {
@@ -23,10 +24,11 @@ export async function POST(req: NextRequest) {
       topicId, 
       exerciseId, 
       isCorrect, 
-      timeSpent 
+      timeSpent,
+      exerciseType
     } = await req.json();
     
-    console.log('📝 Complete exercise API called:', { topicId, exerciseId, isCorrect, timeSpent });
+    console.log('📝 Complete exercise API called:', { topicId, exerciseId, isCorrect, timeSpent, exerciseType });
 
     // Validate ObjectId format
     if (!mongoose.Types.ObjectId.isValid(topicId)) {
@@ -48,8 +50,30 @@ export async function POST(req: NextRequest) {
     
     console.log('✅ User found:', user.email);
 
+    // Regenerate hearts if needed
+    const heartRegen = calculateHearts(user.hearts || 5, user.lastHeartUpdate || new Date());
+    if (heartRegen.hearts !== user.hearts) {
+      user.hearts = heartRegen.hearts;
+      user.lastHeartUpdate = heartRegen.lastUpdate;
+      console.log('❤️ Hearts regenerated:', user.hearts);
+    }
+
     // XP thưởng
     const xpReward = isCorrect ? 50 : 0;
+    
+    // Trừ heart nếu làm sai
+    let heartDeducted = false;
+    if (!isCorrect) {
+      const heartResult = deductHeart(user.hearts || 5);
+      user.hearts = heartResult.hearts;
+      user.lastHeartUpdate = new Date(); // Reset timer when heart is lost
+      heartDeducted = true;
+      console.log('💔 Heart deducted:', user.hearts, 'remaining');
+      
+      if (!heartResult.canContinue) {
+        console.log('❌ Out of hearts!');
+      }
+    }
     
     // Kiểm tra topic đã hoàn thành chưa trước khi tặng XP
     const existingProgress = await UserProgress.findOne({
@@ -59,12 +83,19 @@ export async function POST(req: NextRequest) {
     
     const topicAlreadyCompleted = existingProgress && existingProgress.status === 'completed';
     
-    // Cập nhật XP cho user (chỉ khi chưa hoàn thành topic)
+    // Cập nhật XP và Level cho user (chỉ khi chưa hoàn thành topic)
     if (isCorrect && !topicAlreadyCompleted) {
       user.xp = (user.xp || 0) + xpReward;
-      await user.save();
-      console.log('💰 XP updated:', user.xp);
+      
+      // Auto update level based on XP
+      const { levelName } = calculateLevel(user.xp);
+      user.level = levelName;
+      
+      console.log('💰 XP updated:', user.xp, '| Level:', levelName);
     }
+    
+    // Save user changes (XP, hearts, level)
+    await user.save();
 
     // Validate ObjectIds
     console.log('🔍 Validating IDs...', { 
@@ -182,11 +213,18 @@ export async function POST(req: NextRequest) {
 
     // Chỉ tặng XP nếu topic chưa hoàn thành (lần đầu làm)
     const actualXpReward = !isAlreadyCompleted && isCorrect ? xpReward : 0;
+    
+    // Get heart regen info for response
+    const currentHeartInfo = calculateHearts(user.hearts, user.lastHeartUpdate || new Date());
 
     return NextResponse.json({
       success: true,
       xpReward: actualXpReward,
+      heartDeducted,
+      hearts: user.hearts,
+      minutesUntilNextHeart: currentHeartInfo.minutesUntilNext,
       totalXP: user.xp,
+      level: user.level,
       progress: {
         score: progress.score,
         exercisesCompleted: progress.exercisesCompleted

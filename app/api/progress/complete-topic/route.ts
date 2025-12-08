@@ -4,6 +4,7 @@ import connectDB from '@/lib/mongodb';
 import User from '@/models/User';
 import UserProgress from '@/models/UserProgress';
 import Topic from '@/models/Topic';
+import { calculateLevel } from '@/lib/user-progression';
 
 export async function POST(req: NextRequest) {
   try {
@@ -53,7 +54,13 @@ export async function POST(req: NextRequest) {
     
     if (!wasAlreadyCompleted) {
       user.xp = (user.xp || 0) + bonusXP;
+      
+      // Auto update level
+      const { levelName } = calculateLevel(user.xp);
+      user.level = levelName;
+      
       await user.save();
+      console.log('🎉 Bonus awarded! XP:', bonusXP, 'Level:', levelName);
     }
 
     // Cập nhật progress
@@ -92,6 +99,7 @@ export async function POST(req: NextRequest) {
       success: true,
       bonusXP,
       totalXP: user.xp,
+      level: user.level,
       progress,
       nextTopic: nextTopic ? {
         _id: nextTopic._id,

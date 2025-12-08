@@ -186,7 +186,8 @@ export default function TopicLearnPage() {
           topicId,
           exerciseId: exercise._id,
           isCorrect: correct,
-          timeSpent
+          timeSpent,
+          exerciseType: exercise.type
         })
       });
 
@@ -204,10 +205,18 @@ export default function TopicLearnPage() {
           }
           // Đánh dấu bài tập đã hoàn thành
           setCompletedExercises(prev => new Set([...prev, exercise._id]));
-          // Refresh user data để cập nhật XP
+          // Refresh user data để cập nhật XP, Level
           await refreshUserData();
         } else {
-          toast.error('Chưa đúng! Tiếp tục câu sau nhé', { duration: 2000 });
+          // Làm sai - thông báo mất heart và thời gian hồi
+          if (data.heartDeducted) {
+            const timeText = data.minutesUntilNextHeart > 0 
+              ? ` (Hồi sau ${data.minutesUntilNextHeart}p)`
+              : '';
+            toast.error(`Chưa đúng! Còn ${data.hearts} ❤️${timeText}`, { duration: 3000 });
+          } else {
+            toast.error('Chưa đúng! Tiếp tục câu sau nhé', { duration: 2000 });
+          }
         }
       }
     } catch (error) {

@@ -22,7 +22,7 @@ const UserSchema = new Schema({
   xp: { type: Number, default: 0 },
   streak: { type: Number, default: 0 },
   hearts: { type: Number, default: 5 },
-  gems: { type: Number, default: 0 },
+  lastHeartUpdate: { type: Date, default: Date.now },
   studyTime: { type: Number, default: 0 }, // Total study time in minutes
   learningGoal: { type: String, default: 'Chưa đặt mục tiêu' }, // Learning goal text
   preferences: { type: UserPreferencesSchema, default: () => ({}) },
