@@ -242,10 +242,6 @@ export default function Dashboard() {
                 <Home className="w-5 h-5" />
                 Trang chủ
               </Link>
-              <Link href="/topics" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
-                <BookOpen className="w-5 h-5" />
-                Chuyên đề
-              </Link>
               <Link href="/leaderboard" className="flex items-center gap-2 text-gray-400 hover:text-gray-300 transition">
                 <BarChart3 className="w-5 h-5" />
                 Bảng xếp hạng

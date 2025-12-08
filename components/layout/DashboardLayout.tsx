@@ -4,7 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { Home, BarChart3, Languages, MessageSquare, Volume2, User, LogOut } from 'lucide-react';
+import { Home, BarChart3, Languages, MessageSquare, Volume2, User, LogOut, Trophy } from 'lucide-react';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const { user, userData, signOut } = useAuth();
@@ -23,6 +23,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   const navItems = [
     { href: '/dashboard', label: 'Trang chủ', icon: Home },
+    { href: '/quizzes', label: 'Bài kiểm tra', icon: Trophy },
     { href: '/leaderboard', label: 'Bảng xếp hạng', icon: BarChart3 },
     { href: '/translate', label: 'Dịch thuật', icon: Languages },
     { href: '/ipa', label: 'IPA', icon: Volume2 },

@@ -3,8 +3,9 @@ import { Schema, model, models } from 'mongoose';
 const UserProgressSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   courseId: { type: Schema.Types.ObjectId, ref: 'Course' },
-  topicId: { type: Schema.Types.ObjectId, ref: 'Topic', required: true },
+  topicId: { type: Schema.Types.ObjectId, ref: 'Topic' },
   lessonId: { type: Schema.Types.ObjectId, ref: 'Lesson' },
+  quizId: { type: Schema.Types.ObjectId, ref: 'Quiz' },
   
   // Trạng thái
   status: {
