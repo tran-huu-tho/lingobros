@@ -71,6 +71,7 @@ export default function TopicLearnPage() {
       router.push('/');
       return;
     }
+    
     fetchTopicContent();
     checkTopicCompleted();
   }, [user, topicId]);
@@ -166,6 +167,15 @@ export default function TopicLearnPage() {
   };
 
   const handleSubmitAnswer = async (exercise: Exercise) => {
+    // Check if user has hearts before submitting
+    if (userData && userData.hearts <= 0) {
+      toast.error('Bạn đã hết trái tim! Chờ hồi hoặc quay lại sau.', { duration: 3000 });
+      setTimeout(() => {
+        router.push('/dashboard');
+      }, 1500);
+      return;
+    }
+
     const correct = checkAnswer(exercise);
     setIsCorrect(correct);
     setShowResult(true);
@@ -209,15 +219,31 @@ export default function TopicLearnPage() {
           await refreshUserData();
         } else {
           // Làm sai - thông báo mất heart và thời gian hồi
+          // Refresh user data TRƯỚC để cập nhật hearts display
+          await refreshUserData();
+          
           if (data.heartDeducted) {
             const timeText = data.minutesUntilNextHeart > 0 
               ? ` (Hồi sau ${data.minutesUntilNextHeart}p)`
               : '';
             toast.error(`Chưa đúng! Còn ${data.hearts} ❤️${timeText}`, { duration: 3000 });
+            
+            // If out of hearts, redirect to dashboard
+            if (data.hearts <= 0) {
+              setTimeout(() => {
+                router.push('/dashboard');
+              }, 2000);
+            }
           } else {
             toast.error('Chưa đúng! Tiếp tục câu sau nhé', { duration: 2000 });
           }
         }
+      } else if (response.status === 403) {
+        // Out of hearts - redirect immediately
+        toast.error('Bạn đã hết trái tim!', { duration: 2000 });
+        setTimeout(() => {
+          router.push('/dashboard');
+        }, 1500);
       }
     } catch (error) {
       console.error('Error saving progress:', error);
@@ -229,14 +255,20 @@ export default function TopicLearnPage() {
     setUserAnswers({});
     setStartTime(Date.now());
     
-    // Luôn chuyển sang câu tiếp theo (dù đúng hay sai)
-    if (currentStep < (content?.exercises.length || 0) - 1) {
-      setCurrentStep(currentStep + 1);
+    // CHỈ chuyển sang câu tiếp theo khi làm ĐÚNG
+    if (isCorrect) {
+      if (currentStep < (content?.exercises.length || 0) - 1) {
+        setCurrentStep(currentStep + 1);
+        setSelectedLeft(null);
+        setMatches({});
+      } else {
+        // Hoàn thành topic (đã làm đúng hết bài)
+        handleCompleteTopic();
+      }
+    } else {
+      // Làm sai - giữ nguyên câu hiện tại, reset để làm lại
       setSelectedLeft(null);
       setMatches({});
-    } else {
-      // Hoàn thành topic
-      handleCompleteTopic();
     }
   };
 
@@ -396,7 +428,16 @@ export default function TopicLearnPage() {
 
       case 'word-order':
         const selectedWords = userAnswers[exercise._id] || [];
-        const availableWords = exercise.words?.filter(w => !selectedWords.includes(w)) || [];
+        
+        // Create a pool of available words by removing selected ones
+        const availableWordsPool = [...(exercise.words || [])];
+        selectedWords.forEach((selectedWord: string) => {
+          const index = availableWordsPool.indexOf(selectedWord);
+          if (index > -1) {
+            availableWordsPool.splice(index, 1);
+          }
+        });
+        const availableWords = availableWordsPool;
 
         return (
           <div className="space-y-4">
@@ -417,7 +458,7 @@ export default function TopicLearnPage() {
                   ) : (
                     selectedWords.map((word: string, index: number) => (
                       <button
-                        key={index}
+                        key={`selected-${index}-${word}`}
                         onClick={() => {
                           if (!showResult) {
                             const newWords = selectedWords.filter((_: string, i: number) => i !== index);
@@ -439,7 +480,7 @@ export default function TopicLearnPage() {
                 <div className="flex flex-wrap gap-2 justify-center">
                   {availableWords.map((word, index) => (
                     <button
-                      key={index}
+                      key={`available-${index}-${word}`}
                       onClick={() => handleAnswer(exercise._id, [...selectedWords, word])}
                       className="px-5 py-3 bg-gray-700 hover:bg-gray-600 text-white rounded-lg font-medium text-lg transition"
                     >
@@ -682,7 +723,7 @@ export default function TopicLearnPage() {
               </div>
               <div className="flex items-center gap-2 px-3 py-1.5 bg-red-500/20 border border-red-500/30 rounded-lg">
                 <Heart className="w-5 h-5 text-red-400" />
-                <span className="font-bold text-white">{userData?.hearts || 5}</span>
+                <span className="font-bold text-white">{userData?.hearts ?? 50}</span>
               </div>
             </div>
           </div>

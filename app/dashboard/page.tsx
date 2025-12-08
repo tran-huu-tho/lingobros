@@ -216,7 +216,7 @@ export default function Dashboard() {
     level: 'beginner',
     xp: 0,
     streak: 0,
-    hearts: 5
+    hearts: 50
   };
 
   const userPhoto = userData?.photoURL || user?.photoURL;
@@ -319,7 +319,7 @@ export default function Dashboard() {
               <div className="flex items-center gap-3">
                 <Heart className="w-8 h-8 text-red-400" />
                 <div>
-                  <div className="text-2xl font-bold text-white">{displayData.hearts}/5</div>
+                  <div className="text-2xl font-bold text-white">{displayData.hearts}/50</div>
                   <div className="text-xs text-gray-400">Trái tim</div>
                 </div>
               </div>

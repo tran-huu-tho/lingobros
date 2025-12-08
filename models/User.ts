@@ -21,7 +21,7 @@ const UserSchema = new Schema({
   level: { type: String, default: 'beginner' },
   xp: { type: Number, default: 0 },
   streak: { type: Number, default: 0 },
-  hearts: { type: Number, default: 5 },
+  hearts: { type: Number, default: 50 },
   lastHeartUpdate: { type: Date, default: Date.now },
   studyTime: { type: Number, default: 0 }, // Total study time in minutes
   learningGoal: { type: String, default: 'Chưa đặt mục tiêu' }, // Learning goal text

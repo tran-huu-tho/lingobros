@@ -51,11 +51,24 @@ export async function POST(req: NextRequest) {
     console.log('✅ User found:', user.email);
 
     // Regenerate hearts if needed
-    const heartRegen = calculateHearts(user.hearts || 5, user.lastHeartUpdate || new Date());
+    const heartRegen = calculateHearts(user.hearts || 50, user.lastHeartUpdate || new Date());
     if (heartRegen.hearts !== user.hearts) {
       user.hearts = heartRegen.hearts;
       user.lastHeartUpdate = heartRegen.lastUpdate;
       console.log('❤️ Hearts regenerated:', user.hearts);
+    }
+
+    // Check if user has hearts - if not, prevent from continuing
+    if (user.hearts <= 0) {
+      console.log('❌ No hearts remaining!');
+      return NextResponse.json(
+        { 
+          error: 'No hearts remaining',
+          hearts: 0,
+          minutesUntilNextHeart: heartRegen.minutesUntilNext
+        },
+        { status: 403 }
+      );
     }
 
     // XP thưởng
@@ -64,7 +77,7 @@ export async function POST(req: NextRequest) {
     // Trừ heart nếu làm sai
     let heartDeducted = false;
     if (!isCorrect) {
-      const heartResult = deductHeart(user.hearts || 5);
+      const heartResult = deductHeart(user.hearts || 50);
       user.hearts = heartResult.hearts;
       user.lastHeartUpdate = new Date(); // Reset timer when heart is lost
       heartDeducted = true;
