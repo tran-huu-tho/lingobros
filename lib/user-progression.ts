@@ -2,16 +2,16 @@
 
 /**
  * Calculate user level based on XP
- * Every 20,000 XP = 1 level
+ * Every 10,000 XP = 1 level
  */
 export function calculateLevel(xp: number): { level: number; levelName: string } {
-  const level = Math.floor(xp / 20000);
+  const level = Math.floor(xp / 10000) + 1;
   
   let levelName = 'Beginner';
-  if (level >= 10) levelName = 'Master';
-  else if (level >= 7) levelName = 'Expert';
-  else if (level >= 5) levelName = 'Advanced';
-  else if (level >= 3) levelName = 'Intermediate';
+  if (level >= 5) levelName = 'Master';
+  else if (level >= 4) levelName = 'Expert';
+  else if (level >= 3) levelName = 'Advanced';
+  else if (level >= 2) levelName = 'Intermediate';
   
   return { level, levelName: levelName.toLowerCase() };
 }
@@ -99,9 +99,9 @@ export function formatHeartRegenTime(minutes: number): string {
  * Calculate XP needed for next level
  */
 export function getXpForNextLevel(currentXp: number): { current: number; required: number; progress: number } {
-  const currentLevel = Math.floor(currentXp / 20000);
-  const nextLevelXp = (currentLevel + 1) * 20000;
-  const currentLevelXp = currentLevel * 20000;
+  const currentLevel = Math.floor(currentXp / 10000);
+  const nextLevelXp = (currentLevel + 1) * 10000;
+  const currentLevelXp = currentLevel * 10000;
   const xpInCurrentLevel = currentXp - currentLevelXp;
   const xpNeededForLevel = nextLevelXp - currentLevelXp;
   const progress = (xpInCurrentLevel / xpNeededForLevel) * 100;
