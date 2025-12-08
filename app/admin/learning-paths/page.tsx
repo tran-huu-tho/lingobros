@@ -444,16 +444,7 @@ export default function LearningPathsManagement() {
               />
             </div>
 
-            <select
-              value={filterPurpose}
-              onChange={(e) => setFilterPurpose(e.target.value)}
-              className="px-4 py-2.5 bg-gray-800/50 border border-gray-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
-            >
-              <option value="all">Tất cả mục tiêu</option>
-              {PURPOSE_OPTIONS.map(opt => (
-                <option key={opt.value} value={opt.value}>{opt.icon} {opt.label}</option>
-              ))}
-            </select>
+            
           </div>
 
           {/* Paths Grid */}
