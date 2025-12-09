@@ -109,8 +109,8 @@ export async function POST(req: NextRequest) {
     
     // Track study time (always update, even if topic completed)
     if (timeSpent && timeSpent > 0) {
-      user.studyTime = (user.studyTime || 0) + Math.floor(timeSpent / 60); // Convert seconds to minutes
-      console.log('⏱️ Study time updated:', user.studyTime, 'minutes (+', Math.floor(timeSpent / 60), 'min)');
+      user.studyTime = (user.studyTime || 0) + timeSpent; // Store in seconds
+      console.log('⏱️ Study time updated:', user.studyTime, 'seconds (+', timeSpent, 's)');
     }
     
     // Save user changes (XP, hearts, level, studyTime)
@@ -185,6 +185,18 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    // Fetch topic to get total exercises count
+    const topic = await Topic.findById(topicId);
+    if (!topic) {
+      console.error('❌ Topic not found:', topicId);
+      return NextResponse.json({ error: 'Topic not found' }, { status: 404 });
+    }
+
+    // Count total exercises in this topic
+    const Exercise = mongoose.model('Exercise');
+    const totalExercises = await Exercise.countDocuments({ topicId });
+    console.log('📊 Total exercises in topic:', totalExercises);
+
     // Cập nhật tổng điểm và thời gian
     progress.score = progress.exerciseResults.reduce(
       (sum: number, r: any) => sum + (r.isCorrect ? 50 : 0), 
@@ -195,6 +207,13 @@ export async function POST(req: NextRequest) {
       (r: any) => r.isCorrect
     ).length;
     progress.lastAccessedAt = new Date();
+
+    // Check if all exercises are completed
+    if (progress.exercisesCompleted >= totalExercises && progress.status !== 'completed') {
+      progress.status = 'completed';
+      progress.completedAt = new Date();
+      console.log('🎉 Topic completed!');
+    }
 
     console.log('💾 About to save progress...', {
       score: progress.score,

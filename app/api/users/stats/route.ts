@@ -39,8 +39,17 @@ export async function GET(req: NextRequest) {
     const inProgressLessons = progressStats.find(s => s._id === 'in-progress')?.count || 0;
     const totalLessons = 45; // Total available lessons
 
-    // Get actual study time from user model (tracked in minutes)
-    const studyTime = user.studyTime || 0;
+    // Calculate total study time from all UserProgress records (in seconds)
+    const studyTimeResult = await UserProgress.aggregate([
+      { $match: { userId: user._id } },
+      {
+        $group: {
+          _id: null,
+          totalTime: { $sum: '$timeSpent' }
+        }
+      }
+    ]);
+    const studyTime = studyTimeResult[0]?.totalTime || 0; // in seconds
 
     // Calculate achievements
     const achievements = [

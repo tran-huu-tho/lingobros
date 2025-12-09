@@ -206,9 +206,9 @@ export default function Profile() {
     { label: 'Bài học hoàn thành', value: `${completedLessons}/${totalLessons}`, icon: BookOpen, color: 'from-green-400 to-emerald-500' },
   ];
 
-  const formatStudyTime = (minutes: number) => {
-    const hours = Math.floor(minutes / 60);
-    const mins = minutes % 60;
+  const formatStudyTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
     return `${hours}h ${mins}m`;
   };
 
