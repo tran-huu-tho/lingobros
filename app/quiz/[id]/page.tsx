@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { ArrowLeft, Clock, Trophy, CheckCircle2, XCircle, Award, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
@@ -71,6 +71,7 @@ export default function QuizPlayerPage() {
   const [quizFinished, setQuizFinished] = useState(false);
   const [score, setScore] = useState(0);
   const [submitting, setSubmitting] = useState(false);
+  const [matchShuffleMap, setMatchShuffleMap] = useState<Record<string, number[]>>({}); // exerciseId -> shuffled indices
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const startTimeRef = useRef<number>(0);
@@ -228,15 +229,23 @@ export default function QuizPlayerPage() {
             break;
 
           case 'translate':
-            // Flexible matching for translation - accept if 80% similar
-            isCorrect = userAns === correctAns || 
-                       (userAns.length > 0 && correctAns.includes(userAns)) ||
-                       (correctAns.length > 0 && userAns.includes(correctAns));
+            // Flexible matching for translation - accept if similar
+            isCorrect = userAns === correctAns;
             break;
 
           case 'match':
-            // For matching, just check if answer is provided (scoring would need custom logic)
-            isCorrect = userAns.length > 0;
+            // Fill-in-the-blank style matching
+            // User input format: "answer1|answer2|answer3|answer4"
+            if (exercise.pairs && exercise.pairs.length > 0) {
+              const userAnswerArray = ua.answer.split('|').map(a => normalizeAnswer(a));
+              const correctAnswerArray = exercise.pairs.map(pair => normalizeAnswer(pair.right));
+              
+              // Check if all answers match
+              isCorrect = userAnswerArray.length === correctAnswerArray.length &&
+                userAnswerArray.every((ans, idx) => ans === correctAnswerArray[idx]);
+            } else {
+              isCorrect = userAns === correctAns;
+            }
             break;
 
           default:
@@ -303,9 +312,35 @@ export default function QuizPlayerPage() {
     return `${minutes}:${secs.toString().padStart(2, '0')}`;
   };
 
+  // Shuffle match pairs - must be before any conditional returns
+  const shuffledMatchPairs = useMemo(() => {
+    if (!quiz || currentQuestionIndex >= quiz.questions.length) return [];
+    
+    const currentQ = quiz.questions[currentQuestionIndex];
+    if (!currentQ?.exerciseId?.pairs) return [];
+    
+    const exerciseId = currentQ.exerciseId._id;
+    const pairs = currentQ.exerciseId.pairs;
+    
+    // Only shuffle the right side texts, keep letters A,B,C,D in order
+    const rightTexts = pairs.map(pair => pair.right);
+    const shuffledTexts = [...rightTexts].sort(() => Math.random() - 0.5);
+    
+    // Map: letter position -> original index of the text
+    const mapping = shuffledTexts.map(text => rightTexts.indexOf(text));
+    setMatchShuffleMap(prev => ({ ...prev, [exerciseId]: mapping }));
+    
+    // Return fixed letters with shuffled texts
+    return shuffledTexts.map((text, idx) => ({
+      letter: String.fromCharCode(65 + idx), // A, B, C, D in order
+      text: text,
+      originalIndex: rightTexts.indexOf(text)
+    }));
+  }, [quiz, currentQuestionIndex]);
+
   if (loading || loadingQuiz) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-500 mx-auto mb-4"></div>
           <p className="text-gray-400">Đang tải...</p>
@@ -339,7 +374,7 @@ export default function QuizPlayerPage() {
 
           <div className="bg-gray-800/50 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden">
             {/* Header */}
-            <div className="h-3 bg-gradient-to-r from-purple-500 to-pink-500" />
+            <div className="h-3 bg-linear-to-r from-purple-500 to-pink-500" />
 
             <div className="p-8">
               <div className="text-center mb-8">
@@ -378,7 +413,7 @@ export default function QuizPlayerPage() {
               {/* Instructions */}
               <div className="bg-blue-500/10 border border-blue-500/30 rounded-xl p-4 mb-8">
                 <div className="flex gap-3">
-                  <AlertCircle className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <AlertCircle className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
                   <div className="text-sm text-gray-300">
                     <p className="font-semibold mb-2 text-white">Lưu ý:</p>
                     <ul className="space-y-1 list-disc list-inside">
@@ -394,7 +429,7 @@ export default function QuizPlayerPage() {
               {/* Start Button */}
               <button
                 onClick={handleStartQuiz}
-                className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
+                className="w-full py-4 bg-linear-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2"
               >
                 <Trophy className="w-5 h-5" />
                 Bắt đầu làm bài
@@ -416,7 +451,7 @@ export default function QuizPlayerPage() {
         <div className="max-w-4xl w-full">
           <div className="bg-gray-800/50 border border-gray-700 rounded-3xl shadow-2xl overflow-hidden">
             {/* Header */}
-            <div className={`h-3 bg-gradient-to-r ${
+            <div className={`h-3 bg-linear-to-r ${
               isPassed ? 'from-green-500 to-emerald-500' : 'from-orange-500 to-red-500'
             }`} />
 
@@ -481,6 +516,121 @@ export default function QuizPlayerPage() {
                 </div>
               </div>
 
+              {/* Review Answers */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-white mb-4">Xem lại đáp án</h3>
+                <div className="space-y-4 max-h-96 overflow-y-auto">
+                  {quiz.questions.map((q, index) => {
+                    const userAnswer = userAnswers.find(ua => ua.exerciseId === q.exerciseId._id);
+                    const isCorrect = userAnswer?.isCorrect || false;
+                    
+                    return (
+                      <div 
+                        key={index}
+                        className={`border rounded-xl p-4 ${
+                          isCorrect 
+                            ? 'bg-green-500/10 border-green-500/30' 
+                            : 'bg-red-500/10 border-red-500/30'
+                        }`}
+                      >
+                        <div className="flex items-start gap-3 mb-3">
+                          <div className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
+                            isCorrect ? 'bg-green-500' : 'bg-red-500'
+                          }`}>
+                            {isCorrect ? (
+                              <CheckCircle2 className="w-4 h-4 text-white" />
+                            ) : (
+                              <XCircle className="w-4 h-4 text-white" />
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-white font-semibold mb-2">
+                              Câu {index + 1}: {q.exerciseId.question}
+                            </p>
+                            
+                            {/* User's Answer */}
+                            <div className="mb-2">
+                              <span className="text-sm text-gray-400">Câu trả lời của bạn: </span>
+                              {q.exerciseId.type === 'match' && userAnswer?.answer ? (
+                                <div className="mt-1 space-y-1">
+                                  {userAnswer.answer.split('|').map((ans: string, idx: number) => (
+                                    <div key={idx} className="text-sm">
+                                      <span className="text-blue-400">{q.exerciseId.pairs?.[idx]?.left || `${idx + 1}`}</span>
+                                      <span className="text-gray-500"> → </span>
+                                      <span className={`font-medium ${isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+                                        {ans || '(không trả lời)'}
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+                              ) : (
+                                <span className={`font-medium ${isCorrect ? 'text-green-400' : 'text-red-400'}`}>
+                                  {userAnswer?.answer || '(Không trả lời)'}
+                                </span>
+                              )}
+                            </div>
+
+                            {/* Correct Answer if wrong */}
+                            {!isCorrect && (
+                              <div className="mb-2">
+                                <span className="text-sm text-gray-400">Đáp án đúng: </span>
+                                {q.exerciseId.type === 'match' && q.exerciseId.pairs ? (
+                                  <div className="mt-2 space-y-1">
+                                    {q.exerciseId.pairs.map((pair: any, pairIndex: number) => {
+                                      const userAnswerArray = userAnswer?.answer ? userAnswer.answer.split('|') : [];
+                                      const userAns = userAnswerArray[pairIndex] || '';
+                                      const correctAns = pair.right;
+                                      const isPairCorrect = userAns.toLowerCase().trim() === correctAns.toLowerCase().trim();
+                                      
+                                      return (
+                                        <div key={pairIndex} className="flex items-center gap-2 text-sm">
+                                          <span className="text-blue-400">{pair.left}</span>
+                                          <span className="text-gray-500">→</span>
+                                          <span className={isPairCorrect ? 'text-green-400' : 'text-red-400'}>
+                                            {userAns || '(không trả lời)'}
+                                          </span>
+                                          {!isPairCorrect && (
+                                            <>
+                                              <span className="text-gray-500">✗</span>
+                                              <span className="text-green-400">{correctAns}</span>
+                                            </>
+                                          )}
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                ) : q.exerciseId.type === 'word-order' && q.exerciseId.correctOrder ? (
+                                  <span className="font-medium text-green-400">
+                                    {q.exerciseId.correctOrder.join(' ')}
+                                  </span>
+                                ) : q.exerciseId.type === 'fill-blank' && q.exerciseId.blanks && q.exerciseId.blanks.length > 0 ? (
+                                  <span className="font-medium text-green-400">
+                                    {q.exerciseId.blanks[0].answer}
+                                  </span>
+                                ) : (
+                                  <span className="font-medium text-green-400">
+                                    {q.exerciseId.correctAnswer || '(Chưa có đáp án)'}
+                                  </span>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Explanation if available */}
+                            {q.exerciseId.explanation && (
+                              <div className="mt-2 pt-2 border-t border-gray-700">
+                                <p className="text-sm text-gray-300">
+                                  💡 {q.exerciseId.explanation}
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
               {/* Action Buttons */}
               <div className="flex gap-4">
                 <Link
@@ -493,8 +643,8 @@ export default function QuizPlayerPage() {
                   onClick={() => window.location.reload()}
                   className={`flex-1 py-3 rounded-xl font-semibold ${
                     isPassed
-                      ? 'bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg'
-                      : 'bg-gradient-to-r from-orange-500 to-red-500 text-white hover:shadow-lg'
+                      ? 'bg-linear-to-r from-green-500 to-emerald-500 text-white hover:shadow-lg'
+                      : 'bg-linear-to-r from-orange-500 to-red-500 text-white hover:shadow-lg'
                   }`}
                 >
                   Làm lại
@@ -509,7 +659,7 @@ export default function QuizPlayerPage() {
 
   // Quiz playing screen
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900">
+    <div className="min-h-screen bg-linear-to-br from-gray-950 to-gray-900">
       {/* Header with Timer */}
       <header className="backdrop-blur-xl bg-gray-950/80 border-b border-gray-700 sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-4 py-4">
@@ -545,7 +695,7 @@ export default function QuizPlayerPage() {
           {/* Progress Bar */}
           <div className="mt-4 bg-gray-800 rounded-full h-2 overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300"
+              className="h-full bg-linear-to-r from-purple-500 to-pink-500 transition-all duration-300"
               style={{ width: `${((currentQuestionIndex + 1) / totalQuestions) * 100}%` }}
             />
           </div>
@@ -558,7 +708,7 @@ export default function QuizPlayerPage() {
           {/* Question */}
           <div className="mb-8">
             <div className="flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center">
+              <div className="shrink-0 w-8 h-8 bg-purple-500/20 border border-purple-500/30 rounded-lg flex items-center justify-center">
                 <span className="text-purple-400 font-bold">{currentQuestionIndex + 1}</span>
               </div>
               <h2 className="text-xl font-semibold text-white flex-1">
@@ -644,35 +794,43 @@ export default function QuizPlayerPage() {
               </div>
             )}
 
-            {/* Match Pairs */}
+            {/* Match Pairs - Fill in style */}
             {currentQuestion.exerciseId.type === 'match' && currentQuestion.exerciseId.pairs && (
               <div>
                 <div className="mb-4">
-                  <label className="text-sm text-gray-400 mb-2 block">Ghép các cặp từ tương ứng:</label>
-                  <div className="grid grid-cols-2 gap-4 mb-4">
-                    <div className="space-y-2">
-                      {currentQuestion.exerciseId.pairs.map((pair, index) => (
-                        <div key={index} className="px-4 py-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-white">
-                          {pair.left}
+                  <label className="text-sm text-gray-400 mb-3 block">Điền nghĩa tiếng Việt tương ứng vào ô trống:</label>
+                  <div className="space-y-3">
+                    {currentQuestion.exerciseId.pairs.map((pair, index) => {
+                      const currentAnswers = currentAnswer?.answer ? currentAnswer.answer.split('|') : [];
+                      return (
+                        <div key={index} className="flex items-center gap-3">
+                          <span className="text-blue-400 font-bold text-lg w-6">{index + 1}.</span>
+                          <div className="flex items-center gap-3 flex-1">
+                            <div className="px-4 py-3 bg-blue-500/20 border border-blue-500/30 rounded-lg text-white min-w-[150px]">
+                              {pair.left}
+                            </div>
+                            <span className="text-gray-400">→</span>
+                            <input
+                              type="text"
+                              value={currentAnswers[index] || ''}
+                              onChange={(e) => {
+                                const newAnswers = [...currentAnswers];
+                                const pairsLength = currentQuestion.exerciseId.pairs?.length || 0;
+                                while (newAnswers.length < pairsLength) {
+                                  newAnswers.push('');
+                                }
+                                newAnswers[index] = e.target.value;
+                                handleSelectAnswer(currentQuestion.exerciseId._id, newAnswers.join('|'));
+                              }}
+                              placeholder="Nhập nghĩa tiếng Việt..."
+                              className="flex-1 px-4 py-3 rounded-lg bg-gray-900/50 border-2 border-gray-600 text-white placeholder:text-gray-500 focus:outline-none focus:border-purple-500 transition-colors"
+                            />
+                          </div>
                         </div>
-                      ))}
-                    </div>
-                    <div className="space-y-2">
-                      {currentQuestion.exerciseId.pairs.map((pair, index) => (
-                        <div key={index} className="px-4 py-3 bg-green-500/20 border border-green-500/30 rounded-lg text-white">
-                          {pair.right}
-                        </div>
-                      ))}
-                    </div>
+                      );
+                    })}
                   </div>
                 </div>
-                <input
-                  type="text"
-                  value={currentAnswer?.answer || ''}
-                  onChange={(e) => handleSelectAnswer(currentQuestion.exerciseId._id, e.target.value)}
-                  placeholder="Nhập cặp đã ghép (VD: 1-A, 2-B, 3-C)..."
-                  className="w-full px-4 py-4 rounded-xl bg-gray-900/50 border-2 border-gray-600 text-white placeholder:text-gray-500 focus:outline-none focus:border-purple-500 transition-colors text-lg"
-                />
               </div>
             )}
 
@@ -723,7 +881,7 @@ export default function QuizPlayerPage() {
               <button
                 onClick={() => handleSubmitQuiz(false)}
                 disabled={submitting}
-                className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl hover:shadow-lg disabled:opacity-50 transition-all font-semibold flex items-center gap-2"
+                className="px-6 py-3 bg-linear-to-r from-green-500 to-emerald-500 text-white rounded-xl hover:shadow-lg disabled:opacity-50 transition-all font-semibold flex items-center gap-2"
               >
                 {submitting ? (
                   <>

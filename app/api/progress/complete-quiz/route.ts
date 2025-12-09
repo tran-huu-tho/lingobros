@@ -70,6 +70,7 @@ export async function POST(req: NextRequest) {
       progress.score = Math.max(progress.score || 0, score); // Keep highest score
       progress.attemptsCount = (progress.attemptsCount || 0) + 1;
       progress.completedAt = new Date();
+      progress.lastAccessedAt = new Date();
       progress.timeSpent = (progress.timeSpent || 0) + (timeSpent || 0);
       progress.exerciseResults = answers.map((a: Answer) => ({
         exerciseId: a.exerciseId,
@@ -90,6 +91,7 @@ export async function POST(req: NextRequest) {
         timeSpent: timeSpent || 0,
         completedAt: new Date(),
         startedAt: new Date(),
+        lastAccessedAt: new Date(),
         exerciseResults: answers.map((a: Answer) => ({
           exerciseId: a.exerciseId,
           isCorrect: a.isCorrect,
@@ -102,9 +104,10 @@ export async function POST(req: NextRequest) {
 
     await progress.save();
 
-    // Award XP only if this is their best score or first time passing
-    const shouldAwardXP = !progress.attemptsCount || progress.attemptsCount === 1 || 
-                          (passed && score > (progress.score || 0));
+    // Award XP only if this is their best score or first time
+    const isFirstAttempt = progress.attemptsCount === 1;
+    const isBestScore = score > (progress.score || 0);
+    const shouldAwardXP = isFirstAttempt || (passed && isBestScore);
     
     if (shouldAwardXP && xpReward > 0) {
       user.xp = (user.xp || 0) + xpReward;
