@@ -28,7 +28,7 @@ export async function GET(req: NextRequest) {
     
     // Đếm số topics cho mỗi course
     const coursesWithStats = await Promise.all(
-      courses.map(async (course: any) => {
+      courses.map(async (course) => {
         const topicCount = await Topic.countDocuments({ courseId: course._id });
         return {
           ...course,

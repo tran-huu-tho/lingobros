@@ -212,7 +212,7 @@ export default function QuestionBankManagement() {
     });
     
     // Set selectedExercises trước
-    setSelectedExercises(exerciseIds as string[]);
+    setSelectedExercises(exerciseIds);
     
     // Reset filters
     setFilterTopic('all');
@@ -224,7 +224,7 @@ export default function QuestionBankManagement() {
       description: quiz.description || '',
       topicId: quiz.topicId?._id || '',
       questions: quiz.questions.map(q => ({
-        exerciseId: typeof q.exerciseId === 'string' ? q.exerciseId : (q.exerciseId as { _id: string })._id,
+        exerciseId: typeof q.exerciseId === 'string' ? q.exerciseId : (q.exerciseId._id || q.exerciseId),
         order: q.order,
         points: q.points
       })),
