@@ -29,12 +29,15 @@ export async function GET(req: NextRequest) {
     // Tạo map để tra cứu nhanh
     const progressMap: Record<string, any> = {};
     progressList.forEach(p => {
-      progressMap[p.topicId.toString()] = {
-        status: p.status,
-        score: p.score,
-        exercisesCompleted: p.exercisesCompleted,
-        completedAt: p.completedAt
-      };
+      // Only add if topicId exists
+      if (p.topicId) {
+        progressMap[p.topicId.toString()] = {
+          status: p.status,
+          score: p.score,
+          exercisesCompleted: p.exercisesCompleted,
+          completedAt: p.completedAt
+        };
+      }
     });
 
     return NextResponse.json({
