@@ -74,7 +74,7 @@ export default function Dashboard() {
   const [showOnboardingModal, setShowOnboardingModal] = useState(false);
   
   // Data states
-  const [learningPath, setLearningPath] = useState<LearningPath | null>(null);
+  const [learningPaths, setLearningPaths] = useState<LearningPath[]>([]);
   const [courses, setCourses] = useState<Course[]>([]);
   const [topics, setTopics] = useState<Topic[]>([]);
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
@@ -154,7 +154,7 @@ export default function Dashboard() {
         
         if (pathResponse.ok) {
           const pathData = await pathResponse.json();
-          setLearningPath(pathData);
+          setLearningPaths(pathData || []);
         }
       }
 
@@ -347,7 +347,7 @@ export default function Dashboard() {
           </div>
 
           {/* 1. Learning Path Section */}
-          {learningPath ? (
+          {learningPaths.length > 0 ? (
             <div className="mb-8">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-white flex items-center gap-3">
@@ -356,93 +356,97 @@ export default function Dashboard() {
                 </h2>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-6">
-                <div className="flex items-start gap-4 mb-6">
-                  <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center text-3xl shrink-0"
-                    style={{ backgroundColor: learningPath.color + '30', border: `2px solid ${learningPath.color}` }}
-                  >
-                    {learningPath.icon || '🎯'}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-white mb-2">{learningPath.title}</h3>
-                    <p className="text-gray-400">{learningPath.description || 'Lộ trình học được thiết kế riêng cho bạn'}</p>
-                    <div className="flex items-center gap-4 mt-3">
-                      <span className="text-sm text-green-400 flex items-center gap-1">
-                        <BookMarked className="w-4 h-4" />
-                        {learningPath.topics.length} chuyên đề
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-3">
-                  {learningPath.topics.map((item, index) => {
-                    const topic = item.topicId;
-                    const progress = userProgress[topic._id];
-                    const isCompleted = progress?.status === 'completed';
-                    
-                    // Check if previous topic is completed (để unlock)
-                    const prevTopic = index > 0 ? learningPath.topics[index - 1].topicId : null;
-                    const prevCompleted = !prevTopic || userProgress[prevTopic._id]?.status === 'completed';
-                    const isLocked = index > 0 && !prevCompleted;
-
-                    return (
-                      <div
-                        key={topic._id}
-                        className={`bg-gray-900/50 border rounded-lg p-4 transition ${
-                          isLocked ? 'border-gray-700/50 opacity-60' : 'border-gray-700 hover:border-green-500/50'
-                        }`}
+              <div className="space-y-6">
+                {learningPaths.map((learningPath) => (
+                  <div key={learningPath._id} className="bg-gradient-to-br from-gray-800/50 to-gray-800/30 border border-gray-700 rounded-xl p-6">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div 
+                        className="w-16 h-16 rounded-full flex items-center justify-center text-3xl shrink-0"
+                        style={{ backgroundColor: learningPath.color + '30', border: `2px solid ${learningPath.color}` }}
                       >
-                        <div className="flex items-center gap-4">
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border shrink-0 ${
-                            isCompleted 
-                              ? 'bg-green-500/20 border-green-500' 
-                              : 'bg-gray-800 border-gray-700'
-                          }`}>
-                            {isLocked ? <Lock className="w-5 h-5 text-gray-500" /> : (topic.icon || '📚')}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-1 flex-wrap">
-                              <h4 className="text-lg font-semibold text-white">{topic.title}</h4>
-                              {item.isRequired && (
-                                <span className="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full border border-red-500/30">
-                                  Bắt buộc
-                                </span>
-                              )}
-                              {isCompleted && (
-                                <span className="flex items-center gap-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
-                                  <CheckCircle2 className="w-3 h-3" />
-                                  Hoàn thành
-                                </span>
-                              )}
-                            </div>
-                            <div className="text-sm text-gray-400">
-                              Bước {index + 1}/{learningPath.topics.length}
-                              {progress?.exercisesCompleted > 0 && !isCompleted && (
-                                <span className="ml-2 text-blue-400">
-                                  • {progress.exercisesCompleted} bài đã làm
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          {!isLocked && (
-                            <Link
-                              href={`/topic/${topic._id}`}
-                              className={`px-4 py-2 rounded-lg transition font-medium shrink-0 ${
-                                isCompleted
-                                  ? 'bg-blue-600 hover:bg-blue-700 text-white'
-                                  : 'bg-green-600 hover:bg-green-700 text-white'
-                              }`}
-                            >
-                              {isCompleted ? 'Ôn tập' : 'Học ngay'}
-                            </Link>
-                          )}
+                        {learningPath.icon || '🎯'}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-2xl font-bold text-white mb-2">{learningPath.title}</h3>
+                        <p className="text-gray-400">{learningPath.description || 'Lộ trình học được thiết kế riêng cho bạn'}</p>
+                        <div className="flex items-center gap-4 mt-3">
+                          <span className="text-sm text-green-400 flex items-center gap-1">
+                            <BookMarked className="w-4 h-4" />
+                            {learningPath.topics.length} chuyên đề
+                          </span>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      {learningPath.topics.map((item, index) => {
+                        const topic = item.topicId;
+                        const progress = userProgress[topic._id];
+                        const isCompleted = progress?.status === 'completed';
+                        
+                        // Check if previous topic is completed (để unlock)
+                        const prevTopic = index > 0 ? learningPath.topics[index - 1].topicId : null;
+                        const prevCompleted = !prevTopic || userProgress[prevTopic._id]?.status === 'completed';
+                        const isLocked = index > 0 && !prevCompleted;
+
+                        return (
+                          <div
+                            key={topic._id}
+                            className={`bg-gray-900/50 border rounded-lg p-4 transition ${
+                              isLocked ? 'border-gray-700/50 opacity-60' : 'border-gray-700 hover:border-green-500/50'
+                            }`}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border shrink-0 ${
+                                isCompleted 
+                                  ? 'bg-green-500/20 border-green-500' 
+                                  : 'bg-gray-800 border-gray-700'
+                              }`}>
+                                {isLocked ? <Lock className="w-5 h-5 text-gray-500" /> : (topic.icon || '📚')}
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                  <h4 className="text-lg font-semibold text-white">{topic.title}</h4>
+                                  {item.isRequired && (
+                                    <span className="text-xs bg-red-500/20 text-red-400 px-2 py-0.5 rounded-full border border-red-500/30">
+                                      Bắt buộc
+                                    </span>
+                                  )}
+                                  {isCompleted && (
+                                    <span className="flex items-center gap-1 text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full border border-green-500/30">
+                                      <CheckCircle2 className="w-3 h-3" />
+                                      Hoàn thành
+                                    </span>
+                                  )}
+                                </div>
+                                <div className="text-sm text-gray-400">
+                                  Bước {index + 1}/{learningPath.topics.length}
+                                  {progress?.exercisesCompleted > 0 && !isCompleted && (
+                                    <span className="ml-2 text-blue-400">
+                                      • {progress.exercisesCompleted} bài đã làm
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                              {!isLocked && (
+                                <Link
+                                  href={`/topic/${topic._id}`}
+                                  className={`px-4 py-2 rounded-lg transition font-medium shrink-0 ${
+                                    isCompleted
+                                      ? 'bg-blue-600 hover:bg-blue-700 text-white'
+                                      : 'bg-green-600 hover:bg-green-700 text-white'
+                                  }`}
+                                >
+                                  {isCompleted ? 'Ôn tập' : 'Học ngay'}
+                                </Link>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           ) : userData?.hasCompletedOnboarding === false ? (

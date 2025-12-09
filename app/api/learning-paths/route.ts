@@ -23,17 +23,13 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Purpose is required' }, { status: 400 });
     }
 
-    // Find active learning path matching the purpose
-    const path = await LearningPath.findOne({
+    // Find all active learning paths matching the purpose
+    const paths = await LearningPath.find({
       purpose: purpose,
       isActive: true
-    }).populate('topics.topicId');
+    }).populate('topics.topicId').sort({ order: 1 });
 
-    if (!path) {
-      return NextResponse.json(null);
-    }
-
-    return NextResponse.json(path);
+    return NextResponse.json(paths);
   } catch (error) {
     console.error('Get learning path error:', error);
     return NextResponse.json({ error: 'Failed to fetch learning path' }, { status: 500 });
