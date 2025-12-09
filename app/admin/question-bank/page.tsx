@@ -212,7 +212,7 @@ export default function QuestionBankManagement() {
     });
     
     // Set selectedExercises trước
-    setSelectedExercises(exerciseIds);
+    setSelectedExercises(exerciseIds as string[]);
     
     // Reset filters
     setFilterTopic('all');
