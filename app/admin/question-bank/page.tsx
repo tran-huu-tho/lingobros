@@ -224,7 +224,7 @@ export default function QuestionBankManagement() {
       description: quiz.description || '',
       topicId: quiz.topicId?._id || '',
       questions: quiz.questions.map(q => ({
-        exerciseId: typeof q.exerciseId === 'string' ? q.exerciseId : (q.exerciseId._id || q.exerciseId),
+        exerciseId: typeof q.exerciseId === 'string' ? q.exerciseId : (q.exerciseId as { _id: string })._id,
         order: q.order,
         points: q.points
       })),
