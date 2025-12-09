@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import Course from '@/models/Course';
-import Unit from '@/models/Unit';
-import Lesson from '@/models/Lesson';
+import Topic from '@/models/Topic';
 
 export async function GET(
   req: NextRequest,
@@ -12,31 +11,40 @@ export async function GET(
     await connectDB();
     
     const { id } = await params;
-    const course = await Course.findById(id);
+    const course = await Course.findById(id).populate('level');
     
     if (!course) {
       return NextResponse.json({ error: 'Course not found' }, { status: 404 });
     }
     
-    // Get all units for this course
-    const units = await Unit.find({ courseId: id }).sort({ order: 1 });
+    // Get all topics for this course
+    const topics = await Topic.find({ 
+      courseId: id,
+      isPublished: true 
+    }).sort({ order: 1 });
     
-    // Get lessons for each unit
-    const unitsWithLessons = await Promise.all(
-      units.map(async (unit) => {
-        const lessons = await Lesson.find({ unitId: unit._id }).sort({ order: 1 });
-        return {
-          ...unit.toObject(),
-          lessons
-        };
-      })
-    );
-    
-    return NextResponse.json({ 
-      course: {
-        ...course.toObject(),
-        units: unitsWithLessons
-      }
+    return NextResponse.json({
+      _id: course._id,
+      title: course.title,
+      description: course.description,
+      level: course.level ? {
+        _id: course.level._id,
+        name: course.level.name,
+        displayName: course.level.displayName,
+        color: course.level.color,
+        icon: course.level.icon
+      } : null,
+      color: course.color,
+      gradientFrom: course.gradientFrom,
+      gradientTo: course.gradientTo,
+      topics: topics.map(t => ({
+        _id: t._id,
+        title: t.title,
+        description: t.description,
+        icon: t.icon,
+        order: t.order,
+        slug: t.slug
+      }))
     });
   } catch (error) {
     console.error('Get course error:', error);
