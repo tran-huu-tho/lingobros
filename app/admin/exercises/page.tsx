@@ -27,6 +27,8 @@ interface Exercise {
   correctOrder?: string[];
   pairs?: Array<{ left: string; right: string }>;
   explanation?: string;
+  order?: number;
+  points?: number;
   createdAt: string;
 }
 
