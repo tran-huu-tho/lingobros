@@ -1,0 +1,454 @@
+[{
+  "_id": {
+    "$oid": "6936c8ec89413cf8776916a0"
+  },
+  "title": "Tiếng Anh cho du lịch",
+  "description": "Lộ trình này dành cho người đi du lịch",
+  "purpose": "travel",
+  "icon": "✈️",
+  "color": "#10B981",
+  "topics": [
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a20"
+      },
+      "order": 1,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb3bab1a8e4dc84c017d"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+      },
+      "order": 2,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb3bab1a8e4dc84c017e"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a22"
+      },
+      "order": 3,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb3bab1a8e4dc84c017f"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a30"
+      },
+      "order": 4,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb3bab1a8e4dc84c0180"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a26"
+      },
+      "order": 5,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb3bab1a8e4dc84c0181"
+      }
+    }
+  ],
+  "estimatedWeeks": 12,
+  "difficulty": "beginner",
+  "isActive": true,
+  "isRecommended": false,
+  "createdAt": {
+    "$date": "2025-12-08T12:47:40.993Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T12:57:31.045Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936cb2cab1a8e4dc84c0169"
+  },
+  "title": "Tiếng anh để du học",
+  "description": "Lộ trình dành cho người du học",
+  "purpose": "study-abroad",
+  "icon": "🎓",
+  "color": "#3B82F6",
+  "topics": [
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a20"
+      },
+      "order": 1,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016a"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+      },
+      "order": 2,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016b"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+      },
+      "order": 3,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016c"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a27"
+      },
+      "order": 4,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016d"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a22"
+      },
+      "order": 5,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016e"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a21"
+      },
+      "order": 6,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c016f"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a30"
+      },
+      "order": 7,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c0170"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a23"
+      },
+      "order": 8,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb2cab1a8e4dc84c0171"
+      }
+    }
+  ],
+  "estimatedWeeks": 12,
+  "difficulty": "beginner",
+  "isActive": true,
+  "isRecommended": false,
+  "createdAt": {
+    "$date": "2025-12-08T12:57:16.302Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T12:57:16.302Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936cb5aab1a8e4dc84c0189"
+  },
+  "title": "Lộ trình dành cho thi cử",
+  "description": "Lộ trình này dành cho người sắp thi cử các chứng chỉ",
+  "purpose": "exam",
+  "icon": "📝",
+  "color": "#EF4444",
+  "topics": [
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a33"
+      },
+      "order": 1,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb5aab1a8e4dc84c018a"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a36"
+      },
+      "order": 2,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb5aab1a8e4dc84c018b"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a35"
+      },
+      "order": 3,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb5aab1a8e4dc84c018c"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a34"
+      },
+      "order": 4,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb5aab1a8e4dc84c018d"
+      }
+    }
+  ],
+  "estimatedWeeks": 12,
+  "difficulty": "beginner",
+  "isActive": true,
+  "isRecommended": false,
+  "createdAt": {
+    "$date": "2025-12-08T12:58:02.454Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T12:58:02.454Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936cb84ab1a8e4dc84c0195"
+  },
+  "title": "Lộ trình dành cho người cải thiện",
+  "description": "Lộ trình cải thiện tiếng Anh",
+  "purpose": "improvement",
+  "icon": "📈",
+  "color": "#F59E0B",
+  "topics": [
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a21"
+      },
+      "order": 1,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c0196"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+      },
+      "order": 2,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c0197"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+      },
+      "order": 3,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c0198"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a22"
+      },
+      "order": 4,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c0199"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a30"
+      },
+      "order": 5,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c019a"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a23"
+      },
+      "order": 6,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c019b"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a25"
+      },
+      "order": 7,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c019c"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a26"
+      },
+      "order": 8,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936cb84ab1a8e4dc84c019d"
+      }
+    }
+  ],
+  "estimatedWeeks": 12,
+  "difficulty": "beginner",
+  "isActive": true,
+  "isRecommended": false,
+  "createdAt": {
+    "$date": "2025-12-08T12:58:44.733Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T13:25:17.849Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936cbbcab1a8e4dc84c01f8"
+  },
+  "title": "Lộ trình dành cho các mục tiêu khác",
+  "description": "Lộ trình dành cho các học viên ngẫu hứng",
+  "purpose": "other",
+  "icon": "🎯",
+  "color": "#8B5CF6",
+  "topics": [
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a24"
+      },
+      "order": 1,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a353"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a27"
+      },
+      "order": 2,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a354"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a22"
+      },
+      "order": 4,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a355"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+      },
+      "order": 5,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a356"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+      },
+      "order": 6,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a357"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a21"
+      },
+      "order": 7,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a358"
+      }
+    },
+    {
+      "topicId": {
+        "$oid": "6935a4d9a1d4b8dc5cb71a30"
+      },
+      "order": 7,
+      "isRequired": true,
+      "_id": {
+        "$oid": "6936d1ade81c23408049a359"
+      }
+    }
+  ],
+  "estimatedWeeks": 12,
+  "difficulty": "beginner",
+  "isActive": true,
+  "isRecommended": false,
+  "createdAt": {
+    "$date": "2025-12-08T12:59:40.866Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T13:25:44.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6937c116371c4a30586b054f"
+  },
+  "title": "Test",
+  "description": "",
+  "purpose": "exam",
+  "icon": "📝",
+  "color": "#EF4444",
+  "topics": [],
+  "isActive": false,
+  "createdAt": {
+    "$date": "2025-12-09T06:26:30.226Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:27:44.223Z"
+  },
+  "__v": 0
+}]

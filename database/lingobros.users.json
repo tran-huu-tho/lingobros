@@ -1,0 +1,469 @@
+[{
+  "_id": {
+    "$oid": "69358358a6ebc0f91b7f190f"
+  },
+  "firebaseUid": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "email": "lingobros@gmail.com",
+  "displayName": "Admin LingoBros",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765116594/lingobros/avatars/hji4ayejd74qwp2ft00x.avif",
+  "bio": "0nichan Baka",
+  "level": "master",
+  "xp": 100000,
+  "streak": 101,
+  "hearts": 50,
+  "gems": 1000,
+  "preferences": {
+    "learningGoal": "other",
+    "dailyGoalMinutes": 60,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69358358a6ebc0f91b7f1910"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": true,
+  "lastActiveAt": {
+    "$date": "2025-12-09T06:38:41.976Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-03T13:38:32.920Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:38:41.976Z"
+  },
+  "__v": 0,
+  "lastHeartUpdate": {
+    "$date": "2025-12-08T18:41:03.521Z"
+  },
+  "learningGoal": "Chưa đặt mục tiêu",
+  "studyTime": 0
+},
+{
+  "_id": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "firebaseUid": "q3jtLaoJoLdkn6shDjuhycrGPqX2",
+  "email": "q3jtLaoJoLdkn6shDjuhycrGPqX2@lingobros.app",
+  "displayName": "Hữu Thọ",
+  "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIiep8fZDU7phBpj3OBya9dEzyLy8oIUQkk4181sJ5YcHX55ENm=s96-c",
+  "bio": "",
+  "level": "advanced",
+  "xp": 21500,
+  "streak": 36,
+  "hearts": 49,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "exam",
+    "dailyGoalMinutes": 60,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "6935926ca6ebc0f91b7f1c68"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-09T06:26:42.014Z"
+  },
+  "createdAt": {
+    "$date": "2025-11-25T14:42:52.378Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:26:42.014Z"
+  },
+  "__v": 0,
+  "learningGoal": "Chưa đặt mục tiêu",
+  "studyTime": 0,
+  "lastHeartUpdate": {
+    "$date": "2025-12-09T06:22:11.818Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693593507b3dd3ab34d332a2"
+  },
+  "firebaseUid": "5CsqmfIc3tSzbBUYM5uWecfOtJ93",
+  "email": "5CsqmfIc3tSzbBUYM5uWecfOtJ93@lingobros.app",
+  "displayName": "Thọ Trần Hữu",
+  "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocIN19lhfo2DIQwGwso0lrdsoUrkLW6Pj9plzYwE3mHXUJQshBjG=s96-c",
+  "bio": "",
+  "level": "beginner",
+  "xp": 1400,
+  "streak": 1,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "study-abroad",
+    "dailyGoalMinutes": 60,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "693593507b3dd3ab34d332a3"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-09T05:12:57.626Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T14:46:40.649Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:12:57.626Z"
+  },
+  "__v": 0,
+  "lastHeartUpdate": {
+    "$date": "2025-12-08T19:25:21.643Z"
+  },
+  "learningGoal": "Chưa đặt mục tiêu",
+  "studyTime": 0
+},
+{
+  "_id": {
+    "$oid": "693593e07b3dd3ab34d332d1"
+  },
+  "firebaseUid": "kCLkws1gO7MTPuRZzPAULHtlQCF3",
+  "email": "kCLkws1gO7MTPuRZzPAULHtlQCF3@lingobros.app",
+  "displayName": "Wang Huu Tho",
+  "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocJbI7p5j2lQ5ufodaUoVpk1JK_Ce917TEq_SaTIcCxA3GCRgP8=s96-c",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 1,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "communication",
+    "dailyGoalMinutes": 30,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "693593e07b3dd3ab34d332d2"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-09T05:14:20.202Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T14:49:04.483Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:14:20.203Z"
+  },
+  "__v": 0,
+  "lastHeartUpdate": {
+    "$date": "2025-12-09T05:13:43.705Z"
+  },
+  "learningGoal": "Chưa đặt mục tiêu",
+  "studyTime": 0
+},
+{
+  "_id": {
+    "$oid": "693593fc7b3dd3ab34d332f6"
+  },
+  "firebaseUid": "38DkAjtwLogY5U009nW7OHuCizI2",
+  "email": "38DkAjtwLogY5U009nW7OHuCizI2@lingobros.app",
+  "displayName": "Hữu Thọ Trần",
+  "photoURL": "https://lh3.googleusercontent.com/a/ACg8ocL-03eGlYWKTkAFcGGnydY0LB3jucq-NC4T9W2DNS60gJiYVMW5=s96-c",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 1,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "other",
+    "dailyGoalMinutes": 5,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "693593fc7b3dd3ab34d332f7"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-09T05:13:27.449Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T14:49:32.450Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:13:27.449Z"
+  },
+  "__v": 0,
+  "lastHeartUpdate": {
+    "$date": "2025-12-09T05:13:27.415Z"
+  },
+  "learningGoal": "Chưa đặt mục tiêu",
+  "studyTime": 0
+},
+{
+  "_id": {
+    "$oid": "69359b3eb4e0bc3614f1f2df"
+  },
+  "firebaseUid": "P80S8ZPCG4YTJh8TVkOovxXQ6le2",
+  "email": "ngohoangkha@gmail.com",
+  "displayName": "Ngô Hoàng Kha",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765120874/lingobros/avatars/cxt9d30jutuw5iovvkyk.webp",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "exam",
+    "dailyGoalMinutes": 5,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359b3eb4e0bc3614f1f2e0"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:21:15.598Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:20:30.910Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:21:15.599Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359b7db4e0bc3614f1f2fa"
+  },
+  "firebaseUid": "6APdHR0DbBRASDRQSN6nm2amwco1",
+  "email": "nguyenbaminh@gmail.com",
+  "displayName": "Nguyễn Bá Minh",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765120913/lingobros/avatars/d3mwz26bjtj5trbfoacq.jpg",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "communication",
+    "dailyGoalMinutes": 30,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359b7db4e0bc3614f1f2fb"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:21:55.107Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:21:33.738Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:21:55.107Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359bb8b4e0bc3614f1f31b"
+  },
+  "firebaseUid": "CCR3sVvO3oh1IqXyOZCV1gaXqp83",
+  "email": "huynhnhuy@gmail.com",
+  "displayName": "Huỳnh Như Ý",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765121014/lingobros/avatars/hkpqbfllf542ccfphb2v.jpg",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "improvement",
+    "dailyGoalMinutes": 30,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359bb8b4e0bc3614f1f31c"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:23:35.433Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:22:32.193Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:23:35.434Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359c19b4e0bc3614f1f335"
+  },
+  "firebaseUid": "mLetWhICyqclzRwvlGYJuQ5i0TZ2",
+  "email": "khoa@gmail.com",
+  "displayName": "Khoa",
+  "photoURL": null,
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "study-abroad",
+    "dailyGoalMinutes": 60,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359c19b4e0bc3614f1f336"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:24:13.384Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:24:09.124Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:24:13.385Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359c31b4e0bc3614f1f347"
+  },
+  "firebaseUid": "fM79fZkHdMQ1LjLiCBSNxBiog653",
+  "email": "nguyen@gmail.com",
+  "displayName": "Trường Nguyên",
+  "photoURL": null,
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "study-abroad",
+    "dailyGoalMinutes": 30,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359c31b4e0bc3614f1f348"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:24:36.526Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:24:33.558Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:24:36.526Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359c4ab4e0bc3614f1f359"
+  },
+  "firebaseUid": "18f7HPC2rzWt7W4KivPuxpD0rWh1",
+  "email": "datg22@gmail.com",
+  "displayName": "Thành Đạt Nguyễn",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765121140/lingobros/avatars/zbtmvrha3xtznhfmeglx.webp",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "other",
+    "dailyGoalMinutes": 10,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359c4ab4e0bc3614f1f35a"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:25:42.451Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:24:58.617Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:25:42.451Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69359c9db4e0bc3614f1f378"
+  },
+  "firebaseUid": "jNbIR67TrWhKmSOHyCdu31rWc1J2",
+  "email": "demo@gmail.com",
+  "displayName": "Demo",
+  "photoURL": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765121209/lingobros/avatars/hd5y6pxktgfza4af4ulc.jpg",
+  "bio": "",
+  "level": "beginner",
+  "xp": 0,
+  "streak": 0,
+  "hearts": 50,
+  "gems": 0,
+  "preferences": {
+    "learningGoal": "study-abroad",
+    "dailyGoalMinutes": 60,
+    "notificationsEnabled": true,
+    "soundEnabled": true,
+    "interests": [],
+    "_id": {
+      "$oid": "69359c9db4e0bc3614f1f379"
+    }
+  },
+  "hasCompletedOnboarding": true,
+  "isAdmin": false,
+  "lastActiveAt": {
+    "$date": "2025-12-07T15:26:50.502Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-07T15:26:21.551Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T15:26:50.503Z"
+  },
+  "__v": 0
+}]

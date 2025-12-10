@@ -1,0 +1,85 @@
+[{
+  "_id": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc6"
+  },
+  "name": "beginner",
+  "displayName": "Cơ bản",
+  "description": "Dành cho người mới bắt đầu",
+  "color": "#49e506",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T17:43:32.767Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:37:55.363Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc7"
+  },
+  "name": "intermediate",
+  "displayName": "Trung cấp",
+  "description": "Nâng cao kỹ năng",
+  "color": "#3B82F6",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T17:43:32.768Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T17:43:32.768Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc8"
+  },
+  "name": "advanced",
+  "displayName": "Nâng cao",
+  "description": "Trình độ cao",
+  "color": "#8B5CF6",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T17:43:32.768Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T17:43:32.768Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc9"
+  },
+  "name": "grammar",
+  "displayName": "Ngữ pháp",
+  "description": "Chuyên sâu ngữ pháp",
+  "color": "#F59E0B",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T17:43:32.769Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T17:43:32.769Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6935bd9da6ec0d249c49ae42"
+  },
+  "name": "pro",
+  "displayName": "Siêu tốc",
+  "description": "Học với tốc độ cao",
+  "color": "#eb0000",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T17:47:09.845Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:38:04.610Z"
+  },
+  "__v": 0
+}]

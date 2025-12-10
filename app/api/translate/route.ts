@@ -8,6 +8,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Text is required' }, { status: 400 });
     }
 
+    // If source and target languages are the same, return the original text
+    if (sourceLang === targetLang) {
+      return NextResponse.json({ translatedText: text });
+    }
+
     const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;
     if (!apiKey) {
       return NextResponse.json({ error: 'API key not configured' }, { status: 500 });

@@ -1,0 +1,425 @@
+[{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Giới thiệu bản thân",
+  "description": "Học cách tự giới thiệu bằng tiếng Anh",
+  "icon": "👋",
+  "color": "#EC4899",
+  "order": 1,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.015Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T04:09:44.665Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Sinh hoạt hằng ngày",
+  "description": "Từ vựng và câu thường dùng hàng ngày",
+  "icon": "🏠",
+  "color": "#06B6D4",
+  "order": 2,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T19:07:02.722Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Gọi đồ ăn",
+  "description": "Đặt món tại nhà hàng & quán ăn",
+  "icon": "🍔",
+  "color": "#3B82F6",
+  "order": 3,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:35:37.166Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Thời tiết",
+  "description": "Nói chuyện về thời tiết",
+  "icon": "☀️",
+  "color": "#8B5CF6",
+  "order": 4,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Cảm xúc & Tính cách",
+  "description": "Mô tả cảm xúc và tính cách",
+  "icon": "😊",
+  "color": "#EC4899",
+  "order": 5,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Mua bán online",
+  "description": "Giao dịch và mua sắm trực tuyến",
+  "icon": "🛒",
+  "color": "#8B5CF6",
+  "order": 6,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Nhà hàng",
+  "description": "Nhà hàng và đặt bàn",
+  "icon": "🍽️",
+  "color": "#F59E0B",
+  "order": 7,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Giải trí",
+  "description": "Phim nhạc và sở thích",
+  "icon": "🎬",
+  "color": "#06B6D4",
+  "order": 8,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.016Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1c"
+  },
+  "title": "Công nghệ",
+  "description": "Tiếng Anh trong thời đại số",
+  "icon": "💻",
+  "color": "#3B82F6",
+  "order": 1,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.025Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T20:59:22.574Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1c"
+  },
+  "title": "Nơi ở thú cưng",
+  "description": "Từ vựng về động vật và thú cưng",
+  "icon": "🐕",
+  "color": "#F97316",
+  "order": 2,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.025Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T19:07:49.626Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1d"
+  },
+  "title": "Du lịch",
+  "description": "Tiếng Anh cho chuyến du lịch",
+  "icon": "✈️",
+  "color": "#10B981",
+  "order": 1,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.028Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T20:59:18.711Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1d"
+  },
+  "title": "Nghề nghiệp",
+  "description": "Tiếng Anh trong công việc",
+  "icon": "💼",
+  "color": "#EC4899",
+  "order": 2,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.028Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:32:49.144Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1d"
+  },
+  "title": "Đi lại",
+  "description": "Phương tiện và chỉ đường",
+  "icon": "🚗",
+  "color": "#3B82F6",
+  "order": 3,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": true,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.028Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.028Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1e"
+  },
+  "title": "Các thì",
+  "description": "12 thì trong tiếng Anh",
+  "icon": "⏰",
+  "color": "#8B5CF6",
+  "order": 1,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.032Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T16:01:29.032Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1e"
+  },
+  "title": "Mẫu câu",
+  "description": "Các mẫu câu thường dùng",
+  "icon": "📄",
+  "color": "#10B981",
+  "order": 2,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.032Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T17:19:17.503Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1e"
+  },
+  "title": "Câu điều kiện",
+  "description": "If clauses và cách dùng",
+  "icon": "🔀",
+  "color": "#F59E0B",
+  "order": 3,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.032Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T18:43:27.927Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "courseId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1e"
+  },
+  "title": "Câu bị động",
+  "description": "Passive voice và ứng dụng",
+  "icon": "🔄",
+  "color": "#06B6D4",
+  "order": 4,
+  "totalLessons": 3,
+  "xpReward": 50,
+  "isLocked": false,
+  "estimatedMinutes": 45,
+  "isPublished": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.032Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T18:42:45.663Z"
+  }
+}]

@@ -1,0 +1,736 @@
+[{
+  "_id": {
+    "$oid": "6937129702a52c7810ee7f4c"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "status": "completed",
+  "score": 250,
+  "attemptsCount": 0,
+  "timeSpent": 82,
+  "exercisesCompleted": 5,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5dc"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 3,
+      "attempts": 4,
+      "_id": {
+        "$oid": "6937129702a52c7810ee7f4d"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5dd"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 3,
+      "attempts": 3,
+      "_id": {
+        "$oid": "6937129b02a52c7810ee7f56"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5de"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 5,
+      "attempts": 3,
+      "_id": {
+        "$oid": "6937129f02a52c7810ee7f61"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5df"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 1,
+      "attempts": 4,
+      "_id": {
+        "$oid": "693712aa02a52c7810ee7f6e"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e0"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 7,
+      "attempts": 4,
+      "_id": {
+        "$oid": "693712b602a52c7810ee7f7d"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T18:01:59.186Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T19:57:03.142Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T18:01:59.188Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T19:57:03.142Z"
+  },
+  "__v": 4,
+  "completedAt": {
+    "$date": "2025-12-08T19:57:03.142Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693712c002a52c7810ee7fd5"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "status": "completed",
+  "score": 250,
+  "attemptsCount": 0,
+  "timeSpent": 27,
+  "exercisesCompleted": 5,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5eb"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 1,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693712c002a52c7810ee7fd6"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5ec"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693712c302a52c7810ee7fdf"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5ed"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 7,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693712cc02a52c7810ee7fea"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5ee"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 4,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693712d102a52c7810ee7ff7"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5ef"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 13,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693712e002a52c7810ee8006"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T18:02:40.111Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T18:03:12.913Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T18:02:40.112Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T18:03:12.913Z"
+  },
+  "__v": 4,
+  "completedAt": {
+    "$date": "2025-12-08T18:03:12.913Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693721bc3a5257fc4d277f44"
+  },
+  "userId": {
+    "$oid": "693593507b3dd3ab34d332a2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "status": "completed",
+  "score": 100,
+  "attemptsCount": 0,
+  "timeSpent": 101,
+  "exercisesCompleted": 2,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59c"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 9,
+      "_id": {
+        "$oid": "693721bc3a5257fc4d277f45"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59d"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 6,
+      "_id": {
+        "$oid": "693721c13a5257fc4d277f4e"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59e"
+      },
+      "isCorrect": false,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 7,
+      "_id": {
+        "$oid": "693721cd3a5257fc4d277f59"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59f"
+      },
+      "isCorrect": false,
+      "score": 50,
+      "timeSpent": 6,
+      "attempts": 5,
+      "_id": {
+        "$oid": "693721d53a5257fc4d277f66"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T19:06:36.955Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T19:25:21.651Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T19:06:36.955Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T19:25:21.652Z"
+  },
+  "__v": 3,
+  "completedAt": {
+    "$date": "2025-12-08T19:14:31.514Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693721e93a5257fc4d277ff9"
+  },
+  "userId": {
+    "$oid": "693593507b3dd3ab34d332a2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "status": "completed",
+  "score": 50,
+  "attemptsCount": 0,
+  "timeSpent": 28,
+  "exercisesCompleted": 1,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c3"
+      },
+      "isCorrect": false,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693721e93a5257fc4d277ffa"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c4"
+      },
+      "isCorrect": false,
+      "score": 0,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693721ef3a5257fc4d278003"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c5"
+      },
+      "isCorrect": false,
+      "score": 50,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693721f83a5257fc4d27800d"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c6"
+      },
+      "isCorrect": false,
+      "score": 50,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693721fd3a5257fc4d27801a"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c7"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 6,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693722043a5257fc4d278029"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T19:07:21.538Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T19:10:44.416Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T19:07:21.539Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T19:10:44.417Z"
+  },
+  "__v": 4,
+  "completedAt": {
+    "$date": "2025-12-08T19:07:49.619Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69372f1abf97976d512b17ab"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "status": "completed",
+  "score": 200,
+  "attemptsCount": 0,
+  "timeSpent": 34,
+  "exercisesCompleted": 4,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59c"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 2,
+      "_id": {
+        "$oid": "69372f1abf97976d512b17ac"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59d"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 2,
+      "_id": {
+        "$oid": "69372f1fbf97976d512b17b5"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59e"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 6,
+      "attempts": 2,
+      "_id": {
+        "$oid": "69372f24bf97976d512b17c0"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59f"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 8,
+      "attempts": 2,
+      "_id": {
+        "$oid": "69372f2cbf97976d512b17cd"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T20:03:38.464Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T20:05:07.218Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T20:03:38.465Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T20:05:07.218Z"
+  },
+  "__v": 3,
+  "completedAt": {
+    "$date": "2025-12-08T20:05:07.218Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693732efdd5065265ce09b59"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "status": "completed",
+  "score": 250,
+  "attemptsCount": 0,
+  "timeSpent": 27,
+  "exercisesCompleted": 5,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5be"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 2,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693732efdd5065265ce09b5a"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5bf"
+      },
+      "isCorrect": true,
+      "score": 0,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693732f6dd5065265ce09b63"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c0"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 7,
+      "attempts": 1,
+      "_id": {
+        "$oid": "69373302dd5065265ce09b78"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c1"
+      },
+      "isCorrect": true,
+      "score": 0,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "69373309dd5065265ce09b85"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5c2"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 5,
+      "attempts": 1,
+      "_id": {
+        "$oid": "69373314dd5065265ce09ba2"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T20:19:59.468Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T20:20:37.857Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T20:19:59.469Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T20:20:37.857Z"
+  },
+  "__v": 4,
+  "completedAt": {
+    "$date": "2025-12-08T20:20:37.857Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "693733bbdd5065265ce09ee1"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "status": "completed",
+  "score": 250,
+  "attemptsCount": 0,
+  "timeSpent": 26,
+  "exercisesCompleted": 5,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e1"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 4,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693733bbdd5065265ce09ee2"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e2"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 3,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693733c1dd5065265ce09eeb"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e3"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 5,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693733c7dd5065265ce09ef6"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e4"
+      },
+      "isCorrect": true,
+      "score": 0,
+      "timeSpent": 1,
+      "attempts": 2,
+      "_id": {
+        "$oid": "693733d0dd5065265ce09f03"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5e5"
+      },
+      "isCorrect": true,
+      "score": 50,
+      "timeSpent": 9,
+      "attempts": 1,
+      "_id": {
+        "$oid": "693733e0dd5065265ce09f20"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-08T20:23:23.379Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-08T20:24:01.150Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-08T20:23:23.380Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T20:24:01.151Z"
+  },
+  "__v": 4,
+  "completedAt": {
+    "$date": "2025-12-08T20:24:01.150Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69379e167a8e5448e42e543a"
+  },
+  "userId": {
+    "$oid": "6935926ca6ebc0f91b7f1c67"
+  },
+  "quizId": {
+    "$oid": "6936be5b89413cf87769132a"
+  },
+  "status": "completed",
+  "score": 100,
+  "attemptsCount": 12,
+  "timeSpent": 251,
+  "exercisesCompleted": 0,
+  "totalExercises": 0,
+  "exerciseResults": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59c"
+      },
+      "isCorrect": false,
+      "score": 0,
+      "timeSpent": 0,
+      "attempts": 1,
+      "_id": {
+        "$oid": "6937ae517a8e5448e42e6183"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59d"
+      },
+      "isCorrect": false,
+      "score": 0,
+      "timeSpent": 0,
+      "attempts": 1,
+      "_id": {
+        "$oid": "6937ae517a8e5448e42e6184"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59e"
+      },
+      "isCorrect": false,
+      "score": 0,
+      "timeSpent": 0,
+      "attempts": 1,
+      "_id": {
+        "$oid": "6937ae517a8e5448e42e6185"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59f"
+      },
+      "isCorrect": true,
+      "score": 100,
+      "timeSpent": 0,
+      "attempts": 1,
+      "_id": {
+        "$oid": "6937ae517a8e5448e42e6186"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a0"
+      },
+      "isCorrect": true,
+      "score": 100,
+      "timeSpent": 0,
+      "attempts": 1,
+      "_id": {
+        "$oid": "6937ae517a8e5448e42e6187"
+      }
+    }
+  ],
+  "startedAt": {
+    "$date": "2025-12-09T03:57:10.135Z"
+  },
+  "completedAt": {
+    "$date": "2025-12-09T05:06:25.421Z"
+  },
+  "lastAccessedAt": {
+    "$date": "2025-12-09T05:06:25.421Z"
+  },
+  "createdAt": {
+    "$date": "2025-12-09T03:57:10.139Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T05:06:25.427Z"
+  },
+  "__v": 11
+}]

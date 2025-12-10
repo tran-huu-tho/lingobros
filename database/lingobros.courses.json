@@ -1,0 +1,152 @@
+[{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1b"
+  },
+  "title": "Tiếng Anh Cơ Bản",
+  "slug": "tieng-anh-co-ban",
+  "description": "Khóa học dành cho người mới bắt đầu",
+  "level": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc6"
+  },
+  "gradientFrom": "#1cce60",
+  "gradientTo": "#14ad57",
+  "totalTopics": 8,
+  "totalLessons": 0,
+  "estimatedHours": 40,
+  "isPublished": true,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.008Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T20:49:33.534Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1c"
+  },
+  "title": "Tiếng Anh Trung Cấp",
+  "slug": "tieng-anh-trung-cap",
+  "description": "Nâng cao kỹ năng giao tiếp và ngữ pháp",
+  "level": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc7"
+  },
+  "gradientFrom": "#d954a8",
+  "gradientTo": "#c846b7",
+  "totalTopics": 2,
+  "totalLessons": 0,
+  "estimatedHours": 10,
+  "isPublished": true,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.009Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:34:12.285Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1d"
+  },
+  "title": "Tiếng Anh Nâng Cao",
+  "slug": "tieng-anh-nang-cao",
+  "description": "Hoàn thiện kỹ năng tiếng Anh",
+  "level": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc8"
+  },
+  "gradientFrom": "#1b17fd",
+  "gradientTo": "#0657db",
+  "totalTopics": 3,
+  "totalLessons": 0,
+  "estimatedHours": 80,
+  "isPublished": true,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.009Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:23:30.657Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a1e"
+  },
+  "title": "Ngữ Pháp Tiếng Anh",
+  "slug": "ngu-phap-tieng-anh",
+  "description": "Hệ thống ngữ pháp từ cơ bản đến nâng cao",
+  "level": {
+    "$oid": "6935bcc42f6b21e6ee1ebcc9"
+  },
+  "gradientFrom": "#df7c2a",
+  "gradientTo": "#ec8918",
+  "totalTopics": 4,
+  "totalLessons": 0,
+  "estimatedHours": 50,
+  "isPublished": true,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-12-07T16:01:29.009Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:23:34.493Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6935afdac1b28b1d2588ef17"
+  },
+  "title": "Tiếng Anh Cấp Tốc",
+  "slug": "tieng-anh-cap-toc",
+  "description": "beta ",
+  "level": {
+    "$oid": "6935bd9da6ec0d249c49ae42"
+  },
+  "color": "#3B82F6",
+  "gradientFrom": "#000000",
+  "gradientTo": "#000000",
+  "totalTopics": 0,
+  "totalLessons": 0,
+  "estimatedHours": 10,
+  "isPublished": false,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-07T16:48:26.924Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:19:12.040Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6937bf74371c4a30586afdb7"
+  },
+  "title": "demo",
+  "slug": "demo",
+  "description": "",
+  "level": {
+    "$oid": "6935bd9da6ec0d249c49ae42"
+  },
+  "color": "#3B82F6",
+  "gradientFrom": "#EC4899",
+  "gradientTo": "#F97316",
+  "totalTopics": 0,
+  "totalLessons": 0,
+  "estimatedHours": 10,
+  "isPublished": false,
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-12-09T06:19:32.807Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:28:19.657Z"
+  },
+  "__v": 0
+}]

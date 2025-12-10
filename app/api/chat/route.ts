@@ -3,10 +3,11 @@ import { getEnglishTutorResponse } from '@/lib/gemini';
 import { adminAuth } from '@/lib/firebase-admin';
 import connectDB from '@/lib/mongodb';
 import ChatHistory from '@/models/ChatHistory';
+import { buildChatbotContext, getFAQAnswer } from '@/lib/chatbot-knowledge-base';
 
 export async function POST(req: NextRequest) {
   try {
-    const { message, context } = await req.json();
+    const { message, context, contextType, contextData } = await req.json();
 
     if (!message) {
       return NextResponse.json(
@@ -30,10 +31,47 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Check if this is a FAQ question - respond instantly
+    const faqAnswer = getFAQAnswer(message);
+    if (faqAnswer) {
+      const response = faqAnswer;
+      
+      // Save to history if logged in
+      if (userId) {
+        try {
+          await connectDB();
+          await ChatHistory.findOneAndUpdate(
+            { userId },
+            {
+              $push: {
+                messages: [
+                  { role: 'user', content: message, timestamp: new Date() },
+                  { role: 'assistant', content: response, timestamp: new Date() }
+                ]
+              }
+            },
+            { upsert: true, new: true }
+          );
+        } catch (dbError) {
+          console.error('Database error (non-critical):', dbError);
+        }
+      }
+
+      return NextResponse.json({ 
+        message: response,
+        timestamp: new Date(),
+        isGuest: !userId,
+        isFAQ: true
+      });
+    }
+
+    // Build enhanced context with system knowledge
+    const enhancedContext = context || buildChatbotContext(contextType, contextData);
+
     // Get AI response with appropriate context
     let response: string;
     try {
-      response = await getEnglishTutorResponse(message, context, !userId);
+      response = await getEnglishTutorResponse(message, enhancedContext, !userId);
     } catch (aiError) {
       console.error('Gemini API error:', aiError);
       // Fallback response if Gemini fails

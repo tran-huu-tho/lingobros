@@ -1,0 +1,210 @@
+[{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b645"
+  },
+  "code": "streak_3",
+  "title": "🔥 Streak Starter",
+  "description": "Học liên tục 3 ngày",
+  "icon": "🔥",
+  "type": "streak",
+  "requirement": 3,
+  "xpReward": 50,
+  "gemsReward": 10,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b646"
+  },
+  "code": "streak_7",
+  "title": "⚡ Week Warrior",
+  "description": "Học liên tục 7 ngày",
+  "icon": "⚡",
+  "type": "streak",
+  "requirement": 7,
+  "xpReward": 100,
+  "gemsReward": 25,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b647"
+  },
+  "code": "streak_30",
+  "title": "🌟 Month Master",
+  "description": "Học liên tục 30 ngày",
+  "icon": "🌟",
+  "type": "streak",
+  "requirement": 30,
+  "xpReward": 500,
+  "gemsReward": 100,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b648"
+  },
+  "code": "xp_100",
+  "title": "🎯 First Hundred",
+  "description": "Đạt 100 XP",
+  "icon": "🎯",
+  "type": "xp",
+  "requirement": 100,
+  "xpReward": 25,
+  "gemsReward": 5,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b649"
+  },
+  "code": "xp_500",
+  "title": "💪 XP Champion",
+  "description": "Đạt 500 XP",
+  "icon": "💪",
+  "type": "xp",
+  "requirement": 500,
+  "xpReward": 100,
+  "gemsReward": 20,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b64a"
+  },
+  "code": "xp_1000",
+  "title": "👑 XP Legend",
+  "description": "Đạt 1000 XP",
+  "icon": "👑",
+  "type": "xp",
+  "requirement": 1000,
+  "xpReward": 250,
+  "gemsReward": 50,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b64b"
+  },
+  "code": "lessons_5",
+  "title": "📚 Getting Started",
+  "description": "Hoàn thành 5 bài học",
+  "icon": "📚",
+  "type": "lessons",
+  "requirement": 5,
+  "xpReward": 50,
+  "gemsReward": 10,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b64c"
+  },
+  "code": "lessons_20",
+  "title": "🎓 Dedicated Learner",
+  "description": "Hoàn thành 20 bài học",
+  "icon": "🎓",
+  "type": "lessons",
+  "requirement": 20,
+  "xpReward": 150,
+  "gemsReward": 30,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b64d"
+  },
+  "code": "perfect_5",
+  "title": "💯 Perfectionist",
+  "description": "Đạt điểm tuyệt đối 5 lần",
+  "icon": "💯",
+  "type": "perfect",
+  "requirement": 5,
+  "xpReward": 100,
+  "gemsReward": 25,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69143e80d184ff184dc0b64e"
+  },
+  "code": "perfect_10",
+  "title": "🌈 Perfect Master",
+  "description": "Đạt điểm tuyệt đối 10 lần",
+  "icon": "🌈",
+  "type": "perfect",
+  "requirement": 10,
+  "xpReward": 200,
+  "gemsReward": 50,
+  "isActive": true,
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-11-12T08:00:00.048Z"
+  }
+}]

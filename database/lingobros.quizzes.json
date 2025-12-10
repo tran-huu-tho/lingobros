@@ -1,0 +1,190 @@
+[{
+  "_id": {
+    "$oid": "6936bbbf89413cf877691251"
+  },
+  "title": "demo",
+  "description": "demo",
+  "questions": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59c"
+      },
+      "order": 1,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130a"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59e"
+      },
+      "order": 2,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130b"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59f"
+      },
+      "order": 3,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130c"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59d"
+      },
+      "order": 4,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130d"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a0"
+      },
+      "order": 5,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130e"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a1"
+      },
+      "order": 6,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf87769130f"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a2"
+      },
+      "order": 7,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf877691310"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a3"
+      },
+      "order": 8,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf877691311"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a4"
+      },
+      "order": 9,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf877691312"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a5"
+      },
+      "order": 10,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be3c89413cf877691313"
+      }
+    }
+  ],
+  "duration": 30,
+  "passingScore": 70,
+  "shuffleQuestions": false,
+  "isPublished": false,
+  "createdAt": {
+    "$date": "2025-12-08T11:51:27.878Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-09T06:23:29.822Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936be5b89413cf87769132a"
+  },
+  "title": "Kiểm tra căn bản",
+  "description": "Kiểm tra căn bản",
+  "questions": [
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59c"
+      },
+      "order": 5,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be7989413cf877691365"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59d"
+      },
+      "order": 6,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be7989413cf877691366"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59e"
+      },
+      "order": 7,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be7989413cf877691367"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe59f"
+      },
+      "order": 8,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be7989413cf877691368"
+      }
+    },
+    {
+      "exerciseId": {
+        "$oid": "69366dcc48e16bddfd9fe5a0"
+      },
+      "order": 9,
+      "points": 10,
+      "_id": {
+        "$oid": "6936be7989413cf877691369"
+      }
+    }
+  ],
+  "duration": 30,
+  "passingScore": 70,
+  "shuffleQuestions": false,
+  "isPublished": true,
+  "createdAt": {
+    "$date": "2025-12-08T12:02:35.214Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T12:04:48.131Z"
+  },
+  "__v": 0
+}]

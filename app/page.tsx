@@ -91,7 +91,7 @@ export default function Home() {
             </h1>
 
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Trả lời vài câu hỏi đơn giản – chúng tôi đề xuất lộ trình cá nhân hóa: từ từ vựng, ngữ pháp đến giao tiếp và viết.
+              Trả lời vài câu hỏi đơn giản – chúng tôi đề xuất lộ trình cá nhân hóa: từ từ vựng, ngữ pháp.
             </p>
 
             {/* CTA Buttons */}

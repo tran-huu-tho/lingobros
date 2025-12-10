@@ -1,0 +1,837 @@
+[{
+  "_id": {
+    "$oid": "692186755ce7a6bbe6e909ca"
+  },
+  "userId": "CbLvvrt2lVbheveTWVl7XZ06TT72",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-22T09:46:29.349Z"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "chào",
+      "timestamp": {
+        "$date": "2025-11-22T09:46:29.348Z"
+      },
+      "_id": {
+        "$oid": "6921867563e6727527f29cbc"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Chào bạn iu ơiii 👋! Tui là Frosty ☃️, trợ lý học tiếng Anh bựa nhất quả đất của LingoBros đây. Có gì cần tui \"xả tuyết\" (solve) giúp hơm? ❄️\n",
+      "timestamp": {
+        "$date": "2025-11-22T09:46:29.348Z"
+      },
+      "_id": {
+        "$oid": "6921867563e6727527f29cbd"
+      }
+    },
+    {
+      "role": "user",
+      "content": "tôi cần tư vấn lộ trình học",
+      "timestamp": {
+        "$date": "2025-11-22T09:46:49.897Z"
+      },
+      "_id": {
+        "$oid": "6921868963e6727527f29cc1"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Chào bạn, tớ là Frosty ☃️, trợ lý học tiếng Anh bựa nhất quả đất của LingoBros đây! Bạn muốn tớ tư vấn lộ trình học hả? Nghe là thấy khoái rồi đó nha! 😎\n\nĐể tớ \"đo ni đóng giày\" cho bạn một lộ trình \"chuẩn không cần chỉnh\", bạn cho tớ xin ít thông tin nha:\n\n1️⃣ Trình độ hiện tại của bạn là gì? (beginner, intermediate, advanced...) Nói thật lòng nha, đừng ngại! 😁\n2️⃣ Mục tiêu học tiếng Anh của bạn là gì? (giao tiếp, thi cử, công việc...) Càng cụ thể càng tốt!\n3️⃣ Mỗi ngày bạn có thể dành bao nhiêu thời gian cho việc học? (30 phút, 1 tiếng, cả ngày...)\n4️⃣ Bạn thích học theo kiểu nào? (học qua app, học qua video, học qua sách...)\n\nSau khi có đủ thông tin, tớ sẽ \"phù phép\" ra một lộ trình học \"bá cháy bọ chét\" dành riêng cho bạn! 🚀 Let's go!\n",
+      "timestamp": {
+        "$date": "2025-11-22T09:46:49.897Z"
+      },
+      "_id": {
+        "$oid": "6921868963e6727527f29cc2"
+      }
+    }
+  ],
+  "updatedAt": {
+    "$date": "2025-11-22T09:46:49.898Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6922bec707cae36ec7e2f8a5"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "__v": 0,
+  "createdAt": {
+    "$date": "2025-11-23T07:59:03.254Z"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "làm sao để học tiếng anh hiệu quả",
+      "timestamp": {
+        "$date": "2025-11-23T07:59:03.251Z"
+      },
+      "_id": {
+        "$oid": "6922bec7fc7bc9fbc04d4b62"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Học tiếng Anh hiệu quả ư? Dễ ợt!\n\n*   Đặt mục tiêu rõ ràng, có lộ trình học tập.\n*   Học từ vựng theo chủ đề, dùng flashcards.\n*   Luyện nghe [listening] mỗi ngày, xem phim ảnh.\n*   Tìm bạn luyện nói [speaking], đừng ngại sai.\n*   Đọc tài liệu tiếng Anh thường xuyên [reading].\n",
+      "timestamp": {
+        "$date": "2025-11-23T07:59:03.251Z"
+      },
+      "_id": {
+        "$oid": "6922bec7fc7bc9fbc04d4b63"
+      }
+    },
+    {
+      "role": "user",
+      "content": "lên lộ trình để tôi có thể nói được tiếng anh",
+      "timestamp": {
+        "$date": "2025-11-23T07:59:21.896Z"
+      },
+      "_id": {
+        "$oid": "6922bed9fc7bc9fbc04d4b67"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Để \"bung lụa\" tiếng Anh, chiến ngay lộ trình này:\n\n1.  \"Khởi động\": Học phát âm chuẩn ([pronunciation]), từ vựng cơ bản ([basic vocabulary]).\n2.  \"Tăng tốc\": Luyện ngữ pháp ([grammar]), nghe ([listening]), nói ([speaking]) mỗi ngày.\n3.  \"Về đích\": Thực hành giao tiếp ([communication]) với người bản xứ, xem phim không sub.\n",
+      "timestamp": {
+        "$date": "2025-11-23T07:59:21.896Z"
+      },
+      "_id": {
+        "$oid": "6922bed9fc7bc9fbc04d4b68"
+      }
+    }
+  ],
+  "updatedAt": {
+    "$date": "2025-11-23T07:59:21.896Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "692338971cc8bc04d87f5be1"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:38:47.605Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:38:47.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6923389b1cc8bc04d87f5be3"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:38:51.029Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:38:51.029Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6923389e1cc8bc04d87f5be5"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:38:54.150Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:38:54.150Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692338a11cc8bc04d87f5be7"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:38:57.261Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:38:57.261Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692338a31cc8bc04d87f5be9"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:38:59.462Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:38:59.462Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692338a61cc8bc04d87f5beb"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:39:02.024Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:39:02.024Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692338ab1cc8bc04d87f5bed"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:39:07.353Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:39:07.353Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692338b01cc8bc04d87f5bef"
+  },
+  "userId": "sxe0jyHVSfPH1Ha0p92qAOC6z9v2",
+  "createdAt": {
+    "$date": "2025-11-23T16:39:12.415Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T16:39:12.415Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e581cc8bc04d87f5c94"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:20.771Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:20.771Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e5a1cc8bc04d87f5c96"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:22.979Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:22.979Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e5c1cc8bc04d87f5c98"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:24.691Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:24.691Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e5f1cc8bc04d87f5c9a"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:27.725Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:27.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e621cc8bc04d87f5c9c"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:30.950Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:30.950Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e691cc8bc04d87f5c9e"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:37.880Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:37.880Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69233e6f1cc8bc04d87f5ca0"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:03:43.741Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:03:43.741Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692344401cc8bc04d87f5d0d"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:28:32.496Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:28:32.496Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692344461cc8bc04d87f5d11"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:28:38.892Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:28:38.892Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692344511cc8bc04d87f5d15"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:28:49.758Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:28:49.758Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692344571cc8bc04d87f5d17"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:28:55.041Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:28:55.041Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "692344591cc8bc04d87f5d19"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:28:57.444Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:28:57.444Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6923445c1cc8bc04d87f5d1b"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:29:00.720Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:29:00.720Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6923446a1cc8bc04d87f5d23"
+  },
+  "userId": "08aQZqz4mmahELJQJkAlz2G9AMU2",
+  "createdAt": {
+    "$date": "2025-11-23T17:29:14.613Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-11-23T17:29:14.613Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "693309783d7ca078a66e2451"
+  },
+  "userId": "8z6sLpz5XhODkqskq5YQwhDsdAG3",
+  "createdAt": {
+    "$date": "2025-12-05T16:34:00.051Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-05T16:34:00.051Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "693309923d7ca078a66e2454"
+  },
+  "userId": "8z6sLpz5XhODkqskq5YQwhDsdAG3",
+  "createdAt": {
+    "$date": "2025-12-05T16:34:26.321Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-05T16:34:26.321Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "693309ab3d7ca078a66e245d"
+  },
+  "userId": "8z6sLpz5XhODkqskq5YQwhDsdAG3",
+  "createdAt": {
+    "$date": "2025-12-05T16:34:51.610Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-05T16:34:51.610Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "693309b53d7ca078a66e245f"
+  },
+  "userId": "8z6sLpz5XhODkqskq5YQwhDsdAG3",
+  "createdAt": {
+    "$date": "2025-12-05T16:35:01.755Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-05T16:35:01.755Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "693309bd3d7ca078a66e2461"
+  },
+  "userId": "8z6sLpz5XhODkqskq5YQwhDsdAG3",
+  "createdAt": {
+    "$date": "2025-12-05T16:35:09.671Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-05T16:35:09.671Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6935862fa6ebc0f91b7f1962"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-07T13:50:39.983Z"
+  },
+  "messages": [
+    {
+      "role": "user",
+      "content": "ê mày",
+      "timestamp": {
+        "$date": "2025-12-07T15:18:28.568Z"
+      },
+      "_id": {
+        "$oid": "69359ac4b4e0bc3614f1f2be"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Xin lỗi, Frosty gặp chút vấn đề nhỏ với não tuyết. 🤖❄️ Hãy thử lại câu hỏi khác nhé!",
+      "timestamp": {
+        "$date": "2025-12-07T15:18:28.568Z"
+      },
+      "_id": {
+        "$oid": "69359ac4b4e0bc3614f1f2bf"
+      }
+    },
+    {
+      "role": "user",
+      "content": "hey",
+      "timestamp": {
+        "$date": "2025-12-07T15:18:33.707Z"
+      },
+      "_id": {
+        "$oid": "69359ac9b4e0bc3614f1f2c3"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Xin lỗi, Frosty gặp chút vấn đề nhỏ với não tuyết. 🤖❄️ Hãy thử lại câu hỏi khác nhé!",
+      "timestamp": {
+        "$date": "2025-12-07T15:18:33.707Z"
+      },
+      "_id": {
+        "$oid": "69359ac9b4e0bc3614f1f2c4"
+      }
+    },
+    {
+      "role": "user",
+      "content": "ổn chưa",
+      "timestamp": {
+        "$date": "2025-12-07T18:42:28.394Z"
+      },
+      "_id": {
+        "$oid": "6935ca941705210b144f5b93"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Xin lỗi, Frosty gặp chút vấn đề nhỏ với não tuyết. 🤖❄️ Hãy thử lại câu hỏi khác nhé!",
+      "timestamp": {
+        "$date": "2025-12-07T18:42:28.394Z"
+      },
+      "_id": {
+        "$oid": "6935ca941705210b144f5b94"
+      }
+    },
+    {
+      "role": "user",
+      "content": "xin chào",
+      "timestamp": {
+        "$date": "2025-12-07T18:42:59.817Z"
+      },
+      "_id": {
+        "$oid": "6935cab31705210b144f5b9c"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Ủa alo, có ai ở đó không? Cần gì hú tui liền!\n",
+      "timestamp": {
+        "$date": "2025-12-07T18:42:59.817Z"
+      },
+      "_id": {
+        "$oid": "6935cab31705210b144f5b9d"
+      }
+    },
+    {
+      "role": "user",
+      "content": "sao ông bị lỗi vậy, hết time hả",
+      "timestamp": {
+        "$date": "2025-12-07T18:43:15.530Z"
+      },
+      "_id": {
+        "$oid": "6935cac31705210b144f5ba7"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Sorry \"củ lạc\" nha! Đầu đông nên \"tớ\" hơi chậm tí. Để tớ \"tỉnh\" lại ngay đây!\n",
+      "timestamp": {
+        "$date": "2025-12-07T18:43:15.531Z"
+      },
+      "_id": {
+        "$oid": "6935cac31705210b144f5ba8"
+      }
+    },
+    {
+      "role": "user",
+      "content": "mình muốn tối ưu cho học viên thì nên làm thế nào",
+      "timestamp": {
+        "$date": "2025-12-07T18:43:38.782Z"
+      },
+      "_id": {
+        "$oid": "6935cada1705210b144f5bbf"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Để tối ưu cho học viên, bạn có thể:\n\n*   Cá nhân hóa lộ trình học: Điều chỉnh theo trình độ và mục tiêu riêng.\n*   Tạo bài tập thực hành đa dạng: Áp dụng kiến thức vào tình huống cụ thể.\n*   Tăng tương tác: Tạo diễn đàn, trò chơi, hoặc thảo luận nhóm.\n*   Đưa ra phản hồi chi tiết: Chỉ rõ điểm mạnh, điểm yếu và cách cải thiện.\n*   Sử dụng công cụ hỗ trợ học tập: Ứng dụng, phần mềm, tài liệu trực tuyến.\n",
+      "timestamp": {
+        "$date": "2025-12-07T18:43:38.782Z"
+      },
+      "_id": {
+        "$oid": "6935cada1705210b144f5bc0"
+      }
+    },
+    {
+      "role": "user",
+      "content": "good night",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:11.937Z"
+      },
+      "_id": {
+        "$oid": "6936d3d3e81c23408049a42a"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "\"Good night\" = Chúc ngủ ngon. Thường dùng khi sắp đi ngủ hoặc rời đi vào buổi tối.\n",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:11.937Z"
+      },
+      "_id": {
+        "$oid": "6936d3d3e81c23408049a42b"
+      }
+    },
+    {
+      "role": "user",
+      "content": "ý tôi chúc ông á",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:24.691Z"
+      },
+      "_id": {
+        "$oid": "6936d3e0e81c23408049a43b"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "\"Ý tôi chúc ông\" á hả? Nghe hơi... kỳ! 🤣\n\n*   Nói trang trọng: \"Tôi xin chúc ông\" [I wish you].\n*   Đơn giản hơn: \"Chúc ông\" [Wish you].",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:24.691Z"
+      },
+      "_id": {
+        "$oid": "6936d3e0e81c23408049a43c"
+      }
+    },
+    {
+      "role": "user",
+      "content": "chúc frosty buổi tối vui vẻ",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:44.016Z"
+      },
+      "_id": {
+        "$oid": "6936d3f4e81c23408049a44e"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "Bạn cũng vậy nha! Cần gì cứ hú mình. 😉\n",
+      "timestamp": {
+        "$date": "2025-12-08T13:34:44.016Z"
+      },
+      "_id": {
+        "$oid": "6936d3f4e81c23408049a44f"
+      }
+    }
+  ],
+  "updatedAt": {
+    "$date": "2025-12-08T13:34:44.016Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "69358634a6ebc0f91b7f1964"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-07T13:50:44.626Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-07T13:50:44.626Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936bfdf89413cf87769162b"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:03.535Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:03.535Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936bfe489413cf87769162d"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:08.099Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:08.099Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936bfe889413cf87769162f"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:12.059Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:12.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936bff089413cf877691631"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:20.685Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:20.685Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936c00489413cf877691635"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:40.346Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:40.346Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936c00a89413cf877691637"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:46.117Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:46.117Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936c00d89413cf877691639"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:49.884Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:49.884Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936c01289413cf87769163b"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:54.349Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:54.349Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6936c01789413cf87769163d"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-08T12:09:59.574Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-08T12:09:59.574Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6937c423371c4a30586b08b4"
+  },
+  "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+  "createdAt": {
+    "$date": "2025-12-09T06:39:31.691Z"
+  },
+  "messages": [],
+  "updatedAt": {
+    "$date": "2025-12-09T06:39:31.691Z"
+  },
+  "__v": 0
+}]

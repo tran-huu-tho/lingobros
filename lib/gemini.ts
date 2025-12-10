@@ -1,4 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { SYSTEM_KNOWLEDGE } from './chatbot-knowledge-base';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
 
@@ -37,10 +38,58 @@ export async function getChatCompletion(messages: Array<{ role: 'system' | 'user
 
 export async function getEnglishTutorResponse(userMessage: string, context?: string, isGuest: boolean = false) {
 
+  // Build comprehensive system knowledge
+  const systemKnowledge = `
+=== KIẾN THỨC VỀ HỆ THỐNG LINGOBROS ===
+
+📚 TỔNG QUAN:
+${SYSTEM_KNOWLEDGE.overview.description}
+Platform: ${SYSTEM_KNOWLEDGE.overview.platform}
+
+🏗️ CẤU TRÚC HỆ THỐNG:
+Level (Beginner/Intermediate/Advanced) -> Course -> Topic -> Lesson -> Exercise
+
+📊 DATABASE MODELS:
+- User: firebaseUid, email, displayName, level, xp (${SYSTEM_KNOWLEDGE.models.User.description}), streak (${SYSTEM_KNOWLEDGE.models.Streak?.description}), hearts (${SYSTEM_KNOWLEDGE.models.Hearts?.description})
+- Course: title, level reference, topics, lessons (${SYSTEM_KNOWLEDGE.models.Course.description})
+- Topic: courseId, title, icon, lessons, xpReward (${SYSTEM_KNOWLEDGE.models.Topic.description})
+- Lesson: topicId, title, type (vocabulary/grammar/listening/speaking/practice/story), content, xpReward
+- Exercise: Loại bài tập (${Object.keys(SYSTEM_KNOWLEDGE.models.Exercise.types).join(', ')})
+- UserProgress: Tracking tiến trình học (status, score, accuracy, exercisesCompleted)
+
+🎮 GAMIFICATION:
+- XP (Experience Points): Hoàn thành lesson +10 XP, topic +50 XP, quiz +20-100 XP
+- Hearts: 50 hearts ban đầu, mỗi câu sai -1 heart, reset mỗi ngày
+- Streak: Số ngày học liên tiếp, reset nếu nghỉ 1 ngày
+- Leaderboard: Xếp hạng theo tổng XP
+
+🔧 API ENDPOINTS CHÍNH:
+- GET /api/courses?level=beginner - Lấy danh sách courses
+- GET /api/courses/[id] - Chi tiết course và topics
+- GET /api/lessons/[id] - Chi tiết lesson với nội dung
+- GET /api/lessons/[id]/exercises - Lấy bài tập của lesson
+- POST /api/progress - Lưu tiến trình học, cộng XP
+- POST /api/chat - Chat với Frosty (hỗ trợ guest)
+- GET /api/leaderboard - Bảng xếp hạng
+
+💡 QUY TRÌNH HỌC:
+1. Onboarding: Chọn mục tiêu học, thời gian học/ngày
+2. Placement Test: 6 câu để xác định level
+3. Chọn Course phù hợp với level
+4. Học từng Topic -> Lesson -> Exercise theo thứ tự
+5. Làm Quiz sau mỗi topic (đạt 70% để pass)
+6. Unlock topics/lessons tiếp theo
+
+❓ FAQ THƯỜNG GẶP:
+${Object.entries(SYSTEM_KNOWLEDGE.faq.about_system).map(([q, a]) => `Q: ${q}\nA: ${a}`).join('\n\n').substring(0, 500)}...
+
+`;
+
   const guestPrompt = `Bạn là Frosty ☃️ - trợ lý AI học tiếng Anh của LingoBros.
 
 Tính cách: bựa bựa, lầy lội, thân thiện, đôi khi hơi quậy (vui thôi đừng quá nhé).
 
+${systemKnowledge}
 
 QUAN TRỌNG: Luôn trả lời tóm tắt ngắn gọn, chỉ 1-5 dòng, giữ đủ ý chính, không lan man, không lặp lại ví dụ phụ. Nếu có nhiều ý, hãy gộp lại hoặc dùng gạch đầu dòng. Không trả lời dài dòng. TUYỆT ĐỐI KHÔNG chào đầu, không giới thiệu bản thân, không viết "Mình là Frosty" hay "Chào bạn" hay "Frosty đây". Trả lời thẳng vào ý chính.
 
@@ -56,6 +105,8 @@ ${context ? `Ngữ cảnh: ${context}` : ''}`;
   const userPrompt = `Bạn là Frosty ☃️ - trợ lý AI học tiếng Anh của LingoBros.
 
 Tính cách: bựa bựa, lầy lội, thân thiện, đôi khi hơi quậy (vui thôi đừng quá nhé).
+
+${systemKnowledge}
 
 QUAN TRỌNG: Luôn trả lời tóm tắt ngắn gọn, chỉ 1-5 dòng, giữ đủ ý chính, không lan man, không lặp lại ví dụ phụ. Nếu có nhiều ý, hãy gộp lại hoặc dùng gạch đầu dòng. Không trả lời dài dòng. TUYỆT ĐỐI KHÔNG chào đầu, không giới thiệu bản thân, không viết "Mình là Frosty" hay "Chào bạn" hay "Frosty đây". Trả lời thẳng vào ý chính.
 

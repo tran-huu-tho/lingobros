@@ -1,0 +1,134 @@
+[{
+  "_id": {
+    "$oid": "69358b0ca6ebc0f91b7f1a63"
+  },
+  "content": "Merry Christmas LingoBros With Love~! ☃️",
+  "author": {
+    "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+    "name": "Admin LingoBros",
+    "avatar": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765116594/lingobros/avatars/hji4ayejd74qwp2ft00x.avif"
+  },
+  "tags": [
+    "lingobros",
+    "happy"
+  ],
+  "media": [
+    {
+      "type": "image",
+      "url": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765116680/lingobros/forum/pjgor3qctcwm8crlyboy.jpg",
+      "publicId": "lingobros/forum/pjgor3qctcwm8crlyboy",
+      "name": "Merry-Christmas-by-TheLucky-4.jpg",
+      "thumbnail": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765116680/lingobros/forum/pjgor3qctcwm8crlyboy.jpg",
+      "_id": {
+        "$oid": "69358b0ca6ebc0f91b7f1a64"
+      }
+    }
+  ],
+  "likes": 5,
+  "likedBy": [
+    "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+    "q3jtLaoJoLdkn6shDjuhycrGPqX2",
+    "5CsqmfIc3tSzbBUYM5uWecfOtJ93",
+    "kCLkws1gO7MTPuRZzPAULHtlQCF3",
+    "38DkAjtwLogY5U009nW7OHuCizI2"
+  ],
+  "comments": [
+    {
+      "_id": {
+        "$oid": "693593c17b3dd3ab34d332c4"
+      },
+      "author": {
+        "userId": "5CsqmfIc3tSzbBUYM5uWecfOtJ93",
+        "name": "Thọ Trần Hữu",
+        "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIN19lhfo2DIQwGwso0lrdsoUrkLW6Pj9plzYwE3mHXUJQshBjG=s96-c"
+      },
+      "content": "happy new year",
+      "likes": 2,
+      "likedBy": [
+        "5CsqmfIc3tSzbBUYM5uWecfOtJ93",
+        "q3jtLaoJoLdkn6shDjuhycrGPqX2"
+      ],
+      "replies": [],
+      "createdAt": {
+        "$date": "2025-12-07T14:48:33.933Z"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2025-12-07T14:11:24.166Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T14:11:24.166Z"
+  },
+  "__v": 8
+},
+{
+  "_id": {
+    "$oid": "6935cbec1705210b144f5bd6"
+  },
+  "content": "Tài liệu IELTS mùa đông đê",
+  "author": {
+    "userId": "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+    "name": "Admin LingoBros",
+    "avatar": "https://res.cloudinary.com/dhepbutlo/image/upload/v1765116594/lingobros/avatars/hji4ayejd74qwp2ft00x.avif"
+  },
+  "tags": [
+    "ielts",
+    "lingobros"
+  ],
+  "media": [
+    {
+      "type": "file",
+      "url": "https://res.cloudinary.com/dhepbutlo/raw/upload/v1765133289/lingobros/forum/okzp1h5acw3p9bm0lrn1",
+      "publicId": "lingobros/forum/okzp1h5acw3p9bm0lrn1",
+      "name": "IELTS.docx",
+      "thumbnail": "https://res.cloudinary.com/dhepbutlo/raw/upload/v1765133289/lingobros/forum/okzp1h5acw3p9bm0lrn1",
+      "_id": {
+        "$oid": "6935cbec1705210b144f5bd7"
+      }
+    }
+  ],
+  "likes": 2,
+  "likedBy": [
+    "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+    "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2",
+    "q3jtLaoJoLdkn6shDjuhycrGPqX2"
+  ],
+  "comments": [],
+  "createdAt": {
+    "$date": "2025-12-07T18:48:12.941Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-07T18:48:12.941Z"
+  },
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "6937134002a52c7810ee80bf"
+  },
+  "content": "IT's GOOOOOOOOOOOOD",
+  "author": {
+    "userId": "q3jtLaoJoLdkn6shDjuhycrGPqX2",
+    "name": "Hữu Thọ",
+    "avatar": "https://lh3.googleusercontent.com/a/ACg8ocIiep8fZDU7phBpj3OBya9dEzyLy8oIUQkk4181sJ5YcHX55ENm=s96-c"
+  },
+  "tags": [
+    "lingobros",
+    "good",
+    "happy"
+  ],
+  "media": [],
+  "likes": 1,
+  "likedBy": [
+    "Xo3OD2Y5MZgZlI6RWknMCznW0Uv2"
+  ],
+  "comments": [],
+  "createdAt": {
+    "$date": "2025-12-08T18:04:48.371Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T18:04:48.372Z"
+  },
+  "__v": 1
+}]

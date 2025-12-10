@@ -1,0 +1,2775 @@
+[{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe59c"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "My name ___ John.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "is",
+      "acceptableAnswers": [
+        "is"
+      ]
+    }
+  ],
+  "explanation": "Dùng \"is\" cho ngôi thứ ba số ít.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe59d"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "Vietnam",
+    "from",
+    "am",
+    "I"
+  ],
+  "correctOrder": [
+    "I",
+    "am",
+    "from",
+    "Vietnam"
+  ],
+  "explanation": "Cấu trúc: I am from + địa danh.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe59e"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"introduce\" là:",
+  "options": [
+    "Giới thiệu",
+    "Học tập",
+    "Làm việc",
+    "Chơi"
+  ],
+  "correctAnswer": "Giới thiệu",
+  "explanation": "\"Introduce\" nghĩa là giới thiệu.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe59f"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a20"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "hello",
+      "right": "xin chào"
+    },
+    {
+      "left": "name",
+      "right": "tên"
+    },
+    {
+      "left": "age",
+      "right": "tuổi"
+    },
+    {
+      "left": "from",
+      "right": "từ"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a0"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"breakfast\" là:",
+  "options": [
+    "Bữa sáng",
+    "Bữa trưa",
+    "Bữa tối",
+    "Bữa phụ"
+  ],
+  "correctAnswer": "Bữa sáng",
+  "explanation": "\"Breakfast\" nghĩa là bữa sáng.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a1"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I wake ___ at 6 AM every day.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "up",
+      "acceptableAnswers": [
+        "up"
+      ]
+    }
+  ],
+  "explanation": "\"Wake up\" nghĩa là thức dậy.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "brush",
+    "teeth",
+    "daily",
+    "I",
+    "my"
+  ],
+  "correctOrder": [
+    "I",
+    "brush",
+    "my",
+    "teeth",
+    "daily"
+  ],
+  "explanation": "Cấu trúc: Chủ ngữ + động từ + tân ngữ + trạng từ.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a3"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"sleep\" là:",
+  "options": [
+    "Ngủ",
+    "Ăn",
+    "Uống",
+    "Chơi"
+  ],
+  "correctAnswer": "Ngủ",
+  "explanation": "\"Sleep\" nghĩa là ngủ.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a4"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a21"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "morning",
+      "right": "buổi sáng"
+    },
+    {
+      "left": "evening",
+      "right": "buổi tối"
+    },
+    {
+      "left": "lunch",
+      "right": "bữa trưa"
+    },
+    {
+      "left": "dinner",
+      "right": "bữa tối"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a5"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"menu\" là:",
+  "options": [
+    "Thực đơn",
+    "Đồ uống",
+    "Đồ ăn",
+    "Nhà hàng"
+  ],
+  "correctAnswer": "Thực đơn",
+  "explanation": "\"Menu\" nghĩa là thực đơn.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a6"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "Can I have the ___, please?",
+  "blanks": [
+    {
+      "position": 4,
+      "answer": "menu",
+      "acceptableAnswers": [
+        "menu"
+      ]
+    }
+  ],
+  "explanation": "Câu hỏi xin thực đơn.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a7"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "order",
+    "to",
+    "pizza",
+    "like",
+    "I'd"
+  ],
+  "correctOrder": [
+    "I'd",
+    "like",
+    "to",
+    "order",
+    "pizza"
+  ],
+  "explanation": "Cấu trúc: I'd like to order + món ăn.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a8"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"bill\" là:",
+  "options": [
+    "Hóa đơn",
+    "Tiền",
+    "Thức ăn",
+    "Nước uống"
+  ],
+  "correctAnswer": "Hóa đơn",
+  "explanation": "\"Bill\" nghĩa là hóa đơn thanh toán.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5a9"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a22"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "coffee",
+      "right": "cà phê"
+    },
+    {
+      "left": "tea",
+      "right": "trà"
+    },
+    {
+      "left": "water",
+      "right": "nước"
+    },
+    {
+      "left": "juice",
+      "right": "nước ép"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5aa"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"sunny\" là:",
+  "options": [
+    "Nắng",
+    "Mưa",
+    "Gió",
+    "Lạnh"
+  ],
+  "correctAnswer": "Nắng",
+  "explanation": "\"Sunny\" nghĩa là trời nắng.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ab"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "It is ___ today.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "raining",
+      "acceptableAnswers": [
+        "raining",
+        "rainy"
+      ]
+    }
+  ],
+  "explanation": "Diễn tả thời tiết hiện tại.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ac"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "weather",
+    "The",
+    "is",
+    "nice",
+    "today"
+  ],
+  "correctOrder": [
+    "The",
+    "weather",
+    "is",
+    "nice",
+    "today"
+  ],
+  "explanation": "Cấu trúc: The weather is + tính từ.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ad"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"cloudy\" là:",
+  "options": [
+    "Nhiều mây",
+    "Nắng",
+    "Mưa",
+    "Tuyết"
+  ],
+  "correctAnswer": "Nhiều mây",
+  "explanation": "\"Cloudy\" nghĩa là trời nhiều mây.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ae"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a23"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "hot",
+      "right": "nóng"
+    },
+    {
+      "left": "cold",
+      "right": "lạnh"
+    },
+    {
+      "left": "windy",
+      "right": "gió"
+    },
+    {
+      "left": "snowy",
+      "right": "tuyết"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5af"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"happy\" là:",
+  "options": [
+    "Vui vẻ",
+    "Buồn",
+    "Giận dữ",
+    "Sợ hãi"
+  ],
+  "correctAnswer": "Vui vẻ",
+  "explanation": "\"Happy\" nghĩa là vui vẻ, hạnh phúc.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b0"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I feel ___ when I pass the exam.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "happy",
+      "acceptableAnswers": [
+        "happy",
+        "excited",
+        "glad"
+      ]
+    }
+  ],
+  "explanation": "Diễn tả cảm xúc khi đạt kết quả tốt.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b1"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "is",
+    "person",
+    "She",
+    "very",
+    "kind"
+  ],
+  "correctOrder": [
+    "She",
+    "is",
+    "very",
+    "kind",
+    "person"
+  ],
+  "explanation": "Cấu trúc: S + be + very + tính từ + danh từ.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"angry\" là:",
+  "options": [
+    "Giận dữ",
+    "Vui vẻ",
+    "Buồn",
+    "Sợ"
+  ],
+  "correctAnswer": "Giận dữ",
+  "explanation": "\"Angry\" nghĩa là giận dữ.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b3"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a24"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "sad",
+      "right": "buồn"
+    },
+    {
+      "left": "excited",
+      "right": "phấn khích"
+    },
+    {
+      "left": "tired",
+      "right": "mệt mỏi"
+    },
+    {
+      "left": "friendly",
+      "right": "thân thiện"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b4"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"cart\" là:",
+  "options": [
+    "Giỏ hàng",
+    "Thanh toán",
+    "Giao hàng",
+    "Đơn hàng"
+  ],
+  "correctAnswer": "Giỏ hàng",
+  "explanation": "\"Cart\" nghĩa là giỏ hàng khi mua sắm online.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b5"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "Please add this item to your ___.",
+  "blanks": [
+    {
+      "position": 6,
+      "answer": "cart",
+      "acceptableAnswers": [
+        "cart",
+        "basket"
+      ]
+    }
+  ],
+  "explanation": "Thêm sản phẩm vào giỏ hàng.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b6"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "to",
+    "want",
+    "buy",
+    "I",
+    "this"
+  ],
+  "correctOrder": [
+    "I",
+    "want",
+    "to",
+    "buy",
+    "this"
+  ],
+  "explanation": "Câu muốn mua hàng.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b7"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"shipping\" là:",
+  "options": [
+    "Vận chuyển",
+    "Thanh toán",
+    "Giảm giá",
+    "Hoàn trả"
+  ],
+  "correctAnswer": "Vận chuyển",
+  "explanation": "\"Shipping\" nghĩa là vận chuyển hàng.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b8"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a25"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "price",
+      "right": "giá"
+    },
+    {
+      "left": "discount",
+      "right": "giảm giá"
+    },
+    {
+      "left": "payment",
+      "right": "thanh toán"
+    },
+    {
+      "left": "delivery",
+      "right": "giao hàng"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5b9"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"waiter\" là:",
+  "options": [
+    "Người phục vụ",
+    "Đầu bếp",
+    "Khách hàng",
+    "Quản lý"
+  ],
+  "correctAnswer": "Người phục vụ",
+  "explanation": "\"Waiter\" nghĩa là người phục vụ.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ba"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "Can I see the ___, please?",
+  "blanks": [
+    {
+      "position": 4,
+      "answer": "menu",
+      "acceptableAnswers": [
+        "menu"
+      ]
+    }
+  ],
+  "explanation": "Câu hỏi xin xem thực đơn.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5bb"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "steak",
+    "I",
+    "like",
+    "would"
+  ],
+  "correctOrder": [
+    "I",
+    "would",
+    "like",
+    "steak"
+  ],
+  "explanation": "Cấu trúc: I would like + món ăn.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5bc"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"reservation\" là:",
+  "options": [
+    "Đặt chỗ",
+    "Thanh toán",
+    "Thực đơn",
+    "Hóa đơn"
+  ],
+  "correctAnswer": "Đặt chỗ",
+  "explanation": "\"Reservation\" nghĩa là đặt chỗ trước.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5bd"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a26"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "appetizer",
+      "right": "món khai vị"
+    },
+    {
+      "left": "main course",
+      "right": "món chính"
+    },
+    {
+      "left": "dessert",
+      "right": "tráng miệng"
+    },
+    {
+      "left": "beverage",
+      "right": "đồ uống"
+    }
+  ],
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5be"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"movie\" là:",
+  "options": [
+    "Phim",
+    "Nhạc",
+    "Sách",
+    "Trò chơi"
+  ],
+  "correctAnswer": "Phim",
+  "explanation": "\"Movie\" nghĩa là phim ảnh.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5bf"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I like to ___ music in my free time.",
+  "blanks": [
+    {
+      "position": 3,
+      "answer": "listen",
+      "acceptableAnswers": [
+        "listen",
+        "play"
+      ]
+    }
+  ],
+  "explanation": "Hoạt động giải trí với âm nhạc.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c0"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "movie",
+    "Let's",
+    "a",
+    "tonight",
+    "watch"
+  ],
+  "correctOrder": [
+    "Let's",
+    "watch",
+    "a",
+    "movie",
+    "tonight"
+  ],
+  "explanation": "Câu rủ đi xem phim.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c1"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"concert\" là:",
+  "options": [
+    "Buổi hòa nhạc",
+    "Rạp phim",
+    "Nhà hát",
+    "Công viên"
+  ],
+  "correctAnswer": "Buổi hòa nhạc",
+  "explanation": "\"Concert\" nghĩa là buổi hòa nhạc.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a27"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "game",
+      "right": "trò chơi"
+    },
+    {
+      "left": "book",
+      "right": "sách"
+    },
+    {
+      "left": "music",
+      "right": "âm nhạc"
+    },
+    {
+      "left": "sport",
+      "right": "thể thao"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c3"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"computer\" là:",
+  "options": [
+    "Máy tính",
+    "Điện thoại",
+    "Máy ảnh",
+    "Tivi"
+  ],
+  "correctAnswer": "Máy tính",
+  "explanation": "\"Computer\" nghĩa là máy tính.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c4"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I need to charge my ___.",
+  "blanks": [
+    {
+      "position": 5,
+      "answer": "phone",
+      "acceptableAnswers": [
+        "phone",
+        "laptop",
+        "tablet"
+      ]
+    }
+  ],
+  "explanation": "Các thiết bị cần sạc điện.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c5"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "internet",
+    "very",
+    "is",
+    "The",
+    "fast"
+  ],
+  "correctOrder": [
+    "The",
+    "internet",
+    "is",
+    "very",
+    "fast"
+  ],
+  "explanation": "Mô tả về internet.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c6"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"software\" là:",
+  "options": [
+    "Phần mềm",
+    "Phần cứng",
+    "Mạng",
+    "Dữ liệu"
+  ],
+  "correctAnswer": "Phần mềm",
+  "explanation": "\"Software\" nghĩa là phần mềm.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c7"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2a"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "email",
+      "right": "thư điện tử"
+    },
+    {
+      "left": "website",
+      "right": "trang web"
+    },
+    {
+      "left": "download",
+      "right": "tải xuống"
+    },
+    {
+      "left": "upload",
+      "right": "tải lên"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c8"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"apartment\" là:",
+  "options": [
+    "Căn hộ",
+    "Nhà phố",
+    "Biệt thự",
+    "Phòng trọ"
+  ],
+  "correctAnswer": "Căn hộ",
+  "explanation": "\"Apartment\" nghĩa là căn hộ chung cư.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5c9"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I have a ___ as a pet.",
+  "blanks": [
+    {
+      "position": 3,
+      "answer": "dog",
+      "acceptableAnswers": [
+        "dog",
+        "cat",
+        "bird",
+        "fish"
+      ]
+    }
+  ],
+  "explanation": "Các loại thú cưng phổ biến.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ca"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "My",
+    "house",
+    "has",
+    "three",
+    "bedrooms"
+  ],
+  "correctOrder": [
+    "My",
+    "house",
+    "has",
+    "three",
+    "bedrooms"
+  ],
+  "explanation": "Mô tả về ngôi nhà.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5cb"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"garden\" là:",
+  "options": [
+    "Vườn",
+    "Phòng khách",
+    "Bếp",
+    "Phòng ngủ"
+  ],
+  "correctAnswer": "Vườn",
+  "explanation": "\"Garden\" nghĩa là khu vườn.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5cc"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2b"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "cat",
+      "right": "mèo"
+    },
+    {
+      "left": "dog",
+      "right": "chó"
+    },
+    {
+      "left": "bird",
+      "right": "chim"
+    },
+    {
+      "left": "fish",
+      "right": "cá"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5cd"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"hotel\" là:",
+  "options": [
+    "Khách sạn",
+    "Nhà hàng",
+    "Sân bay",
+    "Bảo tàng"
+  ],
+  "correctAnswer": "Khách sạn",
+  "explanation": "\"Hotel\" nghĩa là khách sạn.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ce"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "Where is the nearest ___?",
+  "blanks": [
+    {
+      "position": 4,
+      "answer": "hotel",
+      "acceptableAnswers": [
+        "hotel",
+        "airport",
+        "station"
+      ]
+    }
+  ],
+  "explanation": "Câu hỏi tìm địa điểm.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5cf"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "Paris",
+    "I",
+    "to",
+    "want",
+    "visit"
+  ],
+  "correctOrder": [
+    "I",
+    "want",
+    "to",
+    "visit",
+    "Paris"
+  ],
+  "explanation": "Cấu trúc: I want to visit + địa danh.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d0"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"passport\" là:",
+  "options": [
+    "Hộ chiếu",
+    "Vé máy bay",
+    "Vali",
+    "Bản đồ"
+  ],
+  "correctAnswer": "Hộ chiếu",
+  "explanation": "\"Passport\" nghĩa là hộ chiếu.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d1"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2e"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "ticket",
+      "right": "vé"
+    },
+    {
+      "left": "luggage",
+      "right": "hành lý"
+    },
+    {
+      "left": "airport",
+      "right": "sân bay"
+    },
+    {
+      "left": "museum",
+      "right": "bảo tàng"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"teacher\" là:",
+  "options": [
+    "Giáo viên",
+    "Bác sĩ",
+    "Kỹ sư",
+    "Luật sư"
+  ],
+  "correctAnswer": "Giáo viên",
+  "explanation": "\"Teacher\" nghĩa là giáo viên.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d3"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "She is a ___ at the hospital.",
+  "blanks": [
+    {
+      "position": 3,
+      "answer": "doctor",
+      "acceptableAnswers": [
+        "doctor",
+        "nurse"
+      ]
+    }
+  ],
+  "explanation": "Nghề nghiệp tại bệnh viện.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d4"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "is",
+    "your",
+    "job",
+    "What"
+  ],
+  "correctOrder": [
+    "What",
+    "is",
+    "your",
+    "job"
+  ],
+  "explanation": "Câu hỏi về nghề nghiệp.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d5"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"engineer\" là:",
+  "options": [
+    "Kỹ sư",
+    "Giáo viên",
+    "Bác sĩ",
+    "Nông dân"
+  ],
+  "correctAnswer": "Kỹ sư",
+  "explanation": "\"Engineer\" nghĩa là kỹ sư.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d6"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a2f"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "doctor",
+      "right": "bác sĩ"
+    },
+    {
+      "left": "lawyer",
+      "right": "luật sư"
+    },
+    {
+      "left": "farmer",
+      "right": "nông dân"
+    },
+    {
+      "left": "chef",
+      "right": "đầu bếp"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d7"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "type": "multiple-choice",
+  "question": "Nghĩa của từ \"bus\" là:",
+  "options": [
+    "Xe buýt",
+    "Xe máy",
+    "Ô tô",
+    "Tàu hóa"
+  ],
+  "correctAnswer": "Xe buýt",
+  "explanation": "\"Bus\" nghĩa là xe buýt.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d8"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I go to work ___ bus.",
+  "blanks": [
+    {
+      "position": 4,
+      "answer": "by",
+      "acceptableAnswers": [
+        "by"
+      ]
+    }
+  ],
+  "explanation": "Dùng \"by\" trước phương tiện.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5d9"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "there",
+    "you",
+    "go",
+    "do",
+    "How"
+  ],
+  "correctOrder": [
+    "How",
+    "do",
+    "you",
+    "go",
+    "there"
+  ],
+  "explanation": "Câu hỏi về phương tiện đi lại.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5da"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "type": "translate",
+  "question": "Nghĩa của từ \"train\" là:",
+  "options": [
+    "Tàu hóa",
+    "Xe buýt",
+    "Máy bay",
+    "Tàu thủy"
+  ],
+  "correctAnswer": "Tàu hóa",
+  "explanation": "\"Train\" nghĩa là tàu hỏa.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5db"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a30"
+  },
+  "type": "match",
+  "question": "Nối từ tiếng Anh với nghĩa tiếng Việt tương ứng:",
+  "pairs": [
+    {
+      "left": "car",
+      "right": "ô tô"
+    },
+    {
+      "left": "bike",
+      "right": "xe đạp"
+    },
+    {
+      "left": "plane",
+      "right": "máy bay"
+    },
+    {
+      "left": "ship",
+      "right": "tàu thủy"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5dc"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "type": "multiple-choice",
+  "question": "Thì nào diễn tả hành động đang xảy ra?",
+  "options": [
+    "Present Continuous",
+    "Simple Present",
+    "Simple Past",
+    "Future Simple"
+  ],
+  "correctAnswer": "Present Continuous",
+  "explanation": "Present Continuous (be + V-ing) diễn tả hành động đang diễn ra.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5dd"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "I ___ to school every day.",
+  "blanks": [
+    {
+      "position": 1,
+      "answer": "go",
+      "acceptableAnswers": [
+        "go",
+        "walk",
+        "drive"
+      ]
+    }
+  ],
+  "explanation": "Simple Present dùng cho thói quen hàng ngày.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5de"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "She",
+    "is",
+    "book",
+    "reading",
+    "a"
+  ],
+  "correctOrder": [
+    "She",
+    "is",
+    "reading",
+    "a",
+    "book"
+  ],
+  "explanation": "Câu Present Continuous: S + be + V-ing.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5df"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "type": "translate",
+  "question": "Thì Simple Past dùng để diễn tả:",
+  "options": [
+    "Hành động đã xảy ra trong quá khứ",
+    "Hành động đang xảy ra",
+    "Hành động sẽ xảy ra",
+    "Thói quen hiện tại"
+  ],
+  "correctAnswer": "Hành động đã xảy ra trong quá khứ",
+  "explanation": "Simple Past dùng cho hành động đã hoàn thành trong quá khứ.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e0"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a33"
+  },
+  "type": "match",
+  "question": "Nối tên thì với công thức tương ứng:",
+  "pairs": [
+    {
+      "left": "Simple Present",
+      "right": "S + V(s/es)"
+    },
+    {
+      "left": "Present Continuous",
+      "right": "S + be + V-ing"
+    },
+    {
+      "left": "Simple Past",
+      "right": "S + V-ed/V2"
+    },
+    {
+      "left": "Future Simple",
+      "right": "S + will + V"
+    }
+  ],
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e1"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "type": "multiple-choice",
+  "question": "Mẫu câu \"How are you?\" dùng để:",
+  "options": [
+    "Hỏi thăm sức khỏe",
+    "Hỏi tên",
+    "Hỏi tuổi",
+    "Hỏi nghề nghiệp"
+  ],
+  "correctAnswer": "Hỏi thăm sức khỏe",
+  "explanation": "\"How are you?\" là câu hỏi thăm sức khỏe, tình hình.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e2"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "Nice to ___ you.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "meet",
+      "acceptableAnswers": [
+        "meet",
+        "see"
+      ]
+    }
+  ],
+  "explanation": "\"Nice to meet you\" là câu chào khi gặp lần đầu.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e3"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "help",
+    "me",
+    "you",
+    "Can"
+  ],
+  "correctOrder": [
+    "Can",
+    "you",
+    "help",
+    "me"
+  ],
+  "explanation": "Câu hỏi lịch sự xin giúp đỡ.",
+  "difficulty": "easy",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e4"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "type": "translate",
+  "question": "Nghĩa của \"Excuse me\" là:",
+  "options": [
+    "Xin lỗi/Cho phép tôi",
+    "Cảm ơn",
+    "Tạm biệt",
+    "Xin chào"
+  ],
+  "correctAnswer": "Xin lỗi/Cho phép tôi",
+  "explanation": "\"Excuse me\" dùng để xin phép hoặc gây chú ý lịch sự.",
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e5"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a34"
+  },
+  "type": "match",
+  "question": "Nối mẫu câu với tình huống sử dụng:",
+  "pairs": [
+    {
+      "left": "Thank you",
+      "right": "Cảm ơn"
+    },
+    {
+      "left": "I'm sorry",
+      "right": "Xin lỗi"
+    },
+    {
+      "left": "Goodbye",
+      "right": "Tạm biệt"
+    },
+    {
+      "left": "Welcome",
+      "right": "Chào mừng"
+    }
+  ],
+  "difficulty": "easy",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e6"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "type": "multiple-choice",
+  "question": "Câu điều kiện loại 1 dùng để:",
+  "options": [
+    "Diễn tả điều có thể xảy ra ở hiện tại/tương lai",
+    "Diễn tả điều không có thật ở hiện tại",
+    "Diễn tả điều không có thật ở quá khứ",
+    "Diễn tả thói quen"
+  ],
+  "correctAnswer": "Diễn tả điều có thể xảy ra ở hiện tại/tương lai",
+  "explanation": "Câu điều kiện loại 1: If + S + V(s/es), S + will + V.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e7"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "If it rains, I ___ stay at home.",
+  "blanks": [
+    {
+      "position": 4,
+      "answer": "will",
+      "acceptableAnswers": [
+        "will"
+      ]
+    }
+  ],
+  "explanation": "Câu điều kiện loại 1 dùng \"will\" ở mệnh đề chính.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e8"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu hoàn chỉnh:",
+  "words": [
+    "will",
+    "I",
+    "time",
+    "you",
+    "If",
+    "visit",
+    "have",
+    "I"
+  ],
+  "correctOrder": [
+    "If",
+    "I",
+    "have",
+    "time",
+    "I",
+    "will",
+    "visit",
+    "you"
+  ],
+  "explanation": "Câu điều kiện loại 1: If + hiện tại đơn, S + will + V.",
+  "difficulty": "medium",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5e9"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "type": "translate",
+  "question": "Công thức câu điều kiện loại 2 là:",
+  "options": [
+    "If + S + V-ed, S + would + V",
+    "If + S + V(s/es), S + will + V",
+    "If + S + had V3, S + would have V3",
+    "S + V + if + S + V"
+  ],
+  "correctAnswer": "If + S + V-ed, S + would + V",
+  "explanation": "Câu điều kiện loại 2 dùng cho điều không có thật ở hiện tại.",
+  "difficulty": "hard",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ea"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a35"
+  },
+  "type": "match",
+  "question": "Nối loại câu điều kiện với công thức:",
+  "pairs": [
+    {
+      "left": "Type 1",
+      "right": "If + hiện tại, will + V"
+    },
+    {
+      "left": "Type 2",
+      "right": "If + quá khứ, would + V"
+    },
+    {
+      "left": "Type 3",
+      "right": "If + had V3, would have V3"
+    },
+    {
+      "left": "Type 0",
+      "right": "If + hiện tại, hiện tại"
+    }
+  ],
+  "difficulty": "hard",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5eb"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "type": "multiple-choice",
+  "question": "Công thức câu bị động thì hiện tại đơn là:",
+  "options": [
+    "S + am/is/are + V3/ed",
+    "S + was/were + V3/ed",
+    "S + have/has been + V3/ed",
+    "S + will be + V3/ed"
+  ],
+  "correctAnswer": "S + am/is/are + V3/ed",
+  "explanation": "Câu bị động hiện tại đơn: S + am/is/are + past participle.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ec"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "type": "fill-blank",
+  "question": "Điền từ còn thiếu vào câu:",
+  "sentence": "The book ___ written by Mark Twain.",
+  "blanks": [
+    {
+      "position": 2,
+      "answer": "was",
+      "acceptableAnswers": [
+        "was"
+      ]
+    }
+  ],
+  "explanation": "Câu bị động quá khứ đơn với \"The book\" (số ít).",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ed"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "type": "word-order",
+  "question": "Sắp xếp các từ sau thành câu bị động:",
+  "words": [
+    "is",
+    "many",
+    "in",
+    "countries",
+    "spoken",
+    "English"
+  ],
+  "correctOrder": [
+    "English",
+    "is",
+    "spoken",
+    "in",
+    "many",
+    "countries"
+  ],
+  "explanation": "Câu bị động: Chủ ngữ + be + V3 + by + tân ngữ.",
+  "difficulty": "medium",
+  "blanks": [],
+  "pairs": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ee"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "type": "translate",
+  "question": "Chuyển \"They built this house\" sang bị động:",
+  "options": [
+    "This house was built",
+    "This house is built",
+    "This house has been built",
+    "This house will be built"
+  ],
+  "correctAnswer": "This house was built",
+  "explanation": "Câu bị động quá khứ: was/were + V3.",
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "pairs": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "69366dcc48e16bddfd9fe5ef"
+  },
+  "topicId": {
+    "$oid": "6935a4d9a1d4b8dc5cb71a36"
+  },
+  "type": "match",
+  "question": "Nối thì với công thức câu bị động:",
+  "pairs": [
+    {
+      "left": "Present Simple",
+      "right": "am/is/are + V3"
+    },
+    {
+      "left": "Past Simple",
+      "right": "was/were + V3"
+    },
+    {
+      "left": "Present Perfect",
+      "right": "have/has been + V3"
+    },
+    {
+      "left": "Future Simple",
+      "right": "will be + V3"
+    }
+  ],
+  "difficulty": "medium",
+  "words": [],
+  "correctOrder": [],
+  "blanks": [],
+  "options": [],
+  "createdAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  },
+  "updatedAt": {
+    "$date": "2025-12-08T06:18:52.522Z"
+  }
+}]
